@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
-    <title>Document</title>
+    <title>Weather Cast</title>
 </head>
 <body>
     <h1>Weather Cast</h1>
-    <form>
-        <input placeholder="Enter ZipCode, or City"></input>
-        <button>Submit</button>
+    <form method="POST" action="/">
+        <input type = "text" id ="city" name = "city" placeholder="Enter ZipCode, or City"/>
+        <button type="submit">Submit</button>
     </form>
+
+    <!-- this is where the weather information will be displayed
+
+    the background will change based on the weather -->
 </body>
 </html>

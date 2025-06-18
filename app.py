@@ -22,16 +22,19 @@ def index():
         city = request.form.get("city").strip()
         country = request.form.get("country").strip()
         
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={API_key}"
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid={API_key}&units=imperial"
         response = requests.get(url)
         data = response.json()
+        print(data)
         if response.status_code == 200:
             weather_data = {
                 "country": data["sys"]["country"],
                 "city": data["name"],
                 "temperature": data["main"]["temp"],
+                "feels_temp": data["main"]["feels_like"],
                 "condition": data["weather"][0]["main"],
                 "description": data["weather"][0]["description"],
+                "icon": data["weather"][0]["icon"]
             }
         else:
             error = "Enter a valid city, and country code. Please try again."

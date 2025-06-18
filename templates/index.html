@@ -7,23 +7,29 @@
     <title>Weather Cast</title>
 </head>
 <body>
-    <h1>Weather Cast</h1>
-    <form method="POST" action="/">
-        <input type = "text" id ="city" name = "city" placeholder="Enter City"/>
-        <input type = "text" id = "country" name = "country" placeholder="Enter Country Code"/>
-        <button type="submit">Submit</button>
-    </form>
-
+    <div class = "input_info">
+        <h1>Weather Cast</h1>
+        <form method="POST" action="/">
+            <input type = "text" id ="city" name = "city" placeholder="Enter City"/>
+            <input type = "text" id = "country" name = "country" placeholder="Enter Country Code"/>
+            <button type="submit">Submit</button>
+        </form>
+    
    <!-- this is where the weather information will be displayed -->
+
     {% if weather %}
+        <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
         <p>Country: {{weather["country"]}}</p>
         <p>City: {{weather["city"]}}</p>
         <p>Temperature: {{weather["temperature"]}}</p>
         <!-- <p>Condition: {{weather["condition"]}}</p> -->
         <p>Description: {{weather["description"]}}</p>
+        <p>{{weather["icon"]}}</p>
     {% else %}
         <p>{{error}}</p>
     {% endif %}
+
+    </div>
 
 
 

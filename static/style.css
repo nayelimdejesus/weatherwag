@@ -1,3 +1,118 @@
 body{
-    background-color: beige;
+    background-color: rgb(255, 255, 255);
+}
+body.clear {
+    background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+    color: #333;
+}
+body.clouds {
+    background: linear-gradient(135deg, #D3D3D3 0%, #A9A9A9 100%);
+    color: #fff;
+}
+body.rain {
+    background: linear-gradient(135deg, #4A90E2 0%, #1C3F66 100%);
+    color: #fff;
+}
+body.drizzle {
+    background: linear-gradient(135deg, #B0C4DE 0%, #78909C 100%);
+    color: #fff;
+}
+body.thunderstorm {
+    background: linear-gradient(135deg, #2C3E50 0%, #4C5C68 100%);
+    color: #fff;
+}
+body.snow {
+    background-color: #ECF0F1;
+    color: #333;
+}
+body.mist, body.haze, body.fog {
+    background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
+    color: #333;
+}
+body.smoke, body.dust, body.ash {
+    background: linear-gradient(135deg, #6E6E6E 0%, #3B3B3B 100%);
+    color: #fff;
+}
+body.sand {
+    background: linear-gradient(135deg, #F4E2B8 0%, #DCC48E 100%);
+    color: #333;
+}
+body.squall {
+    background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+    color: #fff;
+}
+body.tornado {
+    background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
+    color: #fff;
+}
+
+
+
+
+.input_info{
+    background-color: rgb(223, 223, 232);
+    width: 40rem;
+    height: auto;
+    text-align: center;
+    padding-block: .5rem;
+    margin: 0 auto;
+    border-radius: 10px;
+}
+/* .input_info.clear {
+    background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+    color: #333;
+}
+.input_info.clouds {
+    background: linear-gradient(135deg, #D3D3D3 0%, #A9A9A9 100%);
+    color: #fff;
+}
+.input_info.rain {
+    background: linear-gradient(135deg, #4A90E2 0%, #1C3F66 100%);
+    color: #fff;
+}
+.input_info.drizzle {
+    background: linear-gradient(135deg, #B0C4DE 0%, #78909C 100%);
+    color: #fff;
+}
+.input_info.thunderstorm {
+    background: linear-gradient(135deg, #2C3E50 0%, #4C5C68 100%);
+    color: #fff;
+}
+.input_info.snow {
+    background-color: #ECF0F1;
+    color: #333;
+}
+.input_info.mist, .input_info.haze, .input_info.fog {
+    background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
+    color: #333;
+}
+.input_info.smoke, .input_info.dust, .input_info.ash {
+    background: linear-gradient(135deg, #6E6E6E 0%, #3B3B3B 100%);
+    color: #fff;
+}
+.input_info.sand {
+    background: linear-gradient(135deg, #F4E2B8 0%, #DCC48E 100%);
+    color: #333;
+}
+.input_info.squall {
+    background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+    color: #fff;
+}
+.input_info.tornado {
+    background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
+    color: #fff;
+}
+
+
+
+
+ */
+
+
+
+input{
+    border-radius: 10px;
+    padding-inline: .5rem;
+    width:8rem;
+    height:1.1rem;
 }

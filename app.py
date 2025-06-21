@@ -22,11 +22,11 @@ def index():
         city = request.form.get("city").strip()
         state = request.form.get("state").strip()
         country = request.form.get("country").strip()
-        print(f"\n{state}")
         
         url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},{country}&appid={API_key}&units=imperial"
         response = requests.get(url)
         data = response.json()
+
         if response.status_code == 200:
             weather_data = {
                 "country": data["sys"]["country"],
@@ -35,7 +35,9 @@ def index():
                 "feels_temp": round(data["main"]["feels_like"]),
                 "condition": data["weather"][0]["main"],
                 "description": data["weather"][0]["description"],
-                "icon": data["weather"][0]["icon"]
+                "icon": data["weather"][0]["icon"],
+                "wind": round(data["wind"]["speed"]),
+                "wind_gust": round(data["wind"]["gust"])
             }
             condition = weather_data["condition"].lower()
      

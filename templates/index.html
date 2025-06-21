@@ -37,6 +37,9 @@
          <div class = "weather_details">
             <p>Mainly: {{weather["condition"]}}</p>
             <p>Description: {{weather["description"]}}</p>
+
+            <p>Wind: {{weather["wind"]}}mph</p>
+            <p>Wind gust: {{weather["wind_gust"]}}mph</p>
         </div>
     {% else %}
         <p>{{error}}</p>

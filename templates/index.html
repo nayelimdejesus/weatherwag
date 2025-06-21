@@ -26,12 +26,18 @@
    <!-- this is where the weather information will be displayed -->
 
     {% if weather %}
-        <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
-        <p>Country: {{weather["country"]}}</p>
-        <p>City: {{weather["city"]}}</p>
-        <p>Temperature: {{weather["temperature"]}}</p>
-        <p>Condition: {{weather["condition"]}}</p>
-        <p>Description: {{weather["description"]}}</p>
+        <p id="user_location">{{weather["city"]}}, {{weather["country"]}}</p>
+
+        <div class = "weather_info">
+            <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
+            <p id = "weather">{{weather["temperature"]}}</p>
+            <p>Feels like {{weather["feels_temp"]}}</p>
+        </div>
+        <!-- <p>City: {{weather["city"]}}</p> -->
+         <div class = "weather_details">
+            <p>Mainly: {{weather["condition"]}}</p>
+            <p>Description: {{weather["description"]}}</p>
+        </div>
     {% else %}
         <p>{{error}}</p>
     {% endif %}

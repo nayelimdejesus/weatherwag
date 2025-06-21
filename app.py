@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 import os
 
+
 import requests
 
 #to get key
@@ -30,8 +31,8 @@ def index():
             weather_data = {
                 "country": data["sys"]["country"],
                 "city": data["name"],
-                "temperature": data["main"]["temp"],
-                "feels_temp": data["main"]["feels_like"],
+                "temperature": round(data["main"]["temp"]),
+                "feels_temp": round(data["main"]["feels_like"]),
                 "condition": data["weather"][0]["main"],
                 "description": data["weather"][0]["description"],
                 "icon": data["weather"][0]["icon"]

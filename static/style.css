@@ -8,10 +8,10 @@ html, body {
 }
 
 body.clear {
-    background: linear-gradient(135deg, #87CEEB 0%, #4682B4 100%);
+    background: linear-gradient(135deg, #9fdef6 0%, #78b2e2 100%);
 }
 body.clouds {
-    background: linear-gradient(135deg, #D3D3D3 0%, #A9A9A9 100%);
+    background: linear-gradient(135deg, #D3D3D3 0%, #948f8f 100%);
 }
 body.rain {
     background: linear-gradient(135deg, #4A90E2 0%, #1C3F66 100%);
@@ -61,4 +61,17 @@ button{
     background-color: rgba(255, 255, 255, 0.746);
     border-radius: 10px;
     padding: .3rem;
+}
+
+#weather{
+    font-size: 3rem;
+}
+.weather_info div,
+.weather_info p{
+    margin: 0;
+    font-weight: bold;
+    
+}
+#user_location{
+    font-size: 1.3rem;
 }

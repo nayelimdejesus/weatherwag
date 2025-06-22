@@ -17,11 +17,13 @@
 {% endif %}
         <h1>Weather Cast</h1>
         <form method="POST" action="/">
+            
             <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
             <input type = "text" id = "state" name = "state" placeholder="Enter State">
             <input type = "text" id = "country" name = "country" placeholder="Enter Country Code" required/>
             <button type="submit">Submit</button>
         </form>
+
 
    <!-- this is where the weather information will be displayed -->
 
@@ -37,9 +39,9 @@
          <div class = "weather_details">
             <p>Mainly: {{weather["condition"]}}</p>
             <p>Description: {{weather["description"]}}</p>
-
+            <p>Humidity: {{weather["humidity"]}}</p>
             <p>Wind: {{weather["wind"]}}mph</p>
-            <p>Wind gust: {{weather["wind_gust"]}}mph</p>
+            <p>Wind Gust: {{weather["wind_gust"]}}mph</p>
         </div>
     {% else %}
         <p>{{error}}</p>

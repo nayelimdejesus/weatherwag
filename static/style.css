@@ -73,9 +73,11 @@ button{
     
 }
 
-#user_location{
+#user_city{
     font-size: 1.3rem;
+    font-weight: bold;
 }
 /* .weather_details{
     font-weight: bold;
 } */
+

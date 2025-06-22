@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 
@@ -27,6 +28,8 @@ def index():
 
     response = requests.get(url)
     data = response.json()
+    sunrise_time = datetime.fromtimestamp(data['sys']['sunrise']).strftime('%I:%M %p')
+    sunset_time = datetime.fromtimestamp(data['sys']['sunset']).strftime('%I:%M %p')
 
     if response.status_code == 200:
         weather_data = {
@@ -39,7 +42,9 @@ def index():
             "description": data["weather"][0]["description"],
             "icon": data["weather"][0]["icon"],
             "wind": round(data["wind"]["speed"]),
-            "wind_gust": round(data["wind"].get("gust", 0))
+            "wind_gust": round(data["wind"].get("gust", 0)),
+            "sunrise": sunrise_time,
+            "sunset": sunset_time
         }
     condition = weather_data["condition"].lower()
     

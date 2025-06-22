@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
-    <title>Weather Cast</title>
+    <title>WeatherFetch</title>
 </head>
 {% if condition %}
     <body class = "{{condition}}">
@@ -15,7 +15,7 @@
     <body>
     <div class = "input_info">
 {% endif %}
-        <h1>Weather Cast</h1>
+        <h1>WeatherFetch</h1>
         <form method="POST" action="/">
             
             <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
@@ -28,7 +28,7 @@
    <!-- this is where the weather information will be displayed -->
 
     {% if weather %}
-    <p>{{dog_warning}}</p>
+    <p id = "{{color_message}}">{{dog_warning}}</p>
         <p id="user_city">{{weather["city"]}}, US</p>
 
         <!-- <div class = "weather_container"> -->

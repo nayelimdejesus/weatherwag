@@ -40,7 +40,15 @@ body.squall {
 body.tornado {
     background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
 }
-
+#green{
+    color: green;
+}
+#yellow{
+    color: yellow;
+}
+#red{
+    color: red;
+}
 .input_info{
     background-color: rgba(255, 255, 255, 0.6);
     width: 40rem;

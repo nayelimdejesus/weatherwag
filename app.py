@@ -21,6 +21,7 @@ def index():
     error = ""
     condition = ""
     dog_warning = ""
+    color_message = ""
             
     city = "san jose"
     state = "ca"
@@ -47,14 +48,19 @@ def index():
         
         humidity = data["main"]["humidity"]
         if weather_temp <= 85 and humidity <= 60:
+            color_message = "green"
             dog_warning = "Weather looks safe for your dog's walk. Enjoy your time outside!"
         elif weather_temp > 85 and weather_temp <= 90 and humidity > 60 and humidity <= 70:
+            color_message = "orange"
             dog_warning = "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
         elif weather_temp > 85 and humidity > 70:
+            color_message = "Red"
             dog_warning = "Warning: High heat and humidity. Limit activity and watch for signs of overheating."
         elif weather_temp > 90 and weather_temp <= 95:
+            color_message = "Red"
             dog_warning = "It's very hot. Avoid long walks and stick to early morning or evenings."
         elif weather_temp > 95:
+            color_message = "Red"
             dog_warning = "Danger: Too hot for dogs to walk safely. Please stay indoors."
         weather_data = {
             "country": data["sys"]["country"],
@@ -72,7 +78,7 @@ def index():
         }
         condition = weather_data["condition"].lower()
         
-    return render_template("index.html", dog_warning = dog_warning, weather = weather_data, error = error, condition = condition)
+    return render_template("index.html", color_message = color_message, dog_warning = dog_warning, weather = weather_data, error = error, condition = condition)
 
 if __name__ in "__main__":
     app.run(debug=True, port = 5001)

@@ -41,6 +41,29 @@ def index():
     
         
     if response.status_code == 200:
+        walk_times = {
+            "green": {
+            "morning": "Morning: 7 AM – 10 AM",
+            "afternoon": "Afternoon: 12 PM – 5 PM<br>(shaded recommended)",
+            "evening": "Evening: 6 PM – 9 PM"
+            },
+            "yellow": {
+            "morning": "Morning: Before 8 AM",
+            "evening": "Evening: After 7 PM",
+            "note": "Avoid: 10 AM – 6 PM"
+            },
+            "red": { 
+            "morning": "Morning: Before 7:30 AM",
+            "evening": "Evening: After 8 PM",
+            "note": "Avoid: Most of the day – heat stress risk"
+            },
+            "danger": {
+            "morning": None,
+            "evening": None,
+            "note": "Warning: Too hot to walk safely – stay indoors"
+            }
+        }
+
         sunrise_time = datetime.fromtimestamp(data['sys']['sunrise']).strftime('%I:%M %p')
         sunset_time = datetime.fromtimestamp(data['sys']['sunset']).strftime('%I:%M %p')
     
@@ -51,17 +74,24 @@ def index():
             color_message = "green"
             dog_warning = "Weather looks safe for your dog's walk. Enjoy your time outside!"
         elif weather_temp > 85 and weather_temp <= 90 and humidity > 60 and humidity <= 70:
-            color_message = "orange"
+            color_message = "yellow"
             dog_warning = "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
         elif weather_temp > 85 and humidity > 70:
-            color_message = "Red"
+            color_message = "red"
             dog_warning = "Warning: High heat and humidity. Limit activity and watch for signs of overheating."
         elif weather_temp > 90 and weather_temp <= 95:
-            color_message = "Red"
+            color_message = "red"
             dog_warning = "It's very hot. Avoid long walks and stick to early morning or evenings."
         elif weather_temp > 95:
-            color_message = "Red"
+            color_message = "danger"
             dog_warning = "Danger: Too hot for dogs to walk safely. Please stay indoors."
+            
+        suggested_walk = walk_times[color_message]
+        dog_data = {
+            "dog_warning": dog_warning,
+            "color_message": color_message,
+            "walk_times": suggested_walk
+        }
         weather_data = {
             "country": data["sys"]["country"],
             "city": data["name"],
@@ -77,8 +107,7 @@ def index():
             "sunset": sunset_time
         }
         condition = weather_data["condition"].lower()
-        
-    return render_template("index.html", color_message = color_message, dog_warning = dog_warning, weather = weather_data, error = error, condition = condition)
+    return render_template("index.html", dog = dog_data, weather = weather_data, error = error, condition = condition)
 
 if __name__ in "__main__":
     app.run(debug=True, port = 5001)

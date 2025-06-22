@@ -28,27 +28,40 @@
    <!-- this is where the weather information will be displayed -->
 
     {% if weather %}
-    <p id = "{{color_message}}">{{dog_warning}}</p>
+    <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
         <p id="user_city">{{weather["city"]}}, US</p>
 
         <!-- <div class = "weather_container"> -->
             <div class = "weather_info">
-                <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
-                <p id = "weather">{{weather["temperature"]}}</p>
-                <p>Feels like {{weather["feels_temp"]}}</p>
-                <p>Humidity: {{weather["humidity"]}}</p>
+                <div>
+                    <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
+                </div>
 
+                <div class = "temp">
+                    <p id = "weather">{{weather["temperature"]}}</p>
+                    <p>Feels like {{weather["feels_temp"]}}</p>
+                    <p>Humidity: {{weather["humidity"]}}%</p>
+                </div>
             </div>
-            <!-- <p>City: {{weather["city"]}}</p> -->
-            <div class = "weather_details">
-                <p>Mainly: {{weather["condition"]}}</p>
-                <p>Description: {{weather["description"]}}</p>
-                <p>Wind: {{weather["wind"]}}mph</p>
-                <p>Wind Gust: {{weather["wind_gust"]}}mph</p>
-                <p>Sunrise: {{weather["sunrise"]}}</p>
-                <p>Sunset: {{weather["sunset"]}}</p>
-            </div>
-            <div>
+            <!-- More Details -->
+            <div class = "more_details">
+                <div class = "weather_details">
+                    <h3>Weather Details</h3>
+                    <p>Mainly: {{weather["condition"]}}</p>
+                    <p>Description: {{weather["description"]}}</p>
+                    <p>Wind: {{weather["wind"]}}mph</p>
+                    <p>Wind Gust: {{weather["wind_gust"]}}mph</p>
+                    <p>Sunrise: {{weather["sunrise"]}}</p>
+                    <p>Sunset: {{weather["sunset"]}}</p>
+                </div>
+                <!-- Walk Suggestions -->
+                <div class = "walk_suggest">
+                    <h3>Walk Suggestions</h3>
+                    <p>{{dog["walk_times"]["morning"]}}</p>
+                    <p>{{dog["walk_times"]["afternoon"] | safe}}</p>
+                    <p>{{dog["walk_times"]["evening"]}}</p>
+                    <p>{{dog["walk_times"]["note"]}}</p>
+                </div>
 
             <!-- </div> -->
         </div>

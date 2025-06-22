@@ -49,6 +49,13 @@ body.tornado {
 #red{
     color: red;
 }
+#danger{
+    color: rgb(255, 61, 61);
+    font-weight: bold;
+}
+.walk_suggest{
+    width: 12rem;
+}
 .input_info{
     background-color: rgba(255, 255, 255, 0.6);
     width: 40rem;
@@ -80,6 +87,18 @@ button{
     font-weight: bold;
     
 }
+.weather_details{
+    width: 12rem;
+}
+.more_details{
+    display:flex;
+    justify-content: center;
+    gap: 5rem;
+}
+/* .temp{
+    display: flex;
+    justify-content: center;
+} */
 
 #user_city{
     font-size: 1.3rem;
@@ -88,4 +107,7 @@ button{
 /* .weather_details{
     font-weight: bold;
 } */
-
+.weather_info{
+    display:flex;
+    justify-content: center;
+}

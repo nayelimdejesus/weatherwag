@@ -20,7 +20,7 @@
             
             <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
             <input type = "text" id = "state" name = "state" placeholder="Enter State">
-            <input type = "text" id = "country" name = "country" placeholder="Enter Country Code" required/>
+            <!-- <input type = "text" id = "country" name = "country" placeholder="Enter Country Code" required/> -->
             <button type="submit">Submit</button>
         </form>
 
@@ -29,7 +29,7 @@
 
     {% if weather %}
     <p>{{dog_warning}}</p>
-        <p id="user_city">{{weather["city"]}}, {{weather["country"]}}</p>
+        <p id="user_city">{{weather["city"]}}, US</p>
 
         <!-- <div class = "weather_container"> -->
             <div class = "weather_info">

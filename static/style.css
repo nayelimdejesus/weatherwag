@@ -3,7 +3,7 @@ html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: rgb(190, 239, 255);
+    /* background-color: rgb(190, 239, 255); */
     color: #333;
 }
 
@@ -11,7 +11,7 @@ body.clear {
     background: linear-gradient(135deg, #9fdef6 0%, #78b2e2 100%);
 }
 body.clouds {
-    background: linear-gradient(135deg, #D3D3D3 0%, #948f8f 100%);
+    background: linear-gradient(135deg, #b1b4bb 0%, #757d8a 50%, #5b5e63 100%);
 }
 body.rain {
     background: linear-gradient(135deg, #4A90E2 0%, #1C3F66 100%);
@@ -20,10 +20,12 @@ body.drizzle {
     background: linear-gradient(135deg, #B0C4DE 0%, #78909C 100%);
 }
 body.thunderstorm {
-    background: linear-gradient(135deg, #2C3E50 0%, #4C5C68 100%);
+    background: linear-gradient(135deg, #2C3E50 0%, #3B4B59 50%, #4C5C68 100%);
+
 }
 body.snow {
-    background-color: #ECF0F1;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
 }
 body.mist, body.haze, body.fog {
     background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
@@ -53,9 +55,7 @@ body.tornado {
     color: rgb(255, 61, 61);
     font-weight: bold;
 }
-.walk_suggest{
-    width: 12rem;
-}
+
 .input_info{
     background-color: rgba(255, 255, 255, 0.6);
     width: 40rem;
@@ -63,9 +63,22 @@ body.tornado {
     text-align: center;
     padding-block: 1rem;
     margin: 0 auto;
-    border-radius: 10px;
+    border-radius: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(8px);
 }
-
+.header_sec{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+img{
+    width: 8rem;
+}
+#dog_1{
+    width:7rem;
+}
 input{
     border-radius: 10px;
     padding-inline: .5rem;
@@ -87,8 +100,20 @@ button{
     font-weight: bold;
     
 }
+.card-section{
+    width: 12rem; 
+    background: rgba(255, 255, 255, 0.365);
+    backdrop-filter: blur(10px);             
+    border-radius: 40px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: #1E2A38; 
+}
 .weather_details{
+    background-color: white;
     width: 12rem;
+    border-radius: 20px;
+    /* box-shadow: 5px 10px #888888; */
 }
 .more_details{
     display:flex;

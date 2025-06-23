@@ -22,6 +22,7 @@ def index():
     condition = ""
     dog_warning = ""
     color_message = ""
+    dog_data = None
             
     city = "san jose"
     state = "ca"
@@ -41,6 +42,17 @@ def index():
     
         
     if response.status_code == 200:
+        # weather_icons = {
+        #     "clear sky": '<i data-lucide="sun"></i>',
+        #     "few clouds": '<i data-lucide="cloud-sun"></i>',
+        #     "scattered clouds": '<i data-lucide="cloud"></i>',
+        #     "broken clouds": '<i data-lucide="cloudy"></i>',
+        #     "shower rain": '<i data-lucide="cloud-rain"></i>',
+        #     "rain": '<i data-lucide="cloud-sun-rain"></i>',
+        #     "thunderstorm": '<i data-lucide="cloud-lighting"></i>',
+        #     "snow": '<i data-lucide="snowflake"></i>',
+        #     "mist": '<i data-lucide="cloud-fog"></i>'
+        # }
         walk_times = {
             "green": {
             "morning": "Morning: 7 AM – 10 AM",
@@ -58,8 +70,6 @@ def index():
             "note": "Avoid: Most of the day – heat stress risk"
             },
             "danger": {
-            "morning": None,
-            "evening": None,
             "note": "Warning: Too hot to walk safely – stay indoors"
             }
         }

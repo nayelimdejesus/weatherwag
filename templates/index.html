@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
     <title>WeatherFetch</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 {% if condition %}
     <body class = "{{condition}}">
@@ -13,9 +14,16 @@
 
 {% else %}
     <body>
+        
     <div class = "input_info">
 {% endif %}
+
+
+    <div class = "header_sec">        
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
         <h1>WeatherFetch</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
+</div>
         <form method="POST" action="/">
             
             <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
@@ -26,13 +34,13 @@
 
 
    <!-- this is where the weather information will be displayed -->
-
     {% if weather %}
     <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
         <p id="user_city">{{weather["city"]}}, US</p>
 
         <!-- <div class = "weather_container"> -->
             <div class = "weather_info">
+                <div> <img id = "dog_1" src="/static/img/dog_1.png"/></div>
                 <div>
                     <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
                 </div>
@@ -42,10 +50,12 @@
                     <p>Feels like {{weather["feels_temp"]}}</p>
                     <p>Humidity: {{weather["humidity"]}}%</p>
                 </div>
+                <div> <img src="/static/img/dog_2.png"/></div>
+
             </div>
             <!-- More Details -->
             <div class = "more_details">
-                <div class = "weather_details">
+                <div class = "card-section">
                     <h3>Weather Details</h3>
                     <p>Mainly: {{weather["condition"]}}</p>
                     <p>Description: {{weather["description"]}}</p>
@@ -55,7 +65,7 @@
                     <p>Sunset: {{weather["sunset"]}}</p>
                 </div>
                 <!-- Walk Suggestions -->
-                <div class = "walk_suggest">
+                <div class = "card-section">
                     <h3>Walk Suggestions</h3>
                     <p>{{dog["walk_times"]["morning"]}}</p>
                     <p>{{dog["walk_times"]["afternoon"] | safe}}</p>
@@ -71,6 +81,9 @@
 
     </div>
 
+<script>
+  lucide.createIcons();
+</script>
 
 
     <!-- the background will change based on the weather  -->

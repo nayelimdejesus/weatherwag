@@ -1,49 +1,58 @@
 html, body {
-    height: 100%;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: 'Nunito', sans-serif;
-    background:  
-        linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
-        linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
+  min-height: 100vh; 
+  height: auto;      
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
-/* Background colors change based on weather conditions*/
-body.clear {
-    background:  
-        linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
-        linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
+
+html.clear, body.clear {
+  background:
+    linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
+    linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
 }
-body.clouds {
+
+html.clouds,body.clouds {
     background: 
         linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent 40%),
         linear-gradient(135deg, #b1b4bb 0%, #b3bac3 50%, #5b5e63 100%);
 }
-body.rain {
+
+html.rain, body.rain {
     background: linear-gradient(135deg, #5da3f4 0%,#5983b4 50%, #1C3F66 100%);
 }
-body.drizzle {
+
+html.drizzle, body.drizzle {
     background: linear-gradient(135deg, #849db9 0%,#7295be 50%, #1C3F66 100%);
 }
-body.thunderstorm {
+
+html.thunderstorm, body.thunderstorm {
     background: linear-gradient(135deg, #2C3E50 0%, #3B4B59 50%, #4C5C68 100%);
 }
-body.snow {
+
+html.snow, body.snow {
     background: linear-gradient(135deg, #e8ebef 0%, #acb5c5 100%);
 }
-body.mist, body.haze, body.fog {
+
+html.mist, html.haze, html.fog, body.mist, body.haze, body.fog {
     background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
 }
-body.smoke, body.dust, body.ash {
+
+html.smoke, html.dust, html.ash, body.smoke, body.dust, body.ash {
     background: linear-gradient(135deg, #6E6E6E 0%,#7a7a7a, 50%, #3B3B3B 100%);
 }
-body.sand {
+
+html.sand, body.sand {
     background: linear-gradient(135deg, #F4E2B8 0%,#ffe9b5 50%, #DCC48E 100%);
 }
-body.squall {
+
+html.squall, body.squall {
     background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
 }
-body.tornado {
+
+html.tornado, body.tornado {
     background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
 }
 
@@ -70,20 +79,71 @@ body.tornado {
 }
 .card{
     background-color: rgba(255, 255, 255, 0.6);
-    width: 40rem;
+    width: 60%;
+    max-width: 40rem;
     height: auto;
     text-align: center;
     padding-block: 1rem;
     margin: 0 auto;
     border-radius: 40px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(8px);
 }
+
+@media (max-width: 1200px) {
+  .card {
+    max-width: 30rem;
+    border-radius: 30px;
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 950px) {
+  .card {
+    width: 100%;
+    max-width: 40rem;
+    border-radius: 30px;
+    font-size: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    max-width: 25rem;
+    padding-block: 0.75rem;
+    border-radius: 20px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 90%;
+    padding-block: 0.5rem;
+    border-radius: 15px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 1200px) {
+#weather-fetch{
+    font-size: 25px;
+    
+}}
 .card-title{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3rem;
+}
+.responsive-icon {
+    width: 8%;
+    height: auto;
+    stroke: #696868;
+    fill: white;
+}
+@media (max-width: 480px) {
+  .responsive-icon {
+    width: 10%;
+  }
 }
 
 /* user input */
@@ -92,19 +152,60 @@ input{
     padding-inline: .5rem;
     width:8rem;
     height:1.1rem;
+    margin-bottom: .2rem;
+}
+@media (max-width: 480px) {
+  input {
+    border-radius: 10px;
+    padding-inline: .5rem;
+    width:10rem;
+    height:1.2rem;
+    
+  }
+}
+.user-input {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  
+}
+@media (max-width: 480px) {
+  .user-input {
+    flex-direction: column;
+    align-items: center;    
+    gap: 1rem; 
+    margin-bottom:1rem;    
+    
+  }
 }
 button{
     background-color: rgba(255, 255, 255, 0.746);
     border-radius: 10px;
     padding: .3rem;
 }
-
-/* images of dogs */
-#dog_2{
-    width: 8rem;
+.middle-section{
+    width: 100%;
+    font-size: 1rem;
 }
+/* images of dogs */
+#dog_2 {
+  width: clamp(180px, 70%, 500px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 #dog_1{
-    width:6rem;
+  width: clamp(140px, 60%, 470px);
+  height: auto;
+  display: block;
+  margin: 0 auto;      
+}
+@media(max-width:480px){
+    #dog_1{
+        display: none;
+    }
 }
 #temp{
     font-size: 3rem;
@@ -121,10 +222,12 @@ button{
     justify-content: center;
     margin-bottom: 1rem;
 }
-.more_details{
-    display:flex;
-    justify-content: center;
-    gap: 5rem;
+@media(max-width:480px){
+    .weather-section{
+    flex-direction: column;
+    align-items: center;    
+    gap: 1.5rem;         
+    }
 }
 .card-section{
     width: 12rem; 
@@ -134,4 +237,18 @@ button{
     padding: 1.5rem 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
+    
+}
+.more-details{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+@media(max-width:480px){
+    .more-details{
+    flex-direction: column; 
+    align-items: center;    
+    gap: 1.5rem;         
+    }
 }

@@ -18,6 +18,8 @@ API_key = os.getenv("WEATHER_KEY")
 def index():
    
     weather_data = None
+    walk_times = None
+    suggested_walk = None
     error = ""
     condition = ""
     dog_warning = ""
@@ -33,6 +35,7 @@ def index():
      
     else:
         error = "Enter a valid city, and country code. Please try again."
+        print("\n try again.")
     
     print(city, state)
     
@@ -95,6 +98,8 @@ def index():
         elif weather_temp > 95:
             color_message = "danger"
             dog_warning = "Danger: Too hot for dogs to walk safely. Please stay indoors."
+        else:
+            color_message = "green"
             
         suggested_walk = walk_times[color_message]
         dog_data = {
@@ -117,6 +122,9 @@ def index():
             "sunset": sunset_time
         }
         condition = weather_data["condition"].lower()
+    else:
+        error = "Enter a valid city, and country code. Please try again."
+
     return render_template("index.html", dog = dog_data, weather = weather_data, error = error, condition = condition)
 
 if __name__ in "__main__":

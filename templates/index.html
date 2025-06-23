@@ -2,90 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/static/style.css">
     <title>WeatherFetch</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 {% if condition %}
-    <body class = "{{condition}}">
-
-    <div class = "input_info">
+<body class = "{{condition}}">
+    <div class = "card">
 
 {% else %}
-    <body>
-        
-    <div class = "input_info">
+<body>
+    <div class = "card">
 {% endif %}
-
-
-    <div class = "header_sec">        
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
-        <h1>WeatherFetch</h1>
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
-</div>
+        <div class = "card-title">        
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
+            <h1>WeatherFetch</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bone-icon lucide-bone"><path d="M17 10c.7-.7 1.69 0 2.5 0a2.5 2.5 0 1 0 0-5 .5.5 0 0 1-.5-.5 2.5 2.5 0 1 0-5 0c0 .81.7 1.8 0 2.5l-7 7c-.7.7-1.69 0-2.5 0a2.5 2.5 0 0 0 0 5c.28 0 .5.22.5.5a2.5 2.5 0 1 0 5 0c0-.81-.7-1.8 0-2.5Z"/></svg>
+        </div>
         <form method="POST" action="/">
-            
             <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
             <input type = "text" id = "state" name = "state" placeholder="Enter State">
-            <!-- <input type = "text" id = "country" name = "country" placeholder="Enter Country Code" required/> -->
             <button type="submit">Submit</button>
         </form>
 
-
-   <!-- this is where the weather information will be displayed -->
-    {% if weather %}
-    <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
+        {% if weather %}
+        <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
         <p id="user_city">{{weather["city"]}}, US</p>
-
-        <!-- <div class = "weather_container"> -->
-            <div class = "weather_info">
-                <div> <img id = "dog_1" src="/static/img/dog_1.png"/></div>
-                <div>
-                    <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
-                </div>
-
-                <div class = "temp">
-                    <p id = "weather">{{weather["temperature"]}}</p>
-                    <p>Feels like {{weather["feels_temp"]}}</p>
-                    <p>Humidity: {{weather["humidity"]}}%</p>
-                </div>
-                <div> <img src="/static/img/dog_2.png"/></div>
-
+        <div class = "weather-section">
+            <div> 
+                <img id = "dog_1" src="/static/img/dog_1.png"/>
             </div>
-            <!-- More Details -->
-            <div class = "more_details">
-                <div class = "card-section">
-                    <h3>Weather Details</h3>
-                    <p>Mainly: {{weather["condition"]}}</p>
-                    <p>Description: {{weather["description"]}}</p>
-                    <p>Wind: {{weather["wind"]}}mph</p>
-                    <p>Wind Gust: {{weather["wind_gust"]}}mph</p>
-                    <p>Sunrise: {{weather["sunrise"]}}</p>
-                    <p>Sunset: {{weather["sunset"]}}</p>
-                </div>
-                <!-- Walk Suggestions -->
-                <div class = "card-section">
-                    <h3>Walk Suggestions</h3>
-                    <p>{{dog["walk_times"]["morning"]}}</p>
-                    <p>{{dog["walk_times"]["afternoon"] | safe}}</p>
-                    <p>{{dog["walk_times"]["evening"]}}</p>
-                    <p>{{dog["walk_times"]["note"]}}</p>
-                </div>
+            <div>
+                <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
+            </div>
 
-            <!-- </div> -->
+            <div>
+                <p id = "temp">{{weather["temperature"]}}</p>
+                <p>Feels like {{weather["feels_temp"]}}</p>
+                <p>Humidity: {{weather["humidity"]}}%</p>
+            </div>
+            <div> 
+                <img id = "dog_2" src = "/static/img/dog_2.png"/>
+            </div>
+
+        </div>
+        <div class = "more_details">
+            <div class = "card-section">
+                <h3>Weather Details</h3>
+                <p>Mainly: {{weather["condition"]}}</p>
+                <p>Description: {{weather["description"]}}</p>
+                <p>Wind: {{weather["wind"]}}mph</p>
+                <p>Wind Gust: {{weather["wind_gust"]}}mph</p>
+                <p>Sunrise: {{weather["sunrise"]}}</p>
+                <p>Sunset: {{weather["sunset"]}}</p>
+            </div>
+            <div class = "card-section">
+                <h3>Walk Suggestions</h3>
+                <p>{{dog["walk_times"]["morning"]}}</p>
+                <p>{{dog["walk_times"]["afternoon"] | safe}}</p>
+                <p>{{dog["walk_times"]["evening"]}}</p>
+                <p>{{dog["walk_times"]["note"]}}</p>
+            </div>
         </div>
     {% else %}
-        <p>{{error}}</p>
+        <p id="error">{{error}}</p>
     {% endif %}
-
     </div>
 
 <script>
   lucide.createIcons();
 </script>
 
-
-    <!-- the background will change based on the weather  -->
 </body>
 </html>

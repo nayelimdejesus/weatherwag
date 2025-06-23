@@ -3,38 +3,42 @@ html, body {
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    /* background-color: rgb(190, 239, 255); */
-    color: #333;
+    font-family: 'Nunito', sans-serif;
+    background:  
+        linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
+        linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
 }
-
+/* Background colors change based on weather conditions*/
 body.clear {
-    background: linear-gradient(135deg, #9fdef6 0%, #78b2e2 100%);
+    background:  
+        linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
+        linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
 }
 body.clouds {
-    background: linear-gradient(135deg, #b1b4bb 0%, #757d8a 50%, #5b5e63 100%);
+    background: 
+        linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent 40%),
+        linear-gradient(135deg, #b1b4bb 0%, #b3bac3 50%, #5b5e63 100%);
 }
 body.rain {
-    background: linear-gradient(135deg, #4A90E2 0%, #1C3F66 100%);
+    background: linear-gradient(135deg, #5da3f4 0%,#5983b4 50%, #1C3F66 100%);
 }
 body.drizzle {
-    background: linear-gradient(135deg, #B0C4DE 0%, #78909C 100%);
+    background: linear-gradient(135deg, #849db9 0%,#7295be 50%, #1C3F66 100%);
 }
 body.thunderstorm {
     background: linear-gradient(135deg, #2C3E50 0%, #3B4B59 50%, #4C5C68 100%);
-
 }
 body.snow {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-
+    background: linear-gradient(135deg, #e8ebef 0%, #acb5c5 100%);
 }
 body.mist, body.haze, body.fog {
     background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
 }
 body.smoke, body.dust, body.ash {
-    background: linear-gradient(135deg, #6E6E6E 0%, #3B3B3B 100%);
+    background: linear-gradient(135deg, #6E6E6E 0%,#7a7a7a, 50%, #3B3B3B 100%);
 }
 body.sand {
-    background: linear-gradient(135deg, #F4E2B8 0%, #DCC48E 100%);
+    background: linear-gradient(135deg, #F4E2B8 0%,#ffe9b5 50%, #DCC48E 100%);
 }
 body.squall {
     background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
@@ -42,6 +46,8 @@ body.squall {
 body.tornado {
     background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
 }
+
+/* Message to dog owners regarding walk */
 #green{
     color: green;
 }
@@ -55,8 +61,14 @@ body.tornado {
     color: rgb(255, 61, 61);
     font-weight: bold;
 }
-
-.input_info{
+#user_city{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+#error{
+    color: red;
+}
+.card{
     background-color: rgba(255, 255, 255, 0.6);
     width: 40rem;
     height: auto;
@@ -67,18 +79,14 @@ body.tornado {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(8px);
 }
-.header_sec{
+.card-title{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 3rem;
 }
-img{
-    width: 8rem;
-}
-#dog_1{
-    width:7rem;
-}
+
+/* user input */
 input{
     border-radius: 10px;
     padding-inline: .5rem;
@@ -91,14 +99,32 @@ button{
     padding: .3rem;
 }
 
-#weather{
+/* images of dogs */
+#dog_2{
+    width: 8rem;
+}
+#dog_1{
+    width:6rem;
+}
+#temp{
     font-size: 3rem;
 }
-.weather_info div,
-.weather_info p{
+
+.weather-section div,
+.weather-section p{
     margin: 0;
     font-weight: bold;
     
+}
+.weather-section{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.more_details{
+    display:flex;
+    justify-content: center;
+    gap: 5rem;
 }
 .card-section{
     width: 12rem; 
@@ -108,31 +134,4 @@ button{
     padding: 1.5rem 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
-}
-.weather_details{
-    background-color: white;
-    width: 12rem;
-    border-radius: 20px;
-    /* box-shadow: 5px 10px #888888; */
-}
-.more_details{
-    display:flex;
-    justify-content: center;
-    gap: 5rem;
-}
-/* .temp{
-    display: flex;
-    justify-content: center;
-} */
-
-#user_city{
-    font-size: 1.3rem;
-    font-weight: bold;
-}
-/* .weather_details{
-    font-weight: bold;
-} */
-.weather_info{
-    display:flex;
-    justify-content: center;
 }

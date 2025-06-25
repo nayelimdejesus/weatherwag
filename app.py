@@ -26,7 +26,6 @@ def index():
     dog_warning = ""
     color_message = ""
     dog_data = None
-
     default_city = "san jose"
     default_state = "ca"
 
@@ -50,7 +49,6 @@ def index():
     if response.status_code != 200:
         city = default_city
         state = default_state
-        print("Something went wrong.")
         error = "Invalid city or state code. Please try again."
         url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={API_key}&units=imperial"
         response = requests.get(url)
@@ -79,9 +77,10 @@ def index():
     sunrise_time = datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%I:%M %p")
     sunset_time = datetime.fromtimestamp(data["sys"]["sunset"]).strftime("%I:%M %p")
 
-    weather_temp = round(data["main"]["feels_like"])
 
+    weather_temp = round(data["main"]["feels_like"])
     humidity = data["main"]["humidity"]
+    
     if 32 > weather_temp <= 45:
         color_message = "orange"
         dog_warning = "Cold weather, limit walks to 15-30 min. Use a coat or booties for small, thin-coated, or elderly dogs."
@@ -98,11 +97,8 @@ def index():
         color_message = "green"
         dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
     elif 85 < weather_temp <= 90:
-        print("Hello")
         color_message = "orange"
-        dog_warning = (
-            "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
-        )
+        dog_warning = "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
     elif 90 < weather_temp <= 95:
         color_message = "red"
         dog_warning = "Very hot weather. Walk early or late. Watch your dog for signs of overheating."
@@ -142,8 +138,8 @@ def index():
         "sunset": sunset_time,
     }
     condition = weather_data["condition"].lower()
-
     user_state = state.upper()
+    
     return render_template(
         "index.html",
         dog=dog_data,

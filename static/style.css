@@ -266,7 +266,7 @@ button:hover{
   margin: 0 auto;      
 }
 #dog_5{
-  width: clamp(140px, 18%, 470px);
+  width: clamp(110px, 18%, 470px);
   height: auto;
   display: block;
   margin: 0 auto;       
@@ -330,4 +330,9 @@ button:hover{
 #info-icon{
   margin-block: 1rem;
 
+}
+.disclaimer{
+  display: flex;
+  justify-content: center;
+  font-size: .8rem;
 }

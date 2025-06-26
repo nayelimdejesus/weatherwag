@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 from datetime import datetime
 import os
+import json
 
 
 import requests
@@ -27,15 +28,26 @@ def index():
     color_message = ""
     dog_data = None
     default_city = "san jose"
-    default_state = "ca"
+    default_state = "CA"
 
     city = default_city
     state = default_state
-
+    
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    json_path = os.path.join(basedir, 'data', 'states.json')
+    
+    with open(json_path) as f:
+        all_states = json.load(f)
+        
     # if the user submits the form
     if request.method == "POST":
         city = request.form.get("city", "").strip()
-        state = request.form.get("state", "").strip()
+        user_state = request.form.get("state", "").strip()
+        for i in all_states:
+            if all_states[i] == user_state:
+                state = i
+        print(state)
+                
     else:
         city = default_city
         state = default_state
@@ -138,7 +150,6 @@ def index():
         "sunset": sunset_time,
     }
     condition = weather_data["condition"].lower()
-    user_state = state.upper()
     
     return render_template(
         "index.html",
@@ -146,7 +157,8 @@ def index():
         weather=weather_data,
         error=error,
         condition=condition,
-        state=user_state,
+        state=state,
+        all_states = all_states
     )
 
 

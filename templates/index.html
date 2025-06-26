@@ -26,7 +26,13 @@
         <form method="POST" action="/">
             <div class = "user-input">
                 <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
-                <input type = "text" id = "state" name = "state" placeholder="Enter State" required>
+                <!-- <input type = "text" id = "state" name = "state" placeholder="Enter State" required> -->
+                <select name = "state">
+                    <option>Select State</option>
+                    {% for i in all_states %}
+                        <option>{{ all_states[i] }}</option>
+                    {% endfor %}
+                </select>
                 <button type="submit">Submit</button>
             </div>
         </form>

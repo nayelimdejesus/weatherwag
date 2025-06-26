@@ -121,7 +121,7 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
 @media (max-width: 1200px) {
   .card {
-    max-width: 40rem;
+    max-width: 45rem;
     border-radius: 30px;
     font-size: 1.25rem;
   }
@@ -129,7 +129,7 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 @media (max-width: 950px) {
   .card {
     width: 100%;
-    max-width: 45rem;
+    max-width: 50rem;
     border-radius: 30px;
     font-size: 1.25rem;
   }
@@ -223,6 +223,14 @@ input{
     margin-bottom:1rem;    
     
   }
+}
+select{
+    border-radius: 10px;
+    padding-inline: 1rem;
+    padding-block: .3rem;
+    border:rgba(0, 0, 255, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.746);
 }
 button{
     background-color: rgba(255, 255, 255, 0.746);

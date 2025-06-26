@@ -42,11 +42,7 @@ def index():
     # if the user submits the form
     if request.method == "POST":
         city = request.form.get("city", "").strip()
-        user_state = request.form.get("state", "").strip()
-        for i in all_states:
-            if all_states[i] == user_state:
-                state = i
-        print(state)
+        state = request.form.get("state", "")
                 
     else:
         city = default_city

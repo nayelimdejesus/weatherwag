@@ -108,9 +108,9 @@ html.tornado, body.tornado {
 }
 #product_image{
   width:12rem;
-  height: auto;
-  max-height: 18rem;
-  border-radius: 20px;
+  max-height: 11rem;
+  object-fit: contain;
+  border-radius: 18px;
 }
 .card{
     background-color: rgba(255, 255, 255, 0.6);
@@ -314,13 +314,14 @@ button:hover{
     }
 }
 .card-section{
-    width: 15rem;
+    width: 16rem;
     background: rgba(255, 255, 255, 0.365);
     backdrop-filter: blur(10px);             
     border-radius: 40px;
     padding: 1.5rem 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
+    max-height: 20rem;
     
 }
 .more-details{

@@ -106,6 +106,12 @@ html.tornado, body.tornado {
   width:5rem;
   height: auto;
 }
+#product_image{
+  width:12rem;
+  height: auto;
+  max-height: 18rem;
+  border-radius: 20px;
+}
 .card{
     background-color: rgba(255, 255, 255, 0.6);
     width: 60%;
@@ -343,4 +349,28 @@ button:hover{
   display: flex;
   justify-content: center;
   font-size: .8rem;
+}
+.product-button-right{
+  position: absolute;
+  top: 65%;   
+  right: 10px;               
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.353);
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.product-button-left{
+  position: absolute;
+  top: 65%;   
+  left: 10px;               
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.353);
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
 }

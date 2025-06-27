@@ -54,6 +54,7 @@
 
             <div class = "temp-section">
                 <p id="user_city">{{weather["city"]}} {{state}}, US</p>
+                <p>{{weather["time"]}}</p>
                 <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
                 <p id = "temp">{{weather["temperature"]}}</p>
                 <p>Feels like {{weather["feels_temp"]}}</p>
@@ -80,6 +81,26 @@
             </div>
             <div class = "card-section">
                 <div class = "card-section-title">
+                    <h3>Product Suggestions</h3>
+                    <span id = "info-icon" title="Based on current weather only. Please consider conditions throughout the day and your dog's comfort."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
+                </div>
+                <button class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
+                <div>
+                    <p id="product_name"></p>
+                    <a id="product_link" href="" target="_blank" rel="noopener">
+                        <img id="product_image" src="" alt="Product Image" />
+                    </a>
+  </div>
+                <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
+<!--                 
+                {% for i in product_recom %}
+                    <p>{{i["name"]}}</p>
+                    <a href = "{{ i['affiliate_url'] }}"><img id = "product" src="{{ i['image_url'] }}" alt="Product Image" /> </a>
+                {% endfor %} -->
+            </div>
+            
+            <!-- <div class = "card-section">
+                <div class = "card-section-title">
                     <h3>Walk Suggestions</h3>
                     <span id = "info-icon" title="Based on current weather only. Please consider conditions throughout the day and your dog's comfort."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
                 </div>
@@ -87,12 +108,40 @@
                 <p>{{dog["walk_times"]["afternoon"] | safe}}</p>
                 <p>{{dog["walk_times"]["evening"]}}</p>
                 <p>{{dog["walk_times"]["note"]}}</p>
-            </div>
+            </div> -->
         </div>
     {% endif %}
     </div>
 
+<script id="products-data" type="application/json">
+  {{ product_recom | tojson | safe }}
+</script>
+
 <script>
+    const productsScript = document.getElementById('products-data').textContent;
+    const products = JSON.parse(productsScript);
+
+    const product_name = document.getElementById('product_name');
+    const product_image = document.getElementById('product_image');
+    const product_link = document.getElementById('product_link');
+    const next_btn = document.getElementById('next_btn');
+
+    let current_index = 0
+
+    function show_product(index) {
+      const product = products[index];
+      product_name.textContent = product.name;
+      product_image.src = product.image_url || '/static/img/placeholder.png';
+      product_link.href = product.affiliate_url;
+    }
+    show_product(current_index);
+
+    next_btn.addEventListener('click', () => {
+      current_index = (current_index+ 1) % products.length;
+      show_product(current_index);
+    });
+
+
   lucide.createIcons();
 </script>
 <footer>

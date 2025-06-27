@@ -84,7 +84,7 @@
                     <h3>Product Suggestions</h3>
                     <span id = "info-icon" title="Based on current weather only. Please consider conditions throughout the day and your dog's comfort."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
                 </div>
-                <button class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
+                <button id = "pre_btn" class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
                 <div>
                     <p id="product_name"></p>
                     <a id="product_link" href="" target="_blank" rel="noopener">
@@ -125,8 +125,10 @@
     const product_image = document.getElementById('product_image');
     const product_link = document.getElementById('product_link');
     const next_btn = document.getElementById('next_btn');
+    const pre_btn = document.getElementById('pre_btn')
 
     let current_index = 0
+    
 
     function show_product(index) {
       const product = products[index];
@@ -135,9 +137,14 @@
       product_link.href = product.affiliate_url;
     }
     show_product(current_index);
+    console.log(products.length)
 
     next_btn.addEventListener('click', () => {
       current_index = (current_index+ 1) % products.length;
+      show_product(current_index);
+    });
+    pre_btn.addEventListener('click', () => {
+      current_index = (current_index- 1 + products.length) % products.length;
       show_product(current_index);
     });
 

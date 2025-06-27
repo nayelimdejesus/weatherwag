@@ -191,18 +191,8 @@ def index():
                 "affiliate_url": "https://amzn.to/4k4uT2d"
             }
         ],
-        # "danger": {"note": "Warning: Too hot to walk safely – stay indoors"},
     }
-    for i in products:
-        print(i)
-        
-    
-    # print(products["cold"])
-    # for i in products["cold"]:
-    #     print(i["name"])
-    #     print(i["affiliate_url"])
-        
-     
+
     # convert suntime, sunset data to time
     sunrise_time = datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%I:%M %p")
     sunset_time = datetime.fromtimestamp(data["sys"]["sunset"]).strftime("%I:%M %p")

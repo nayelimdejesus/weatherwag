@@ -85,7 +85,35 @@ html.tornado, body.tornado {
     padding-inline: 2rem;
     padding-block:1rem;
 }
-#danger{
+#dark-blue{
+    color: rgb(0, 8, 255);
+    background-color: #9e9bcb66;
+    border-left: 6px solid #1500ff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding-inline: 2rem;
+    padding-block:1rem;
+    font-weight: bold;
+}
+#cool{
+        color: rgb(109, 114, 255);
+    background-color: #b6b4cd66;
+    border-left: 6px solid rgb(109, 114, 255);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding-inline: 2rem;
+    padding-block:1rem;
+}
+#blue{
+    color: rgb(0, 8, 255);
+    background-color: #9e9bcb66;
+    border-left: 6px solid #1500ff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding-inline: 2rem;
+    padding-block:1rem;
+}
+#dark-red{
     color: red;
     background-color: #e5b8a866;
     border-left: 6px solid #ff1900;

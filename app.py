@@ -20,19 +20,19 @@ API_key = os.getenv("WEATHER_KEY")
 @app.route("/", methods=["POST", "GET"])
 def index():
     weather_data = None
-    walk_times = None
-    suggested_walk = None
     error = ""
     condition = ""
     dog_warning = ""
     color_message = ""
     dog_data = None
+    
+    # setting city and state
     default_city = "san jose"
     default_state = "CA"
-
     city = default_city
     state = default_state
     
+    # getting information from states.json
     basedir = os.path.abspath(os.path.dirname(__file__))
     json_path = os.path.join(basedir, 'data', 'states.json')
     
@@ -62,132 +62,194 @@ def index():
         response = requests.get(url)
         data = response.json()
         
-        
-    walk_times = {
-        "green": {
-            "morning": "Morning: 7 AM – 10 AM",
-            "afternoon": "Afternoon: 12 PM – 5 PM<br>(shaded recommended)",
-            "evening": "Evening: 6 PM – 9 PM",
-        },
-        "orange": {
-            "morning": "Morning: Before 8 AM",
-            "evening": "Evening: After 7 PM",
-            "note": "Avoid: 10 AM – 6 PM",
-        },
-        "red": {
-            "morning": "Morning: Before 7:30 AM",
-            "evening": "Evening: After 8 PM",
-            "note": "Avoid: Most of the day – heat stress risk",
-        },
-        "danger": {"note": "Warning: Too hot to walk safely – stay indoors"},
-    }
-    
+    # amazon recommendation products
     products = {
-        "okay": [
+        "green": [
             {
                 "name": "Dog Chew Toy",
-                "image_url": "/static/img/okay/dog_toy.jpg",
+                "image_url": "/static/img/green/dog_toy.jpg",
                 "affiliate_url": "https://amzn.to/46fclJo"
             },
             {
                 "name": "ChomChom Roller | Hair Remover and Reusable Lint Roller",
-                "image_url": "/static/img/okay/dog_roller.jpg",
+                "image_url": "/static/img/green/dog_roller.jpg",
                 "affiliate_url": "https://amzn.to/4lijtJX"
             },
             {
                 "name": "WINGOIN | Tactical Dog Harness",
-                "image_url": "/static/img/okay/dog_harness.jpg",
+                "image_url": "/static/img/green/dog_harness.jpg",
                 "affiliate_url": "https://amzn.to/3THDMUI"
             },
             {
                 "name": "ICEFANG | Tactical Dog Harness",
-                "image_url": "/static/img/okay/dog_harness2.jpg",
+                "image_url": "/static/img/green/dog_harness2.jpg",
                 "affiliate_url": "https://amzn.to/4liH38M"
             },
             {
                 "name": "Comfort Expression | Orthopedic Foam Dog Beds",
-                "image_url": "/static/img/okay/dog_bed.jpg",
+                "image_url": "/static/img/green/dog_bed.jpg",
                 "affiliate_url": "https://amzn.to/3TcRBud"
             },
+        ],  
+        "orange": [
+            {
+                "name": "Hcpet | Dog Shoes",
+                "image_url": "/static/img/orange/dog_booties.jpg",
+                "affiliate_url": "https://amzn.to/4lrhG4K",
+            },
+            {
+                "name": "ChomChom Roller | Hair Remover and Reusable Lint Roller",
+                "image_url": "/static/img/orange/dog_roller.jpg",
+                "affiliate_url": "https://amzn.to/4lijtJX"
+            },
+            {
+                "name": "ARF Pets | Dog Cooling Mat",
+                "image_url": "/static/img/orange/dog_mat.jpg",
+                "affiliate_url": "https://amzn.to/3GfoFij"
+            },
+            {
+                "name": "ICEFANG | Tactical Dog Harness",
+                "image_url": "/static/img/orange/dog_harness2.jpg",
+                "affiliate_url": "https://amzn.to/4liH38M"
+            },
+            {
+                "name": "Amazon Basics | Cooling Breathable Elevated Dog Bed",
+                "image_url": "/static/img/orange/orange_dog.jpg",
+                "affiliate_url": "https://amzn.to/4ltyY1a"
+            },
+        ], 
+        "cool": [
+            {
+                "name": "KYEESE Store | 2 Pack Dog Sweater",
+                "image_url": "/static/img/cool/cool_jacket.jpg",
+                "affiliate_url": "https://amzn.to/3GcDVMU"
+            },
+            {
+                "name": "Vecomfy Store | Fleece Lining Extra Warm Dog Hoodie",
+                "image_url": "/static/img/cool/cool_fleece.jpg",
+                "affiliate_url": "https://amzn.to/40rGTDW",
+            },
+            {
+                "name": "Hcpet Store | Hcpet Dog Shoes",
+                "image_url": "/static/img/cool/dog_booties.jpg",
+                "affiliate_url": "https://amzn.to/3ZRT9xr"
+            },
+            {
+                "name": "Fitwarm Store | Lightweight Fleece Dog Pajamas",
+                "image_url": "/static/img/cool/cool_sweater.jpg",
+                "affiliate_url": "https://amzn.to/4kaQB4D"
+            },
+            {
+                "name": "Finn Paw Hero | Dog Paw Balm",
+                "image_url": "/static/img/cool/dog_paw_balm.jpg",
+                "affiliate_url": "https://amzn.to/44fKsyd"
+            }
         ],
-        "cold": [
+        "blue": [
             {
                 "name": "Bedsure Store | Dog Blanket",
-                "image_url": "/static/img/cold/dog_blanket.jpg",
+                "image_url": "/static/img/blue/dog_blanket.jpg",
                 "affiliate_url": "https://amzn.to/46d5Jew"
             },
             {
                 "name": "Musher's Secret Store | Dog Paw Wax",
-                "image_url": "/static/img/cold/dog_paw.jpg",
+                "image_url": "/static/img/blue/dog_paw.jpg",
                 "affiliate_url": "https://amzn.to/4nnCQCG",
             },
             {
                 "name": "JayDaog Store | Warm Dog Jacket",
-                "image_url": "/static/img/cold/dog_jacket.jpg",
+                "image_url": "/static/img/blue/dog_jacket.jpg",
                 "affiliate_url": "https://amzn.to/40mMprq"
             },
             {
                 "name": "QBLEEV | Warm Dog Coat",
-                "image_url": "/static/img/cold/dog_coat.jpg",
+                "image_url": "/static/img/blue/dog_coat.jpg",
                 "affiliate_url": "https://amzn.to/4l5oWng"
             },
             {
                 "name": "Finn Paw Hero | Dog Paw Balm",
-                "image_url": "/static/img/cold/dog_paw_balm.jpg",
+                "image_url": "/static/img/blue/dog_paw_balm.jpg",
                 "affiliate_url": "https://amzn.to/44fKsyd"
             }
         ],
-        "hot": [
+            "dark-blue": [
+            {
+                "name": "K&H Pet Products | Microwavable Pet Bed Warmer",
+                "image_url": "/static/img/dark-blue/micro_warmer.jpg",
+                "affiliate_url": "https://amzn.to/3Gktln2"
+            },
+            {
+                "name": "Femont Store | Snuffle Mat",
+                "image_url": "/static/img/dark-blue/snuffle_mat.jpg",
+                "affiliate_url": "https://amzn.to/44u76Dh",
+            },
+            {
+                "name": "JoyDaog Store | Warm Fleece Dog Coats",
+                "image_url": "/static/img/dark-blue/dark_blue_jacket.jpg",
+                "affiliate_url": "https://amzn.to/3GncMH5"
+            },
+            {
+                "name": "Furhaven Store | Waterproof Throw Blanket for Dogs",
+                "image_url": "/static/img/dark-blue/throw_blanket.jpg",
+                "affiliate_url": "https://amzn.to/40tPEgT"
+            },
+            {
+                "name": "LaSyl Store | Weighted Blanket for Pets",
+                "image_url": "/static/img/dark-blue/weighted_blanket.jpg",
+                "affiliate_url": "https://amzn.to/3I21A3a"
+            }
+        ],
+        "red": [
             {
                 "name": "Hcpet | Dog Shoes",
-                "image_url": "/static/img/hot/dog_booties.jpg",
+                "image_url": "/static/img/red/dog_booties.jpg",
                 "affiliate_url": "https://amzn.to/4lrhG4K",
             },
             {
                 "name": "ALL FOR PAWS | Dog Ice Bandana",
-                "image_url": "/static/img/hot/dog_band.jpg",
+                "image_url": "/static/img/red/dog_band.jpg",
                 "affiliate_url": "https://amzn.to/44kuKlF"
             },
             {
                 "name": "ARF Pets | Dog Cooling Mat",
-                "image_url": "/static/img/hot/dog_mat.jpg",
+                "image_url": "/static/img/red/dog_mat.jpg",
                 "affiliate_url": "https://amzn.to/3GfoFij"
             },
             {
                 "name": "Jasonwell | Foldable Dog Pet Bath Pool",
-                "image_url": "/static/img/hot/dog_pool.jpg",
+                "image_url": "/static/img/red/dog_pool.jpg",
                 "affiliate_url": "https://amzn.to/3ZOKV9r"
             },
             {
                 "name": "QUMY | Dog Shoes",
-                "image_url": "/static/img/hot/dog_booties2.jpg",
+                "image_url": "/static/img/red/dog_booties2.jpg",
                 "affiliate_url": "https://amzn.to/4lcqH1G"
             }
         ],
-                "danger": [
+            "dark-red": [
             {
                 "name": "Yipetor | Frozen Treat Dispensing Dog Toy",
-                "image_url": "/static/img/danger/dog_enrich.jpg",
+                "image_url": "/static/img/dark-red/dog_enrich.jpg",
                 "affiliate_url": "https://amzn.to/44wWlkJ",
             },
             {
                 "name": "Furhaven | Cooling Gel Dog Bed",
-                "image_url": "/static/img/danger/dog_cooling_bed.jpg",
+                "image_url": "/static/img/dark-red/dog_cooling_bed.jpg",
                 "affiliate_url": "https://amzn.to/4kuuzdD"
             },
             {
                 "name": "WOOF | Party Pupsicle - Long Lasting",
-                "image_url": "/static/img/danger/dog_pupsicle.jpg",
+                "image_url": "/static/img/dark-red/dog_pupsicle.jpg",
                 "affiliate_url": "https://amzn.to/44323KZ"
             },
             {
                 "name": "Rundik | Snuffle Mat for Dogs",
-                "image_url": "/static/img/danger/dog_sniff_mat.jpg",
+                "image_url": "/static/img/dark-red/dog_sniff_mat.jpg",
                 "affiliate_url": "https://amzn.to/444vL2j"
             },
             {
                 "name": "Race&Herd | Herd Dog Scent Training Kit",
-                "image_url": "/static/img/danger/dog_training.jpg",
+                "image_url": "/static/img/dark-red/dog_training.jpg",
                 "affiliate_url": "https://amzn.to/4k4uT2d"
             }
         ],
@@ -201,60 +263,42 @@ def index():
     weather_temp = round(data["main"]["feels_like"])
     humidity = data["main"]["humidity"]
     weather_product = ""
-    
-    if 32 > weather_temp <= 45:
-        weather_product = "cold"
-        color_message = "orange"
-        dog_warning = "Cold weather, limit walks to 15-30 min. Use a coat or booties for small, thin-coated, or elderly dogs."
-    elif 20 > weather_temp <= 32:
-        weather_product = "cold"
-        color_message = "red"
-        dog_warning = "Very cold, most dogs should only go out for quick potty breaks. Dress small, short haired, or elderly dogs warmly."
-    elif weather_temp < 20:
-        weather_product = "cold"
-        color_message = "red"
+    if weather_temp < 20:
+        color_message = "dark-blue"
         dog_warning = "Dangerously cold, limit time outdoors. Risk of frostbite and hypothermia. Bundle up or stay indoors."
-    elif weather_temp < 16:
-        weather_product = "cold"
-        color_message = "danger"
-        dog_warning = "Extreme cold, avoid outdoor walks. Only bring out with full winter gear and direct supervision."
-    elif weather_temp <= 85 and humidity <= 60:
-        weather_product = "okay"
+    elif 20 <= weather_temp < 32:
+        color_message = "dark-blue"
+        dog_warning = "Very cold, most dogs should only go out for quick potty breaks. Dress small, short haired, or elderly dogs warmly."
+    elif 32 <= weather_temp < 45:
+        color_message = "blue"
+        dog_warning = "Cold weather, limit walks to 15-30 min. Use a coat or booties for small, thin-coated, or elderly dogs."
+    elif 45 <= weather_temp < 55:
+        color_message = "cool"
+        dog_warning = "Mildly cool. Most dogs are comfortable, but be cautious for small, thin-coated, or elderly dogs"
+    elif 55 <= weather_temp < 70:
         color_message = "green"
         dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
-    elif 85 < weather_temp <= 90:
-        weather_product = "warm"
-        color_message = "orange"
-        dog_warning = "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
-    elif 90 < weather_temp <= 95:
-        weather_product = "hot"
-        color_message = "red"
-        dog_warning = "Very hot weather. Walk early or late. Watch your dog for signs of overheating."
-    elif weather_temp > 95:
-        weather_product = "danger"
-        color_message = "danger"
-        dog_warning = "Danger: Too hot for dogs to walk safely. Please stay indoors."
-    elif 50 < weather_temp <= 85 and humidity > 60:
-        weather_product = "hot"
-        if humidity > 75:
-            color_message = "red"
-            dog_warning = "High humidity can be hard on dogs. Even in mild temps, watch for signs of overheating. Take it easy."
+    elif 70 <= weather_temp < 85:
+        if humidity <= 60:
+            color_message = "green"
+            dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
         else:
             color_message = "orange"
-            dog_warning = "Mild temps but elevated humidity. Take breaks and make sure your dog stays hydrated."
+            dog_warning = "Warm and humid. Risk of overheating. Limit exercise, provide shade and water."
+    elif 85 <= weather_temp < 90:
+        color_message = "orange"
+        dog_warning = "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
+    elif 90 <= weather_temp < 95:
+        color_message = "red"
+        dog_warning = "Very hot weather. Walk early or late. Watch for signs of overheating."
+    elif weather_temp > 95:
+        color_message = "dark-red"
+        dog_warning = "Danger: Too hot for dogs to walk safely. Please stay indoors."
 
-    else:
-        color_message = "green"
-        dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
-
-    
-    
-    suggested_walk = walk_times[color_message]
-    product_recommendation = products[weather_product]
+    product_recommendation = products[color_message]
     dog_data = {
         "dog_warning": dog_warning,
         "color_message": color_message,
-        "walk_times": suggested_walk,
     }
     weather_data = {
         "country": data["sys"]["country"],

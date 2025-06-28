@@ -219,8 +219,8 @@ def fetch_weather(city, state, key):
         data = response.json()
         return data
     except requests.exceptions.Timeout:
-        error = "OpenWeather API timed out. Please try again later."
-        return error    
+        error = "OpenWeather API timed out. Please try again later." 
+        return error
     except requests.exceptions.HTTPError:
         error = "Invalid city or state code. Please try again."
         url = f"https://api.openweathermap.org/data/2.5/weather?q={default_city},{default_state},us&appid={key}&units=imperial"

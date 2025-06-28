@@ -15,55 +15,11 @@ app = Flask(__name__)
 # API key
 API_key = os.getenv("WEATHER_KEY")
 
+default_city = "san jose"
+default_state = "CA"
 
-# home page
-@app.route("/", methods=["POST", "GET"])
-def index():
-    weather_data = None
-    error = ""
-    condition = ""
-    dog_warning = ""
-    color_message = ""
-    dog_data = None
-    
-    # setting city and state
-    default_city = "san jose"
-    default_state = "CA"
-    city = default_city
-    state = default_state
-    
-    # getting information from states.json
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    json_path = os.path.join(basedir, 'data', 'states.json')
-    
-    with open(json_path) as f:
-        all_states = json.load(f)
-        
-    # if the user submits the form
-    if request.method == "POST":
-        city = request.form.get("city", "").strip()
-        state = request.form.get("state", "")
-                
-    else:
-        city = default_city
-        state = default_state
-
-
-    url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={API_key}&units=imperial"
-    response = requests.get(url)
-    data = response.json()
-    
-    # if the user inputs something invalid
-    if response.status_code != 200:
-        city = default_city
-        state = default_state
-        error = "Invalid city or state code. Please try again."
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={API_key}&units=imperial"
-        response = requests.get(url)
-        data = response.json()
-        
-    # amazon recommendation products
-    products = {
+# amazon recommendation products
+products = {
         "green": [
             {
                 "name": "Dog Chew Toy",
@@ -255,14 +211,74 @@ def index():
         ],
     }
 
+def fetch_weather(city, state, key):
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={key}&units=imperial"
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+        return data
+    except requests.exceptions.Timeout:
+        error = "OpenWeather API timed out. Please try again later."
+        return error    
+    except requests.exceptions.HTTPError:
+        error = "Invalid city or state code. Please try again."
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={default_city},{default_state},us&appid={key}&units=imperial"
+        response = requests.get(url)
+        data = response.json()
+        print(data)
+        return data,error
+    except requests.exceptions.RequestException as req_err:
+        return f"Request Failed: {req_err}"
+    except ValueError:
+        error = "Error parsing response from OpenWeather."
+        return error
+    
+# home page
+@app.route("/", methods=["POST", "GET"])
+def index():
+    weather_data = None
+    error = ""
+    condition = ""
+    dog_warning = ""
+    color_message = ""
+    dog_data = None
+    data = None
+    
+    # setting city and state
+    city = default_city
+    state = default_state
+    
+    # getting information from states.json
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    json_path = os.path.join(basedir, 'data', 'states.json')
+    
+    with open(json_path) as f:
+        all_states = json.load(f)
+        
+    # if the user submits the form
+    if request.method == "POST":
+        city = request.form.get("city", "").strip()
+        state = request.form.get("state", "")
+                
+    else:
+        city = default_city
+        state = default_state
+
+    result = fetch_weather(city, state, API_key)
+    if(isinstance(result, tuple)):
+        data = result[0]
+        error = result[1]
+    else:
+        data = result
+
     # convert suntime, sunset data to time
     sunrise_time = datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%I:%M %p")
     sunset_time = datetime.fromtimestamp(data["sys"]["sunset"]).strftime("%I:%M %p")
 
-
     weather_temp = round(data["main"]["feels_like"])
     humidity = data["main"]["humidity"]
-    weather_product = ""
+
     if weather_temp < 20:
         color_message = "dark-blue"
         dog_warning = "Dangerously cold, limit time outdoors. Risk of frostbite and hypothermia. Bundle up or stay indoors."

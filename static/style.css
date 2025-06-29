@@ -284,6 +284,7 @@ input{
     
   }
 }
+
 select{
     border-radius: 10px;
     padding-inline: 1rem;
@@ -292,6 +293,14 @@ select{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     background-color: rgba(255, 255, 255, 0.746);
 }
+@media (max-width: 480px) {
+  select {
+    border-radius: 10px;
+    padding-inline: .5rem;
+    width:10rem;
+    height:1.2rem;
+  }
+}
 button{
     background-color: rgba(255, 255, 255, 0.746);
     border-radius: 10px;
@@ -299,6 +308,7 @@ button{
     padding-block: .3rem;
     border:rgba(0, 0, 255, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    color: black
     
 }
 button:hover{

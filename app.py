@@ -226,9 +226,12 @@ def fetch_weather(city, state, key):
         url = f"https://api.openweathermap.org/data/2.5/weather?q={default_city},{default_state},us&appid={key}&units=imperial"
         response = requests.get(url)
         data = response.json()
-        print(data)
+        if response.status_code != 200:
+            error = "Request failed. We're having trouble fetching the weather right now. Please try again shortly."
+            return None, error
         return data,error
     except requests.exceptions.RequestException as req_err:
+        print("\nHello this error")
         return f"Request Failed: {req_err}"
     except ValueError:
         error = "Error parsing response from OpenWeather."
@@ -267,10 +270,14 @@ def index():
 
     result = fetch_weather(city, state, API_key)
     if(isinstance(result, tuple)):
+        if None in result:
+            error = result[1]
+            return error
         data = result[0]
         error = result[1]
     else:
         data = result
+        print(data)
 
     # convert suntime, sunset data to time
     sunrise_time = datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%I:%M %p")

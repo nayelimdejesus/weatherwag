@@ -1,6 +1,6 @@
-# WeatherFetch
+# WeatherWag
 
-Your go to weather app for dog lovers!
+Where Weather and Dog Care Wag Together
 
 ## Features
 - Search current weather by city name, state (optional), country

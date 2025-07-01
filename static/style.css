@@ -137,21 +137,14 @@ html.tornado, body.tornado {
 
 #product_image {
   width: 100%;
-  max-width: 12rem; 
+  max-width: 10rem; 
   height: auto;      
   max-height: none;  
 }
 
-
-@media (max-width: 1200px) {
-  #product_image {
-    max-width: 10rem;
-  }
-}
-
 @media (max-width: 950px) {
   #product_image {
-    max-width: 12rem;
+    max-width: 10rem;
   }
 }
 
@@ -529,4 +522,10 @@ button:hover{
   border-radius: 5px;
   font-size: 0.75rem;
   }
+}
+#disclaimer{
+  font-size: 12px;
+  color: rgb(106, 106, 106);
+  text-align: center;
+  margin-top: 20px;
 }

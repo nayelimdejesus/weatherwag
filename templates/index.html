@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/static/style.css">
-    <title>WeatherFetch</title>
+    <title>WeatherWag</title>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
@@ -20,19 +20,21 @@
 {% endif %}
         <div class = "card-title">     
             <img class = "main-dog"src="/static/img/dog_4.png">   
-            <h1 id = "weather-fetch">WeatherFetch</h1>
+            <h1 id = "weather-fetch">WeatherWag</h1>
             <img class = "main-dog" id = "main-pup" src="/static/img/main_pup.png"/>
         </div>
+        <p id = "phrase">Happy Paws Start Here</p>
+        <!-- <p>The best walk is a safe walk</p> -->
         <form method="POST" action="/">
             <div class = "user-input">
                 <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
                 <!-- <input type = "text" id = "state" name = "state" placeholder="Enter State" required> -->
-                <select name = "state" required>
-                    <option value ="" disabled selected>Select State</option>
+                <input list = "states" id = "state" name = "state" placeholder="Enter State" required> 
+                <datalist id = "states" required>
                     {% for key, value in all_states.items() %} 
                         <option value ="{{ key }}">{{ value }}</option>
                     {% endfor %}
-                </select>
+                </datalist>
                 <button type="submit">Submit</button>
             </div>
         </form>
@@ -80,17 +82,15 @@
                 <p>Sunset: {{weather["sunset"]}}</p>
             </div>
             <div class = "card-section">
-                <div class = "card-section-title">
                     <h3>Product Suggestions</h3>
-                    <span id = "info-icon" title="Based on current weather only. Please consider conditions throughout the day and your dog's comfort."><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#696868" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info-icon lucide-info"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span>
-                </div>
+
                 <button id = "pre_btn" class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
                 <div>
                     <p id="product_name"></p>
                     <a id="product_link" href="" target="_blank" rel="noopener">
                         <img id="product_image" src="" alt="Product Image" />
                     </a>
-  </div>
+                </div>
                 <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
             </div>
         </div>

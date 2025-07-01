@@ -163,29 +163,40 @@ html.tornado, body.tornado {
 
 @media (max-width: 480px) {
   #product_image {
-    max-width: 12rem;
+    max-width: 10rem;
   }
 }
+@media (max-width: 280px) {
+  #product_image {
+    max-width: 8rem;
+  }
+}
+ #phrase{
+  color: #444;
+  font-weight: 0;
+  margin-top: 0;
+ }
 .card{
     background-color: rgba(255, 255, 255, 0.6);
-    width: 60%;
-    max-width: 45rem;
+    width: 100%;
+    max-width: 48rem;
     height: auto;
     text-align: center;
     padding-block: 1rem;
     margin: 0 auto;
     border-radius: 40px;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);
 }
 
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
   .card {
-    max-width: 45rem;
+    width: 100%;
+    max-width: 50rem;
     border-radius: 30px;
     font-size: 1.25rem;
   }
-}
+} */
 @media (max-width: 950px) {
   .card {
     width: 100%;
@@ -196,17 +207,24 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 768px) {
   .card {
-    width: 90%;
-    max-width: 25rem;
-    padding-block: 0.75rem;
+    width: 100%;
+    max-width: 40rem;
     border-radius: 20px;
     font-size: 1.1rem;
   }
 }
-
+@media (max-width: 680px) {
+  .card {
+    width: 100%;
+    max-width: 50rem;
+    border-radius: 20px;
+    font-size: 1.1rem;
+  }
+}
 @media (max-width: 480px) {
   .card {
-    width: 90%;
+    width: 100%;
+    max-width: 22rem;
     padding-block: 0.5rem;
     border-radius: 15px;
     font-size: 1rem;
@@ -221,13 +239,15 @@ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   flex-wrap: wrap; 
 }
 
-@media (max-width: 600px) {
+@media (max-width: 491px) {
   .card-title {
-    gap: 1rem;
-    justify-content: flex-start; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:.5rem;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 480px) {
   .card-title {
     gap: .5rem;
     flex-direction: column;
@@ -263,7 +283,6 @@ input{
     padding-inline: .5rem;
     width:10rem;
     height:1.2rem;
-    
   }
 }
 .user-input {
@@ -296,9 +315,11 @@ select{
 @media (max-width: 480px) {
   select {
     border-radius: 10px;
-    padding-inline: .5rem;
-    width:10rem;
-    height:1.2rem;
+    padding-inline: 1rem;
+    padding-block: .4rem;
+    border:rgba(0, 0, 255, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.746);
   }
 }
 button{
@@ -316,11 +337,32 @@ button:hover{
     color: white;
 }
 .temp-section{
-    width: 100%;
+    width: 100%; 
+    max-width: 15rem;
     font-size: 1rem;
     border-radius: 40px;
-    padding-block: 1rem;
+    padding: 1.5rem 2rem;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    max-height: 24rem; 
+
+        /* width: 16rem;
+    background: rgba(255, 255, 255, 0.365);
+    backdrop-filter: blur(10px);             
+    border-radius: 40px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: #1E2A38; 
+    max-height: 24rem; */
+}
+@media (max-width: 280px) {
+  .temp-section {
+    width: 100%;
+    max-width: 10rem;
+    font-size: 1rem;
+    border-radius: 40px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* images of dogs */
@@ -378,7 +420,8 @@ button:hover{
     }
 }
 .card-section{
-    width: 16rem;
+    width: 100%;
+    max-width: 15rem;
     background: rgba(255, 255, 255, 0.365);
     backdrop-filter: blur(10px);             
     border-radius: 40px;
@@ -388,12 +431,26 @@ button:hover{
     max-height: 24rem;
     
 }
+@media (max-width: 280px) {
+  .card-section {
+    width: 100%;
+    max-width: 10rem;
+    background: rgba(255, 255, 255, 0.365);
+    backdrop-filter: blur(10px);             
+    border-radius: 40px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: #1E2A38; 
+  }
+}
+
 .more-details{
     display:flex;
     justify-content: center;
     margin-bottom: 1rem;
-    gap: 1rem;
+    gap: 2.2rem;
 }
+
 @media(max-width:480px){
     .more-details{
     flex-direction: column; 
@@ -404,7 +461,6 @@ button:hover{
 .card-section-title{
   display: flex;
   justify-content: center;
-  gap: .5rem;
 }
 #info-icon{
   margin-block: 1rem;
@@ -443,4 +499,34 @@ button:hover{
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
+}
+@media (max-width: 280px) {
+  .product-button-right {
+  position: absolute;
+  top: 65%;   
+  right: 10px;               
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.353);
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  }
+}
+@media (max-width: 280px) {
+  .product-button-left {
+  position: absolute;
+  top: 65%;   
+  left: 10px;               
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.353);
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  }
 }

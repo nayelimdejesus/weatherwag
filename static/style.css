@@ -455,20 +455,29 @@ button:hover{
   display: flex;
   justify-content: center;
 }
+/* .card-section-details{
+  font-weight:bold;
+} */
 #info-icon{
   margin-block: 1rem;
 
 }
-.disclaimer{
-  display: flex;
+.disclaimer-footer {
   justify-content: center;
-  font-size: .8rem;
+  text-align: center;
+  font-size: 0.8rem;
+  margin: 1rem;
+  color: #3c3c3c;
 }
-@media(max-width:480px){
-   .disclaimer{
-      text-align: center;
-    }
+
+@media (max-width: 480px) {
+  .disclaimer-footer {
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+  }
 }
+
 .product-button-right{
   position: absolute;
   top: 65%;   

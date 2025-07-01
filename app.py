@@ -221,7 +221,7 @@ def fetch_weather(city, state, key):
     except requests.exceptions.Timeout:
         error = "OpenWeather API timed out. Please try again later." 
         return error
-    except requests.exceptions.HTTPError:
+    except requests.exceptions.HTTPError as req_err:
         error = "Invalid city or state code. Please try again."
         url = f"https://api.openweathermap.org/data/2.5/weather?q={default_city},{default_state},us&appid={key}&units=imperial"
         response = requests.get(url)
@@ -231,7 +231,6 @@ def fetch_weather(city, state, key):
             return None, error
         return data,error
     except requests.exceptions.RequestException as req_err:
-        print("\nHello this error")
         return f"Request Failed: {req_err}"
     except ValueError:
         error = "Error parsing response from OpenWeather."
@@ -277,7 +276,6 @@ def index():
         error = result[1]
     else:
         data = result
-        print(data)
 
     # convert suntime, sunset data to time
     sunrise_time = datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%I:%M %p")
@@ -285,29 +283,38 @@ def index():
 
     weather_temp = round(data["main"]["feels_like"])
     humidity = data["main"]["humidity"]
+    condition = data["weather"][0]["main"]
+    condition_message = ""
+    
+    if condition == "Rain":
+        condition_message = "It's raining. Shorten walks and dry your dog thoroughly afterwards."
 
     if weather_temp < 20:
         color_message = "dark-blue"
-        dog_warning = "Dangerously cold, limit time outdoors. Risk of frostbite and hypothermia. Bundle up or stay indoors."
+        dog_warning = "Extreme cold may increase the risk of frostbite. Consider bundling up your dog or limiting outdoor time."
     elif 20 <= weather_temp < 32:
         color_message = "dark-blue"
-        dog_warning = "Very cold, most dogs should only go out for quick potty breaks. Dress small, short haired, or elderly dogs warmly."
+        dog_warning = "Very cold outside. It’s best to keep walks short. Consider dressing small, short-haired, or elderly dogs warmly."
     elif 32 <= weather_temp < 45:
         color_message = "blue"
-        dog_warning = "Cold weather, limit walks to 15-30 min. Use a coat or booties for small, thin-coated, or elderly dogs."
+        dog_warning = "Cold weather, it's best to keep walk shorts. Consider dressing small, short-haired, or elderly dogs warmly."
     elif 45 <= weather_temp < 55:
         color_message = "cool"
-        dog_warning = "Mildly cool. Most dogs are comfortable, but be cautious for small, thin-coated, or elderly dogs"
+        dog_warning = "Mildly cool weather. Most dogs are comfortable, but watch small, thin-coated, or elderly dogs closely."
     elif 55 <= weather_temp < 70:
-        color_message = "green"
-        dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
+        if humidity <= 60:
+            color_message = "green"
+            dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
+        else:
+            color_message = "orange"
+            dog_warning = "Mild temperature but higher humidity. Take precautions to keep your dog comfortable, including breaks and hydration."
     elif 70 <= weather_temp < 85:
         if humidity <= 60:
             color_message = "green"
             dog_warning = "Conditions appear comfortable for most dogs. Please monitor your dog and use caution during outdoor activities."
         else:
             color_message = "orange"
-            dog_warning = "Warm and humid. Risk of overheating. Limit exercise, provide shade and water."
+            dog_warning = "The weather is warm with higher humidity. Take precautions to keep your dog comfortable, including breaks and hydration."
     elif 85 <= weather_temp < 90:
         color_message = "orange"
         dog_warning = "It's getting warm. Keep walks shorts and stay hyrdated. Avoid midday heat."
@@ -316,8 +323,10 @@ def index():
         dog_warning = "Very hot weather. Walk early or late. Watch for signs of overheating."
     elif weather_temp > 95:
         color_message = "dark-red"
-        dog_warning = "Danger: Too hot for dogs to walk safely. Please stay indoors."
-
+        dog_warning = "Extreme heat warning. Limit outdoor activity and keep your dog cool and hydrated."
+        
+    if condition_message != "":
+        dog_warning += f" * Note: {condition_message}"
     product_recommendation = products[color_message]
     dog_data = {
         "dog_warning": dog_warning,

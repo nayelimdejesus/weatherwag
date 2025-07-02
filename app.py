@@ -3,6 +3,9 @@ from dotenv import load_dotenv
 from datetime import datetime
 import os
 import json
+import time
+# import pytz
+# from timezonefinder import TimezoneFinder
 
 
 import requests
@@ -15,7 +18,7 @@ app = Flask(__name__)
 # API key
 API_key = os.getenv("WEATHER_KEY")
 
-default_city = "san jose"
+default_city = "San Jose"
 default_state = "CA"
 
 # amazon recommendation products
@@ -210,13 +213,34 @@ products = {
             }
         ],
     }
+weather_cache = {
+    "data": None,
+    "timestamp": 0
+}
 
-def fetch_weather(city, state, key):
+def fetch_weather(city, state, key, user):
+    # stores current time -> now
+    now = time.time()
+    # if the user did not input anything then default is stored.
+    if not user:
+        # if data exist in weather_cache and the timestamp is less than 10 minutes
+        if weather_cache["data"] and now - weather_cache["timestamp"] < 600:
+            print("getting data from cache")
+            return weather_cache["data"]
+
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={key}&units=imperial"
     try:
         response = requests.get(url, timeout=5)
         response.raise_for_status()
         data = response.json()
+        
+        # if the user did not input anything then we will store new data into the weather_cache
+        if not user:
+            weather_cache["data"] = data
+            weather_cache["timestamp"] = now
+            print("getting data from new fresh")
+            return weather_cache["data"]
+    
         return data
     except requests.exceptions.Timeout:
         error = "OpenWeather API timed out. Please try again later." 
@@ -235,7 +259,7 @@ def fetch_weather(city, state, key):
     except ValueError:
         error = "Error parsing response from OpenWeather."
         return error
-    
+
 # home page
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -261,17 +285,19 @@ def index():
     # if the user submits the form
     if request.method == "POST":
         city = request.form.get("city", "").strip()
-        state = request.form.get("state", "")
-                
+        state = request.form.get("state", "") 
+        user = True
     else:
         city = default_city
         state = default_state
+        user = False
 
-    result = fetch_weather(city, state, API_key)
+    result = fetch_weather(city, state, API_key, user)
     if(isinstance(result, tuple)):
         if None in result:
             error = result[1]
             return error
+     
         data = result[0]
         error = result[1]
     else:

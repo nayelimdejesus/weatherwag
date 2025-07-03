@@ -4,6 +4,7 @@ from datetime import datetime
 import os
 import json
 import time
+from zoneinfo import ZoneInfo
 # import pytz
 # from timezonefinder import TimezoneFinder
 
@@ -218,6 +219,14 @@ weather_cache = {
     "timestamp": 0
 }
 
+def convert_utc_to_local(utc_t, timezone):
+    utc_dt = datetime.fromtimestamp(utc_t, tz = ZoneInfo("UTC"))
+    local_dt = utc_dt.astimezone(ZoneInfo(timezone))
+    time = local_dt.strftime("%I:%M %p")
+
+    return time
+    
+
 def fetch_weather(city, state, key, user):
     # stores current time -> now
     now = time.time()
@@ -270,6 +279,7 @@ def index():
     color_message = ""
     dog_data = None
     data = None
+    timezone = ""
     
     # setting city and state
     city = default_city
@@ -286,8 +296,11 @@ def index():
     if request.method == "POST":
         city = request.form.get("city", "").strip()
         state = request.form.get("state", "") 
+        timezone = request.form.get("timezone", "")
+        print(timezone)
         user = True
     else:
+        timezone = "America/Los_Angeles"
         city = default_city
         state = default_state
         user = False
@@ -303,10 +316,18 @@ def index():
     else:
         data = result
 
-    # convert suntime, sunset data to time
-    sunrise_time = datetime.fromtimestamp(data["sys"]["sunrise"]).strftime("%I:%M %p")
-    sunset_time = datetime.fromtimestamp(data["sys"]["sunset"]).strftime("%I:%M %p")
 
+    utc_t = data["dt"]
+    
+    local_time = convert_utc_to_local(utc_t, timezone)
+    
+    # convert suntime, sunset data to time
+    utc_sunrise_time = data["sys"]["sunrise"]
+    utc_sunset_time = data["sys"]["sunset"]
+
+    sunrise_time = convert_utc_to_local(utc_sunrise_time, timezone)
+    sunset_time = convert_utc_to_local(utc_sunset_time, timezone)
+    
     weather_temp = round(data["main"]["feels_like"])
     humidity = data["main"]["humidity"]
     condition = data["weather"][0]["main"]
@@ -371,7 +392,8 @@ def index():
         "wind_gust": round(data["wind"].get("gust", 0)),
         "sunrise": sunrise_time,
         "sunset": sunset_time,
-        "time": datetime.fromtimestamp(data["dt"]).strftime("%I:%M %p")    }
+        "time": local_time 
+    }
     condition = weather_data["condition"].lower()
     
     return render_template(

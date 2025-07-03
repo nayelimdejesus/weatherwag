@@ -28,7 +28,9 @@
         <!-- <p>The best walk is a safe walk</p> -->
         <form method="POST" action="/">
             <div class = "user-input">
+                <input type = "hidden" name = "timezone" id = "timezoneInput"/>
                 <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
+    
                 <!-- <input type = "text" id = "state" name = "state" placeholder="Enter State" required> -->
                 <select name = "states" required>
                     <option value ="">Select State</option>
@@ -113,6 +115,11 @@ As an Amazon Associate, I earn from qualifying purchases made through links on t
     const product_link = document.getElementById('product_link');
     const next_btn = document.getElementById('next_btn');
     const pre_btn = document.getElementById('pre_btn')
+
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log("Your timezone is:", timezone);
+
+    document.getElementById('timezoneInput').value = timezone;
 
     let current_index = 0
     

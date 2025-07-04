@@ -9,52 +9,305 @@ html, body {
   font-family: 'Nunito', sans-serif;
 }
 
+ /* Background changes based off weather */
 html.clear, body.clear {
-background:
+  background:
     linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
     linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
 }
 
 html.clouds,body.clouds {
-    background: 
-        linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent 40%),
-        linear-gradient(135deg, #b1b4bb 0%, #b3bac3 50%, #5b5e63 100%);
+  background: 
+    linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent 40%),
+    linear-gradient(135deg, #b1b4bb 0%, #b3bac3 50%, #5b5e63 100%);
 }
 
 html.rain, body.rain {
-    background: linear-gradient(135deg, #5da3f4 0%,#5983b4 50%, #1C3F66 100%);
+  background: linear-gradient(135deg, #5da3f4 0%,#5983b4 50%, #1C3F66 100%);
 }
 
 html.drizzle, body.drizzle {
-    background: linear-gradient(135deg, #849db9 0%,#7295be 50%, #1C3F66 100%);
+  background: linear-gradient(135deg, #849db9 0%,#7295be 50%, #1C3F66 100%);
 }
 
 html.thunderstorm, body.thunderstorm {
-    background: linear-gradient(135deg, #2C3E50 0%, #3B4B59 50%, #4C5C68 100%);
+  background: linear-gradient(135deg, #2C3E50 0%, #3B4B59 50%, #4C5C68 100%);
 }
 
 html.snow, body.snow {
-    background: linear-gradient(135deg, #e8ebef 0%, #acb5c5 100%);
+  background: linear-gradient(135deg, #e8ebef 0%, #acb5c5 100%);
 }
 
 html.mist, html.haze, html.fog, body.mist, body.haze, body.fog {
-    background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
+  background: linear-gradient(135deg, #CFD8DC 0%, #90A4AE 100%);
 }
 
 html.smoke, html.dust, html.ash, body.smoke, body.dust, body.ash {
-    background: linear-gradient(135deg, #6E6E6E 0%,#7a7a7a, 50%, #3B3B3B 100%);
+  background: linear-gradient(135deg, #6E6E6E 0%,#7a7a7a, 50%, #3B3B3B 100%);
 }
 
 html.sand, body.sand {
-    background: linear-gradient(135deg, #F4E2B8 0%,#ffe9b5 50%, #DCC48E 100%);
+  background: linear-gradient(135deg, #F4E2B8 0%,#ffe9b5 50%, #DCC48E 100%);
 }
 
 html.squall, body.squall {
-    background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+  background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
 }
 
 html.tornado, body.tornado {
-    background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
+  background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
+}
+
+/* Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 5rem;
+  background-color: #003E87;
+  gap: 5rem; 
+}
+
+@media (max-width: 992px) {
+  nav {
+    gap: 3rem;
+    padding: 0.5rem 2rem;
+  }
+}
+@media (max-width: 820px) {
+  nav {
+    gap: 2rem;
+    padding: 0.5rem 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    gap: 2rem;
+    padding: 0.5rem 1.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 576px) {
+  nav {
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  nav {
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    gap: 6rem;
+    padding-block: .1rem;
+  }
+}
+@media (max-width: 400px) {
+  nav {
+    flex-direction:row;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 5rem;
+  }
+}
+@media (max-width: 380px) {
+  nav {
+    flex-direction:row;
+    justify-content: center;
+    /* align-items: center; */
+    gap: 2rem;
+    padding-block: .1rem;
+  }
+}
+@media (max-width: 320px) {
+  nav {
+    flex-direction:row;
+    justify-content: center;
+    gap: 2rem;
+    padding-block: .1rem;
+  }
+}
+@media (max-width: 316px) {
+  nav {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+ /* The Website's Title */
+#weather-wag-title{
+  color: white;
+}
+@media (max-width: 480px){
+  #weather-wag-title{
+    color: white;
+    font-size: 20px;
+  }
+}
+
+ /* The Website's Logo */
+#wag-img{
+  width:5rem;
+  height: auto;
+}
+@media (max-width: 480px) {
+  #wag-img {
+  width:4rem;
+  height: 4rem;
+  }
+}
+@media (max-width: 316px) {
+#wag-img{
+  display: flex;
+  justify-content: center;
+  padding-inline: 1.5rem;
+}}
+
+ /* Logo icon and Title div */
+.title-img{
+  display: flex;
+  gap: .5rem;
+}
+@media (max-width: 316px) {
+.title-img{
+  flex-direction: column;
+  gap:1.5;
+}}
+
+/* Desktop Form */
+@media (max-width: 480px) {
+  .desk-form{
+    display: none;
+  }
+}
+
+/* Mobile Form */
+.mobile-form{
+    display: none;
+}
+@media (max-width: 992px) {
+  .mobile-form{
+    display: block;  
+    padding-inline: 1rem;   
+    margin-top: 1rem; 
+  }
+}
+
+ /* Input styling */
+input{
+    border-radius: 10px;
+    padding-inline: 1rem;
+    padding-block: .3rem;
+    width:8rem;
+    height:1.1rem;
+    margin-bottom: .2rem;
+    border:rgba(0, 0, 255, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 480px) {
+  input {
+    border-radius: 10px;
+    padding-inline: .5rem;
+    width:10rem;
+    height:1.2rem;
+  }
+}
+
+ /* Desktop User Input for City and State */
+.user-input {
+  display: flex;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+@media (max-width: 885px) {
+  .user-input {
+    display: none;
+  }
+}
+
+  /* Mobile User Input for City and State */
+.mobile-user-input{
+    display: none;
+}
+@media (max-width: 885px) {
+  .mobile-user-input{
+    display: flex;
+    gap: 1rem;
+    padding-block: 1rem;
+    justify-content: center;
+  }
+}
+@media (max-width: 768px) {
+  .mobile-user-input{
+    display:flex;
+    flex-direction: column;
+    align-items: center;    
+    gap: 1rem; 
+  }
+}
+
+ /* Submit button styling*/
+button{
+  background-color: rgba(255, 255, 255, 0.746);
+  border-radius: 10px;
+  padding-inline: 1rem;
+  padding-block: .3rem;
+  border:rgba(0, 0, 255, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  color: black;
+  background-color: white;
+}
+button:hover{
+  background-color: rgba(105, 96, 96, 0.883);
+  color: white;
+}
+
+
+/* Desktop Navigation Links */
+.nav-links{
+  display:flex;
+  gap: 2rem;
+  color: white;
+}
+@media (max-width: 1138px) {
+  .nav-links {
+    display: none;
+  }
+}
+
+/* Hamburger Menu Div */
+.mobile-links {
+  display: none;
+  cursor: pointer;
+}
+@media (max-width: 1138px) {
+  .mobile-links {
+    display: block;
+    cursor: pointer;
+  }
+}
+ /* Hamburger menu icon */
+#hamburger-menu {
+  width:40px;
+  height: 30px;
+  padding: 0rem;
+}
+@media (max-width: 480px) {
+  #hamburger-menu {
+  width:40px;
+  height: 30px;
+  }
+}
+
+ /* Tagline div */
+.tagline{
+  padding-block: 0.1rem;
+  background-color: #3473bbb4;
+  text-align: center;
+  color: white;
 }
 
 /* Message to dog owners regarding walk */
@@ -135,6 +388,7 @@ html.tornado, body.tornado {
   height: auto;
 }
 
+
 #product_image {
   width: 100%;
   max-width: 10rem; 
@@ -169,6 +423,21 @@ html.tornado, body.tornado {
   font-weight: 0;
   margin-top: 0;
  }
+.feedback{
+  position: absolute;
+  right: 0%;   
+  top: 50%;
+  bottom: 50%;
+  transform: rotate(90deg);
+}
+#feedback{
+  background-color: 	#17c3b2cb;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  padding-inline: 3rem;
+  padding-block: 1rem;
+  font-size: medium;
+}
 .card{
     background-color: rgba(255, 255, 255, 0.6);
     width: 100%;
@@ -259,51 +528,17 @@ html.tornado, body.tornado {
   }
 }
 
-/* user input */
-input{
-    border-radius: 10px;
-    padding-inline: 1rem;
-    padding-block: .3rem;
-    width:8rem;
-    height:1.1rem;
-    margin-bottom: .2rem;
-    border:rgba(0, 0, 255, 0.25);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-}
-@media (max-width: 480px) {
-  input {
-    border-radius: 10px;
-    padding-inline: .5rem;
-    width:10rem;
-    height:1.2rem;
-  }
-}
-.user-input {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
- padding: 1rem;
-  /* border: dotted; */
-  
-}
-@media (max-width: 480px) {
-  .user-input {
-    flex-direction: column;
-    align-items: center;    
-    gap: 1rem; 
-    margin-bottom:1rem;    
-    
-  }
-}
+
 
 select{
     border-radius: 10px;
     padding-inline: 1rem;
-    padding-block: .5rem;
+    padding-block: .3rem;
+    margin-bottom: .2rem;
     border:rgba(0, 0, 255, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.746);
+    background-color: white;
+
 }
 @media (max-width: 480px) {
   select {
@@ -312,23 +547,10 @@ select{
     padding-block: .4rem;
     border:rgba(0, 0, 255, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    background-color: rgba(255, 255, 255, 0.746);
+    background-color: white;
   }
 }
-button{
-    background-color: rgba(255, 255, 255, 0.746);
-    border-radius: 10px;
-    padding-inline: 1rem;
-    padding-block: .3rem;
-    border:rgba(0, 0, 255, 0.25);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    color: black
-    
-}
-button:hover{
-    background-color: rgba(105, 96, 96, 0.883);
-    color: white;
-}
+
 .temp-section{
     width: 100%; 
     max-width: 15rem;
@@ -394,6 +616,7 @@ button:hover{
     font-size: 3rem;
 }
 
+
 .weather-section div,
 .weather-section p{
     margin: 0;
@@ -422,7 +645,6 @@ button:hover{
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
     max-height: 24rem;
-    
 }
 @media (max-width: 280px) {
   .card-section {

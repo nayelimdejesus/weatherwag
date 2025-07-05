@@ -240,7 +240,7 @@ input{
     justify-content: center;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .mobile-user-input{
     display:flex;
     flex-direction: column;
@@ -313,12 +313,13 @@ button:hover{
 /* Message to dog owners regarding walk */
 #green{
     color: #1a3e2f;
-    background-color: #e6f4ea66;
+    background-color: #b2e2b6ce;
     border-left: 6px solid #34a853;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     padding-inline: 2rem;
     padding-block:1rem;
+
 }
 #orange{
       color: #fb9105;
@@ -376,6 +377,122 @@ button:hover{
     padding-block:1rem;
     font-weight: bold;
 }
+
+ /* Dog Message Section Div that contain two images and the dog message */
+.dog-message-section{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap:1rem;
+} 
+@media(max-width:1024px){
+    .dog-message-section{
+      font-size: medium;     
+    }
+}
+@media(max-width:650px){
+    .dog-message-section{
+    flex-direction: column;
+    align-items: center;    
+    gap: 1.5rem;         
+    }
+}
+
+ /* Dog Images that display next to dog message */
+ #dog_1{
+  width: 6rem;
+  height: 6rem;
+  display: block;
+  margin: 0 auto;    
+}
+@media (max-width: 768px) {
+  #dog_1 {
+  width: 30%;
+  height: 30%;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+@media (max-width: 650px) {
+  #dog_1 {
+  width: 5rem;
+  height: 5rem;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+
+#dog_2 {
+  width: 10rem;
+  height: 6rem;
+  display: block;
+  margin: 0 auto;  
+}
+
+@media (max-width: 768px) {
+  #dog_2 {
+  width: 40%;
+  height: 30%;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+@media (max-width: 650px) {
+  #dog_2 {
+  width: 7rem;
+  height: 5rem;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+
+#dog_3{
+  width: 6rem;
+  height: 8rem;
+  display: block;
+  margin: 0 auto;  
+}
+
+@media (max-width: 768px) {
+  #dog_3 {
+  width: 40%;
+  height: 30%;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+@media (max-width: 650px) {
+  #dog_3 {
+  width: 6rem;
+  height: 8rem;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+#dog_4{
+  width: 6rem;
+  height: 8rem;
+  display: block;
+  margin: 0 auto;  
+}
+
+@media (max-width: 768px) {
+  #dog_4 {
+  width: 40%;
+  height: 30%;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+@media (max-width: 650px) {
+  #dog_4 {
+  width: 6rem;
+  height: 8rem;
+  display: block;
+  margin: 0 auto;  
+  }
+}
+
 #user_city{
     font-size: 1.3rem;
     font-weight: bold;
@@ -383,6 +500,14 @@ button:hover{
 #error{
     color: red;
 }
+
+
+
+
+
+
+
+
 .main-dog{
   width:5rem;
   height: auto;
@@ -441,7 +566,7 @@ button:hover{
 .card{
     background-color: rgba(255, 255, 255, 0.6);
     width: 100%;
-    max-width: 48rem;
+    max-width: 80rem;
     height: auto;
     text-align: center;
     padding-block: 1rem;
@@ -580,33 +705,6 @@ select{
   }
 }
 
-/* images of dogs */
-#dog_2 {
-  width: clamp(180px, 18%, 500px);
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-#dog_1{
-  width: clamp(130px, 18%, 470px);
-  height: auto;
-  display: block;
-  margin: 0 auto;      
-}
-#dog_3{
-  width: clamp(100px, 18%, 450px);
-  height: auto;
-  display: block;
-  margin: 0 auto;      
-}
-#dog_5{
-  width: clamp(110px, 18%, 470px);
-  height: auto;
-  display: block;
-  margin: 0 auto;       
-  
-}
 @media(max-width:480px){
    #main-pup{
         display: none;
@@ -615,7 +713,6 @@ select{
 #temp{
     font-size: 3rem;
 }
-
 
 .weather-section div,
 .weather-section p{

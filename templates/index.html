@@ -79,16 +79,32 @@
     {% endif %}
 
         {% if weather %}
-        
-        <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
-        <div class = "weather-section">
-            <div> 
+        <div class = "dog-message-section">
+
                 {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
                     <img id = "dog_3" src="/static/img/dog_3.png"/>
                 {% else%}
                     <img id = "dog_1" src="/static/img/dog_1.png"/>
                 {% endif %}
-            </div>
+
+            <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
+
+                {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
+                    <img id = "dog_4" src="/static/img/dog_4.png"/>
+                {% else%}
+                    <img id = "dog_2" src="/static/img/dog_2.png"/>
+                {% endif %}
+
+        </div>
+        
+        <div class = "weather-section">
+            <!-- <div> 
+                {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
+                    <img id = "dog_3" src="/static/img/dog_3.png"/>
+                {% else%}
+                    <img id = "dog_1" src="/static/img/dog_1.png"/>
+                {% endif %}
+            </div> -->
 
             <div class = "temp-section {{condition}}">
                 <p id="user_city">{{weather["city"]}} {{state}}, US</p>
@@ -97,13 +113,6 @@
                 <p id = "temp">{{weather["temperature"]}}</p>
                 <p>Feels like {{weather["feels_temp"]}}</p>
                 <p>Humidity: {{weather["humidity"]}}%</p>
-            </div>
-            <div> 
-                {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
-                    <img id = "dog_5" src="/static/img/dog_5.png"/>
-                {% else%}
-                    <img id = "dog_2" src="/static/img/dog_2.png"/>
-                {% endif %}
             </div>
 
         </div>

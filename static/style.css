@@ -305,7 +305,7 @@ button:hover{
  /* Tagline div */
 .tagline{
   padding-block: 0.1rem;
-  background-color: #003169;
+  background-color: #003169b8;
   text-align: center;
   color: white;
 }
@@ -675,7 +675,7 @@ select{
     max-width: 15rem;
     font-size: 1rem;
     border-radius: 10px;
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     max-height: 24rem; 
     background-color: rgba(255, 255, 255, 0.779);
@@ -725,7 +725,7 @@ select{
     background-color: rgba(255, 255, 255, 0.779);
     backdrop-filter: blur(10px);             
     border-radius: 10px;
-    padding: 3rem;
+    padding: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
     max-height: 24rem;

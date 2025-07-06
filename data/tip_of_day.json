@@ -1,0 +1,27 @@
+{
+    "green": [
+        "It's important to be up to date with your dog's dental health as bacteria in the mouth can enter the bloodstream and affect vital organs like the heart or kidneys. <a href= 'https://www.petmd.com/news/view/5-reasons-why-dog-dental-care-important-38003'>Read more at PetMD</a>",
+        "Microchipping your dog is a crucial step to help ensure they can be safety returned if they get lost. <a href ='https://www.akc.org/expert-advice/lifestyle/responsible-dog-owner/'>Read more at American Kennel Club </a>",
+        "Scheduling routine check ups for your dogs help detect small probelms before they become a bigger issue. <a href = 'https://www.morrisanimalfoundation.org/article/dog-health-resolution'>Read more at Morris Animal Foundation </a>"
+    ],
+    "red": [
+        "Provide plenty of cool, fresh water to your dog, especially during hot, or humid weather, to help prevent dehyrdation. <a href = 'https://www.aspca.org/pet-care/general-pet-care/hot-weather-safety-tips'> Read more at ASPCA </a>",
+        "Don't leave your dog in a parked car on a hot day as it's very dangerous. <a href = 'https://www.akc.org/expert-advice/health/summer-safety-tips-for-dogs/'> Read more at American Kennel Club </a>",
+        "On hot days, avoid asphalt or sand because it can burn their paws. <a href = 'https://www.akc.org/expert-advice/health/summer-safety-tips-for-dogs/'> Read more at American Kennel Club </a>"
+],
+    "dark-red": [
+        "Provide plenty of cool, fresh water to your dog, especially during hot, or humid weather, to help prevent dehyrdation. <a href = 'https://www.aspca.org/pet-care/general-pet-care/hot-weather-safety-tips'> Read more at ASPCA </a>",
+        "Don't leave your dog in a parked car on a hot day as it's very dangerous. <a href = 'https://www.akc.org/expert-advice/health/summer-safety-tips-for-dogs/'> Read more at American Kennel Club </a>",
+        "On hot days, avoid asphalt or sand because it can burn their paws. <a href = 'https://www.akc.org/expert-advice/health/summer-safety-tips-for-dogs/'> Read more at American Kennel Club </a>"
+],
+    "blue": [
+        "Protect your dog paws as salt and other chemicals that are used to melt snow and ice can irritate your dog's paws. <a href = 'https://www.redcross.org/about-us/news-and-events/news/Winter-Safety-Tips-for-Your-Pets.html?srsltid=AfmBOorwvtIC6DxE1dBT0TDzC3gsGBYb1iCs2CBVzL827QTSSrk2WWHJ'> Read more at American Red Cross </a>",
+        "Small, elderly, or thin-coated dogs can have a harder time keeping themselves warm, so it's recommended to provide a sweater or coat to them, to help keep them warm during cold weather. <a href = 'https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/winter-safety-tips'> Read more at Cornell University, College of Veterinary Medicine. </a>",
+        "Keep your dog away from frozen bodies of water as it's possible that ice can crack and your dog can fall in. <a href = 'https://www.akc.org/expert-advice/health/keep-dog-warm-winter-safety-tips/'> Read more at American Kennel Club </a>"
+],
+    "dark-blue": [
+        "Protect your dog paws as salt and other chemicals that are used to melt snow and ice can irritate your dog's paws. <a href = 'https://www.redcross.org/about-us/news-and-events/news/Winter-Safety-Tips-for-Your-Pets.html?srsltid=AfmBOorwvtIC6DxE1dBT0TDzC3gsGBYb1iCs2CBVzL827QTSSrk2WWHJ'> Read more at American Red Cross </a>",
+        "Small, elderly, or thin-coated dogs can have a harder time keeping themselves warm, so it's recommended to provide a sweater or coat to them, to help keep them warm during cold weather. <a href = 'https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/winter-safety-tips'> Read more at Cornell University, College of Veterinary Medicine. </a>",
+        "Keep your dog away from frozen bodies of water as it's possible that ice can crack and your dog can fall in. <a href = 'https://www.akc.org/expert-advice/health/keep-dog-warm-winter-safety-tips/'> Read more at American Kennel Club </a>"
+]
+}

@@ -5,6 +5,7 @@ import os
 import json
 import time
 from zoneinfo import ZoneInfo
+import random
 # import pytz
 # from timezonefinder import TimezoneFinder
 
@@ -286,11 +287,18 @@ def index():
     state = default_state
     
     # getting information from states.json
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    json_path = os.path.join(basedir, 'data', 'states.json')
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    json_path = os.path.join(base_dir, 'data', 'states.json')
+    
+    # getting tips from tip_of_day.json
+    tips_base_dir = os.path.abspath(os.path.dirname(__file__))
+    tips_json_path = os.path.join(tips_base_dir, 'data', 'tip_of_day.json')
     
     with open(json_path) as f:
         all_states = json.load(f)
+        
+    with open(tips_json_path) as f:
+        tips = json.load(f)
         
     # if the user submits the form
     if request.method == "POST":
@@ -331,6 +339,7 @@ def index():
     weather_temp = round(data["main"]["feels_like"])
     humidity = data["main"]["humidity"]
     condition = data["weather"][0]["main"]
+
     condition_message = ""
     
     if condition == "Rain":
@@ -375,10 +384,24 @@ def index():
     if condition_message != "":
         dog_warning += f" * Note: {condition_message}"
     product_recommendation = products[color_message]
+    
+    if color_message == "orange" or "cool":
+        dog_tip_list = tips["green"]
+    else:
+        dog_tip_list = tips[color_message]
+    
+    random_num = random.randint(0, len(dog_tip_list)-1)
+    
+    dog_tip_message =dog_tip_list[random_num]
+    
+    
     dog_data = {
         "dog_warning": dog_warning,
         "color_message": color_message,
+        "dog_tip_message": dog_tip_message,
     }
+        
+    random
     weather_data = {
         "country": data["sys"]["country"],
         "city": data["name"],

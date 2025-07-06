@@ -64,7 +64,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 5rem;
-  background-color: #003E87;
+  background-color: #003169;
   gap: 5rem; 
 }
 
@@ -305,7 +305,7 @@ button:hover{
  /* Tagline div */
 .tagline{
   padding-block: 0.1rem;
-  background-color: #3473bbb4;
+  background-color: #003169;
   text-align: center;
   color: white;
 }
@@ -322,8 +322,8 @@ button:hover{
 
 }
 #orange{
-      color: #fb9105;
-    background-color: #ffddbb62;
+      color: #935300;
+    background-color: #ffd4a9;
     border-left: 6px solid #ff8000;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -564,16 +564,14 @@ button:hover{
   font-size: medium;
 }
 .card{
-    background-color: rgba(255, 255, 255, 0.6);
+    /* background-color: rgba(255, 255, 255, 0.6); */
     width: 100%;
     max-width: 80rem;
     height: auto;
     text-align: center;
     padding-block: 1rem;
     margin: 0 auto;
-    border-radius: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px);
+
 }
 
 /* @media (max-width: 1200px) {
@@ -588,7 +586,6 @@ button:hover{
   .card {
     width: 100%;
     max-width: 50rem;
-    border-radius: 30px;
     font-size: 1.25rem;
   }
 }
@@ -596,7 +593,6 @@ button:hover{
   .card {
     width: 100%;
     max-width: 40rem;
-    border-radius: 20px;
     font-size: 1.1rem;
   }
 }
@@ -604,7 +600,6 @@ button:hover{
   .card {
     width: 100%;
     max-width: 50rem;
-    border-radius: 20px;
     font-size: 1.1rem;
   }
 }
@@ -613,7 +608,6 @@ button:hover{
     width: 100%;
     max-width: 26rem;
     padding-block: 0.5rem;
-    border-radius: 15px;
     font-size: 1rem;
   }
 }
@@ -680,26 +674,18 @@ select{
     width: 100%; 
     max-width: 15rem;
     font-size: 1rem;
-    border-radius: 40px;
-    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    padding: 3rem;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     max-height: 24rem; 
-
-        /* width: 16rem;
-    background: rgba(255, 255, 255, 0.365);
-    backdrop-filter: blur(10px);             
-    border-radius: 40px;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    color: #1E2A38; 
-    max-height: 24rem; */
+    background-color: rgba(255, 255, 255, 0.779);
 }
 @media (max-width: 280px) {
   .temp-section {
     width: 100%;
     max-width: 10rem;
     font-size: 1rem;
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 1.5rem 2rem;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   }
@@ -714,8 +700,8 @@ select{
     font-size: 3rem;
 }
 
-.weather-section div,
-.weather-section p{
+.temp-section div,
+.temp-section p{
     margin: 0;
     font-weight: bold;
     
@@ -724,6 +710,7 @@ select{
     display:flex;
     justify-content: center;
     margin-bottom: 1rem;
+    gap: 2rem;
 }
 @media(max-width:480px){
     .weather-section{
@@ -735,13 +722,14 @@ select{
 .card-section{
     width: 100%;
     max-width: 15rem;
-    background: rgba(255, 255, 255, 0.365);
+    background-color: rgba(255, 255, 255, 0.779);
     backdrop-filter: blur(10px);             
-    border-radius: 40px;
-    padding: 1.5rem 2rem;
+    border-radius: 10px;
+    padding: 3rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
     max-height: 24rem;
+    
 }
 @media (max-width: 280px) {
   .card-section {
@@ -749,7 +737,7 @@ select{
     max-width: 10rem;
     background: rgba(255, 255, 255, 0.365);
     backdrop-filter: blur(10px);             
-    border-radius: 40px;
+    border-radius: 20px;
     padding: 1.5rem 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 

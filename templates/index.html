@@ -98,15 +98,7 @@
         </div>
         
         <div class = "weather-section">
-            <!-- <div> 
-                {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
-                    <img id = "dog_3" src="/static/img/dog_3.png"/>
-                {% else%}
-                    <img id = "dog_1" src="/static/img/dog_1.png"/>
-                {% endif %}
-            </div> -->
-
-            <div class = "temp-section {{condition}}">
+            <div class = "temp-section">
                 <p id="user_city">{{weather["city"]}} {{state}}, US</p>
                 <p>Last updated: {{weather["time"]}}</p>
                 <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
@@ -114,9 +106,6 @@
                 <p>Feels like {{weather["feels_temp"]}}</p>
                 <p>Humidity: {{weather["humidity"]}}%</p>
             </div>
-
-        </div>
-        <div class = "more-details">
             <div class = "card-section">
                 <h3>Weather Details</h3>
                 <p>Mainly: {{weather["condition"]}}</p>
@@ -126,6 +115,13 @@
                 <p>Sunrise: {{weather["sunrise"]}}</p>
                 <p>Sunset: {{weather["sunset"]}}</p>
             </div>
+            <div class = "card-section">
+                <p id="user_city">Safety Dog Tip</p>
+                <p>{{dog['dog_tip_message'] | safe}}</p>
+            </div>
+
+        </div>
+        <div class = "more-details">
             <div class = "card-section">
                     <h3>Product Suggestions</h3>
 <p id = "disclaimer">
@@ -140,7 +136,7 @@ As an Amazon Associate, I earn from qualifying purchases made through links on t
                 </div>
                 <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
             </div>
-        </div>
+        </div> 
     {% endif %}
     </div>
     <!-- <div class = "feedback">

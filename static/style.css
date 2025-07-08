@@ -302,6 +302,13 @@ button:hover{
   }
 }
 
+#link{
+  color: white;
+}
+#link:hover{
+  color: rgb(255, 187, 0); 
+}
+
  /* Tagline div */
 .tagline{
   padding-block: 0.1rem;
@@ -323,7 +330,7 @@ button:hover{
 }
 #orange{
       color: #935300;
-    background-color: #ffd4a9;
+    background-color: #fde3c8;
     border-left: 6px solid #ff8000;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);

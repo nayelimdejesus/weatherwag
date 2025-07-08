@@ -385,7 +385,7 @@ def index():
         dog_warning += f" * Note: {condition_message}"
     product_recommendation = products[color_message]
     
-    if color_message == "orange" or "cool":
+    if color_message in ["orange", "cool"]:
         dog_tip_list = tips["green"]
     else:
         dog_tip_list = tips[color_message]
@@ -401,7 +401,6 @@ def index():
         "dog_tip_message": dog_tip_message,
     }
         
-    random
     weather_data = {
         "country": data["sys"]["country"],
         "city": data["name"],

@@ -14,7 +14,8 @@
     <link rel="icon" type="image/png" sizes="96x96" href="{{ url_for('static', filename='img/favicon/favicon-96x96.png') }}">
 
 </head>
-<body class = "{{condition}}">
+
+<body class = "{{ condition or '' }} {{ body_class or '' }}">
     <nav>
         <div class = "title-img">
             <img id = "wag-img" src="/static/img/wag.png">
@@ -37,7 +38,7 @@
         <div class = "nav-links">
             <a id = "link" href = "/about"> About </a>
             <a id = "link" href = "/contact"> Contact </a>
-            <a id = "link" href = "/index"> Home </a>
+            <a id = "link" href = "/"> Home </a>
         </div>
         <div class = "mobile-links">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="white" class="bi bi-list" id = "hamburger-menu" viewBox="0 0 16 16">
@@ -53,17 +54,18 @@
 
 <footer>
 
-    <div class = "disclaimer-footer">
+    <div class = "disclaimer-footer ">
             
         <p>
-            Weather data provided by <a href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">OpenWeather</a> under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 license</a>. Data modified for WeatherWag.
+            Weather data provided by <a id = "link" href="https://openweathermap.org/" target="_blank" rel="noopener noreferrer">OpenWeather</a> under <a id = "link" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0 license</a>. Data modified for WeatherWag.
         </p>
-                <p>All images on this site are AI-generated and used for illustrative purposes.</p>
+                <p>Most images on this site are AI-generated and used for illustrative purposes.</p>
 
         <p>
             © 2025 WeatherWag. All rights reserved. WeatherWag provides general information only and is not a substitute for professional veterinary or medical advice. Always use your best judgment when walking your dog in extreme weather conditions.  
         </p>
         </div>
-    </footer>
+</footer>
 </body>
+
 </html>

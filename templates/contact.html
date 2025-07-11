@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class = "contact-card">
+    <div class = "contact-section">
+        <h2> Get in Touch </h2>
+        <p>Whether you have questions, or feedback, I'd love to hear from you. Feel free to send me an email or use the form. Thank you.</p>
+        <p>Email: <a href="mailto:nayelidjm142@gmail.com">nayelidjm142@gmail.com</a></p>
+    </div>
+    <div class = "contact-section">
+        <form class = "contact-form" method="POST" action="/">
+            <label>Name</label>
+            <div class = "contact-name">
+                <input id = "contact-input" type = "text" name = "name" placeholder="First Name" required/>
+                <input id = "contact-input" type = "text" name = "name" placeholder="Last Name" required/>
+            </div>
+            <label>Email</label>
+                <input id = "email" type = "email" name = "email" placeholder="example@gmail.com" required/>
+                <label>Message</label>
+                <textarea name = "message" placeholder = "Type your message here ..." rows = "5" required></textarea>
+                <div class = "contact-btn">
+                    <button id = "contact-submit" type="submit">Submit</button>
+                </div>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

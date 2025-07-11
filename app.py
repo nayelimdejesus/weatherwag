@@ -429,6 +429,20 @@ def index():
         product_recom = product_recommendation,
     )
 
+@app.route("/about", methods=["GET"])
+def about():
+    # getting information from states.json
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    json_path = os.path.join(base_dir, 'data', 'states.json')
+    
+    with open(json_path) as f:
+        all_states = json.load(f)
+        
+    return render_template(
+        "about.html",
+        all_states = all_states,
+        body_class = 'about-bg'
+        )
 
 if __name__ in "__main__":
     app.run(debug=True, port=5001)

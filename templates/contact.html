@@ -8,11 +8,11 @@
         <p>Email: <a href="mailto:nayelidjm142@gmail.com">nayelidjm142@gmail.com</a></p>
     </div>
     <div class = "contact-section">
-        <form class = "contact-form" method="POST" action="/">
+        <form class = "contact-form" method="POST" action="/contact">
             <label>Name</label>
             <div class = "contact-name">
-                <input id = "contact-input" type = "text" name = "name" placeholder="First Name" required/>
-                <input id = "contact-input" type = "text" name = "name" placeholder="Last Name" required/>
+                <input id = "contact-input" type = "text" name = "first_name" placeholder="First Name" required/>
+                <input id = "contact-input" type = "text" name = "last_name" placeholder="Last Name" required/>
             </div>
             <label>Email</label>
                 <input id = "email" type = "email" name = "email" placeholder="example@gmail.com" required/>
@@ -21,8 +21,10 @@
                 <div class = "contact-btn">
                     <button id = "contact-submit" type="submit">Submit</button>
                 </div>
-
         </form>
+        {% if success %}
+        <p>Message Sent!</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

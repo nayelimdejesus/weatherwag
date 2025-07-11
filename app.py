@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from dotenv import load_dotenv
 from datetime import datetime
+from flask_mail import Mail, Message
 import os
 import json
 import time
@@ -16,6 +17,16 @@ import requests
 load_dotenv()
 
 app = Flask(__name__)
+
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
+
+mail = Mail(app)
+
+
 
 # API key
 API_key = os.getenv("WEATHER_KEY")
@@ -443,6 +454,53 @@ def about():
         all_states = all_states,
         body_class = 'about-bg'
         )
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    # getting information from states.json
+    base_dir = os.path.abspath(os.path.dirname(__file__))
+    json_path = os.path.join(base_dir, 'data', 'states.json')
+    success = False
+    
+    with open(json_path) as f:
+        all_states = json.load(f)
+
+    # if the user submits the form
+    if request.method == "POST":
+        first_name = request.form.get("first_name", "").strip()
+        last_name = request.form.get("last_name", "").strip()
+        email = request.form.get("email", "").strip()
+        message = request.form.get("message", "").strip()
+        
+        print(first_name)
+        print(last_name)
+        print(email)
+        print(message)
+        body = f"""
+        From: {first_name} {last_name},
+        Email: {email}, 
+        \n\nMessage: {message} """
+        
+        msg = Message(
+            subject = "WeatherWag-Message",
+            sender = email,
+            recipients = [os.getenv("MAIL_USERNAME")],
+            body = body
+        )
+        mail.send(msg)
+        success = True
+    else:
+        success = False
+        
+        
+                
+        
+    return render_template(
+        "contact.html",
+        all_states = all_states,
+        body_class = 'about-bg',
+        success = success
+        )
+    
 
 if __name__ in "__main__":
     app.run(debug=True, port=5001)

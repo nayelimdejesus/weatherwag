@@ -8,7 +8,7 @@ html, body {
 }
 /* About page */
 html.about-bg, body.about-bg{
-  background-image: url("/static/img/aussie.jpg");
+  background-image: url("/static/img/aussie_bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -258,7 +258,6 @@ input{
 @media (max-width: 480px) {
   input {
     border-radius: 10px;
-    padding-inline: .5rem;
     width:10rem;
     height:1.2rem;
   }
@@ -314,8 +313,15 @@ button:hover{
 }
 
 #contact-submit{
-  width: 5rem;
+  padding-inline: 1rem;
+  padding-block: .5rem;
+  background-color: #003169;
+  color: white;
 }
+#contact-submit:hover{
+  background-color: #5b84b0;
+}
+
 .contact-btn{
   margin-top: 1rem;
 }
@@ -949,7 +955,10 @@ select{
 
 #contact-input{
   width: 100%;
-  padding-inline: .2rem;
+  padding-inline: .5rem;
+}
+#email{
+  padding-inline: .5rem;
 }
 .contact-form{
    display:flex;

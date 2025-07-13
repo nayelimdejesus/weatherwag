@@ -470,19 +470,18 @@ def contact():
         last_name = request.form.get("last_name", "").strip()
         email = request.form.get("email", "").strip()
         message = request.form.get("message", "").strip()
-        
-        print(first_name)
-        print(last_name)
-        print(email)
-        print(message)
-        body = f"""
-        From: {first_name} {last_name},
-        Email: {email}, 
-        \n\nMessage: {message} """
+
+
+        body = (
+            f"From: {first_name} {last_name}\n"
+            f"Email: {email}\n\n"
+            f"Message:\n{message}"
+        )
+
         
         msg = Message(
             subject = "WeatherWag-Message",
-            sender = email,
+            sender = os.getenv("MAIL_USERNAME"),
             recipients = [os.getenv("MAIL_USERNAME")],
             body = body
         )

@@ -17,7 +17,7 @@
                 <!-- <input type = "text" id = "state" name = "state" placeholder="Enter State" required> -->
                 <select name = "states" required>
                     <option value ="">Select State</option>
-                    {% for key, value in all_states.items() %} 
+                    {% for key, value in states.items() %} 
                         <option value ="{{ key }}">{{ value }}</option>
                     {% endfor %}
                 </select>

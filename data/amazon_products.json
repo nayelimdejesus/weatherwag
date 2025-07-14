@@ -1,0 +1,192 @@
+
+{
+    "green": [
+        {
+            "name": "Dog Chew Toy",
+            "image_url": "/static/img/green/dog_toy.jpg",
+            "affiliate_url": "https://amzn.to/46fclJo"
+        },
+        {
+            "name": "ChomChom Roller | Hair Remover and Reusable Lint Roller",
+            "image_url": "/static/img/green/dog_roller.jpg",
+            "affiliate_url": "https://amzn.to/4lijtJX"
+        },
+        {
+            "name": "WINGOIN | Tactical Dog Harness",
+            "image_url": "/static/img/green/dog_harness.jpg",
+            "affiliate_url": "https://amzn.to/3THDMUI"
+        },
+        {
+            "name": "ICEFANG | Tactical Dog Harness",
+            "image_url": "/static/img/green/dog_harness2.jpg",
+            "affiliate_url": "https://amzn.to/4liH38M"
+        },
+        {
+            "name": "Comfort Expression | Orthopedic Foam Dog Beds",
+            "image_url": "/static/img/green/dog_bed.jpg",
+            "affiliate_url": "https://amzn.to/3TcRBud"
+        }
+    ],  
+    "orange": [
+        {
+            "name": "Hcpet | Dog Shoes",
+            "image_url": "/static/img/orange/dog_booties.jpg",
+            "affiliate_url": "https://amzn.to/4lrhG4K"
+        },
+        {
+            "name": "ChomChom Roller | Hair Remover and Reusable Lint Roller",
+            "image_url": "/static/img/orange/dog_roller.jpg",
+            "affiliate_url": "https://amzn.to/4lijtJX"
+        },
+        {
+            "name": "ARF Pets | Dog Cooling Mat",
+            "image_url": "/static/img/orange/dog_mat.jpg",
+            "affiliate_url": "https://amzn.to/3GfoFij"
+        },
+        {
+            "name": "ICEFANG | Tactical Dog Harness",
+            "image_url": "/static/img/orange/dog_harness2.jpg",
+            "affiliate_url": "https://amzn.to/4liH38M"
+        },
+        {
+            "name": "Amazon Basics | Cooling Breathable Elevated Dog Bed",
+            "image_url": "/static/img/orange/orange_dog.jpg",
+            "affiliate_url": "https://amzn.to/4ltyY1a"
+        }
+    ], 
+    "cool": [
+        {
+            "name": "KYEESE Store | 2 Pack Dog Sweater",
+            "image_url": "/static/img/cool/cool_jacket.jpg",
+            "affiliate_url": "https://amzn.to/3GcDVMU"
+        },
+        {
+            "name": "Vecomfy Store | Fleece Lining Extra Warm Dog Hoodie",
+            "image_url": "/static/img/cool/cool_fleece.jpg",
+            "affiliate_url": "https://amzn.to/40rGTDW"
+        },
+        {
+            "name": "Hcpet Store | Hcpet Dog Shoes",
+            "image_url": "/static/img/cool/dog_booties.jpg",
+            "affiliate_url": "https://amzn.to/3ZRT9xr"
+        },
+        {
+            "name": "Fitwarm Store | Lightweight Fleece Dog Pajamas",
+            "image_url": "/static/img/cool/cool_sweater.jpg",
+            "affiliate_url": "https://amzn.to/4kaQB4D"
+        },
+        {
+            "name": "Finn Paw Hero | Dog Paw Balm",
+            "image_url": "/static/img/cool/dog_paw_balm.jpg",
+            "affiliate_url": "https://amzn.to/44fKsyd"
+        }
+    ],
+    "blue": [
+        {
+            "name": "Bedsure Store | Dog Blanket",
+            "image_url": "/static/img/blue/dog_blanket.jpg",
+            "affiliate_url": "https://amzn.to/46d5Jew"
+        },
+        {
+            "name": "Musher's Secret Store | Dog Paw Wax",
+            "image_url": "/static/img/blue/dog_paw.jpg",
+            "affiliate_url": "https://amzn.to/4nnCQCG"
+        },
+        {
+            "name": "JayDaog Store | Warm Dog Jacket",
+            "image_url": "/static/img/blue/dog_jacket.jpg",
+            "affiliate_url": "https://amzn.to/40mMprq"
+        },
+        {
+            "name": "QBLEEV | Warm Dog Coat",
+            "image_url": "/static/img/blue/dog_coat.jpg",
+            "affiliate_url": "https://amzn.to/4l5oWng"
+        },
+        {
+            "name": "Finn Paw Hero | Dog Paw Balm",
+            "image_url": "/static/img/blue/dog_paw_balm.jpg",
+            "affiliate_url": "https://amzn.to/44fKsyd"
+        }
+    ],
+        "dark-blue": [
+        {
+            "name": "K&H Pet Products | Microwavable Pet Bed Warmer",
+            "image_url": "/static/img/dark-blue/micro_warmer.jpg",
+            "affiliate_url": "https://amzn.to/3Gktln2"
+        },
+        {
+            "name": "Femont Store | Snuffle Mat",
+            "image_url": "/static/img/dark-blue/snuffle_mat.jpg",
+            "affiliate_url": "https://amzn.to/44u76Dh"
+        },
+        {
+            "name": "JoyDaog Store | Warm Fleece Dog Coats",
+            "image_url": "/static/img/dark-blue/dark_blue_jacket.jpg",
+            "affiliate_url": "https://amzn.to/3GncMH5"
+        },
+        {
+            "name": "Furhaven Store | Waterproof Throw Blanket for Dogs",
+            "image_url": "/static/img/dark-blue/throw_blanket.jpg",
+            "affiliate_url": "https://amzn.to/40tPEgT"
+        },
+        {
+            "name": "LaSyl Store | Weighted Blanket for Pets",
+            "image_url": "/static/img/dark-blue/weighted_blanket.jpg",
+            "affiliate_url": "https://amzn.to/3I21A3a"
+        }
+    ],
+    "red": [
+        {
+            "name": "Hcpet | Dog Shoes",
+            "image_url": "/static/img/red/dog_booties.jpg",
+            "affiliate_url": "https://amzn.to/4lrhG4K"
+        },
+        {
+            "name": "ALL FOR PAWS | Dog Ice Bandana",
+            "image_url": "/static/img/red/dog_band.jpg",
+            "affiliate_url": "https://amzn.to/44kuKlF"
+        },
+        {
+            "name": "ARF Pets | Dog Cooling Mat",
+            "image_url": "/static/img/red/dog_mat.jpg",
+            "affiliate_url": "https://amzn.to/3GfoFij"
+        },
+        {
+            "name": "Jasonwell | Foldable Dog Pet Bath Pool",
+            "image_url": "/static/img/red/dog_pool.jpg",
+            "affiliate_url": "https://amzn.to/3ZOKV9r"
+        },
+        {
+            "name": "QUMY | Dog Shoes",
+            "image_url": "/static/img/red/dog_booties2.jpg",
+            "affiliate_url": "https://amzn.to/4lcqH1G"
+        }
+    ],
+        "dark-red": [
+        {
+            "name": "Yipetor | Frozen Treat Dispensing Dog Toy",
+            "image_url": "/static/img/dark-red/dog_enrich.jpg",
+            "affiliate_url": "https://amzn.to/44wWlkJ"
+        },
+        {
+            "name": "Furhaven | Cooling Gel Dog Bed",
+            "image_url": "/static/img/dark-red/dog_cooling_bed.jpg",
+            "affiliate_url": "https://amzn.to/4kuuzdD"
+        },
+        {
+            "name": "WOOF | Party Pupsicle - Long Lasting",
+            "image_url": "/static/img/dark-red/dog_pupsicle.jpg",
+            "affiliate_url": "https://amzn.to/44323KZ"
+        },
+        {
+            "name": "Rundik | Snuffle Mat for Dogs",
+            "image_url": "/static/img/dark-red/dog_sniff_mat.jpg",
+            "affiliate_url": "https://amzn.to/444vL2j"
+        },
+        {
+            "name": "Race&Herd | Herd Dog Scent Training Kit",
+            "image_url": "/static/img/dark-red/dog_training.jpg",
+            "affiliate_url": "https://amzn.to/4k4uT2d"
+        }
+    ]
+}

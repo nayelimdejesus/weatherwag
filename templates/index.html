@@ -46,37 +46,37 @@
                 {% endif %}
 
         </div>
-        
         <div class = "weather-section">
-            <div class = "temp-section">
+            <div class = "card-section">
                 <p id="user_city">{{weather["city"]}} {{state}}, US</p>
                 <p>Last updated: {{weather["time"]}}</p>
                 <img src="https://openweathermap.org/img/wn/{{ weather['icon'] }}@2x.png" alt="Weather Image"/>
-                <p id = "temp">{{weather["temperature"]}}</p>
-                <p>Feels like {{weather["feels_temp"]}}</p>
+                <p id = "temp">{{weather["temperature"]}}°</p>
+                <p>Feels like {{weather["feels_temp"]}}°</p>
                 <p>Humidity: {{weather["humidity"]}}%</p>
             </div>
             <div class = "card-section">
                 <h3>Weather Details</h3>
-                <p>Mainly: {{weather["condition"]}}</p>
-                <p>Description: {{weather["description"]}}</p>
-                <p>Wind: {{weather["wind"]}}mph</p>
-                <p>Wind Gust: {{weather["wind_gust"]}}mph</p>
-                <p>Sunrise: {{weather["sunrise"]}}</p>
-                <p>Sunset: {{weather["sunset"]}}</p>
+                <p><b>Mainly:</b> {{weather["condition"]}}</p>
+                <p><b>Description:</b> {{weather["description"]}}</p>
+                <p><b>Wind:</b> {{weather["wind"]}}mph</p>
+                <p><b>Wind Gust:</b> {{weather["wind_gust"]}}mph</p>
+                <p><b>Sunrise:</b> {{weather["sunrise"]}}</p>
+                <p><b>Sunset:</b> {{weather["sunset"]}}</p>
             </div>
             <div class = "card-section">
-                <p id="user_city">Safety Dog Tip</p>
+                <h3>Safety Dog Tip</h3>
                 <p>{{dog['dog_tip_message'] | safe}}</p>
             </div>
 
         </div>
         <div class = "more-details">
             <div class = "card-section">
-                    <h3>Product Suggestions</h3>
-<p id = "disclaimer">
-As an Amazon Associate, I earn from qualifying purchases made through links on this site at no extra cost to you.</p>
-
+                <h3>Product Suggestions</h3>
+                    <p id = "disclaimer">
+                        As an Amazon Associate, I earn from qualifying purchases made through links on this site at no extra cost to you.
+                    </p>
+                    <br>
                 <button id = "pre_btn" class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
                 <div>
                     <p id="product_name"></p>

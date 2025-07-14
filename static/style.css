@@ -105,7 +105,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 5rem;
+  padding: 0.1rem 3rem;
   background-color: #003169;
   gap: 5rem; 
 }
@@ -182,6 +182,7 @@ nav {
  /* The Website's Title */
 #weather-wag-title{
   color: white;
+  font-size: 24px;
 }
 @media (max-width: 480px){
   #weather-wag-title{
@@ -766,19 +767,13 @@ select{
     font-size: 3rem;
 }
 
-.temp-section div,
-.temp-section p{
-    margin: 0;
-    font-weight: bold;
-    
-}
 .weather-section{
     display:flex;
     justify-content: center;
     margin-bottom: 1rem;
     gap: 2rem;
 }
-@media(max-width:480px){
+@media(max-width:770px){
     .weather-section{
     flex-direction: column;
     align-items: center;    
@@ -809,7 +804,11 @@ select{
     color: #1E2A38; 
   }
 }
-
+.card-section div,
+.card-section p{
+    margin: 0;
+    
+}
 .more-details{
     display:flex;
     justify-content: center;

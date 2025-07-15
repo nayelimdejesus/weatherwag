@@ -22,7 +22,8 @@ app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
 
 mail = Mail(app)
 
-API_key = os.getenv("WEATHER_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_KEY")
+WEATHER_API_KEY = os.getenv("WEATHER_KEY")
 
 default_city = "San Jose"
 default_state = "CA"
@@ -121,7 +122,7 @@ def index():
         state = default_state
         user_submits_form  = False
 
-    weather_api_result = fetch_weather_details(city, state, API_key, user_submits_form)
+    weather_api_result = fetch_weather_details(city, state, WEATHER_API_KEY, user_submits_form)
     
     if(isinstance(weather_api_result, tuple)):
         if None in weather_api_result:
@@ -130,6 +131,9 @@ def index():
         weather_api_data, error = weather_api_result
     else:
         weather_api_data = weather_api_result
+        
+    
+    print(weather_api_data["coord"]["lat"])
 
 
     # converting utc to user local time
@@ -220,6 +224,10 @@ def index():
         "sunset": sunset_time,
         "time": user_local_time 
     }
+    location_details ={
+        "lon": weather_api_data["coord"]["lon"],
+        "lat": weather_api_data["coord"]["lat"]
+    }
     weather_condition = weather_details["condition"].lower()
     
     return render_template(
@@ -231,6 +239,8 @@ def index():
         state=state,
         states = states,
         product_recom = product_recommendation,
+        GOOGLE_API_KEY = GOOGLE_API_KEY,
+        location = location_details
     )
 
 @app.route("/about", methods=["GET"])

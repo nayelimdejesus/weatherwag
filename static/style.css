@@ -5,6 +5,7 @@ html, body {
   display: flex;
   flex-direction: column;
   font-family: 'Nunito', sans-serif;
+  
 }
 /* About page */
 html.about-bg, body.about-bg{
@@ -106,7 +107,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 0.1rem 3rem;
-  background-color: #003169;
+  background-color: #001d68;
+  /* background-color: #003169; */
   gap: 5rem; 
 }
 
@@ -372,7 +374,7 @@ button:hover{
  /* Tagline div */
 .tagline{
   padding-block: 0.1rem;
-  background-color: #003169b8;
+  background-color: #001d68b5;
   text-align: center;
   color: white;
 }
@@ -581,35 +583,9 @@ button:hover{
 }
 
 
-#product_image {
-  width: 100%;
-  max-width: 10rem; 
-  height: auto;      
-  max-height: none;  
-}
 
-@media (max-width: 950px) {
-  #product_image {
-    max-width: 10rem;
-  }
-}
 
-@media (max-width: 768px) {
-  #product_image {
-    max-width: 8rem;
-  }
-}
 
-@media (max-width: 480px) {
-  #product_image {
-    max-width: 10rem;
-  }
-}
-@media (max-width: 280px) {
-  #product_image {
-    max-width: 8rem;
-  }
-}
  #phrase{
   color: #444;
   font-weight: 0;
@@ -809,20 +785,65 @@ select{
     margin: 0;
     
 }
-.more-details{
-    display:flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    gap: 2.2rem;
+.product-card {
+  display: flex;
+  width: 100%;
+  max-width: 40rem;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.779);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #1E2A38;
+  margin: 0 auto;
+  margin-block: 3rem;
 }
 
-@media(max-width:480px){
-    .more-details{
-    flex-direction: column; 
-    align-items: center;    
-    gap: 1.5rem;         
-    }
+@media (max-width: 780px) {
+  .product-card {
+    max-width: 30rem;
+  }
 }
+
+@media (max-width: 600px) {
+  .product-card {
+    width: 80%;
+    max-width: 30rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-inline: 2rem;
+  }
+}
+
+
+.product-images-container{
+  display: flex;
+  width: 100%;
+  max-width: 50rem;
+  gap: 2rem;
+  margin: 0 auto;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .product-images-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.product-images{
+  width: 100%;
+  max-width: 13rem;
+}
+#first_product_image,
+#sec_product_image {
+  width: 100%;     
+  height: 15rem;          
+  object-fit:contain;       
+  border-radius: 0.5rem;
+}
+
 .card-section-title{
   display: flex;
   justify-content: center;
@@ -982,7 +1003,8 @@ select{
 
 footer{
   margin-top: 10rem;
-  background-color: #003169;
+  background-color: #001d68;
+
 }
 .disclaimer-footer {
   justify-content: center;

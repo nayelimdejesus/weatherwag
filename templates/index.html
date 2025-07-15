@@ -69,19 +69,28 @@
             </div>
 
         </div>
-        <div class = "more-details">
-            <div class = "card-section">
+        <div class = "product-card">
+            <div class = "product-section">
                 <h3>Product Suggestions</h3>
                     <p id = "disclaimer">
                         As an Amazon Associate, I earn from qualifying purchases made through links on this site at no extra cost to you.
                     </p>
                     <br>
                 <button id = "pre_btn" class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
-                <div>
-                    <p id="product_name"></p>
-                    <a id="product_link" href="" target="_blank" rel="noopener">
-                        <img id="product_image" src="" alt="Product Image" />
+
+                <div class = "product-images-container">
+                <div class = "product-images">
+                    <p id="first_product_name"></p>
+                    <a id="first_product_link" href="" target="_blank" rel="noopener">
+                        <img id="first_product_image" src="" alt="Product Image" />
                     </a>
+                </div>
+                <div class = "product-images">
+                    <p id="sec_product_name"></p>
+                    <a id="sec_product_link" href="" target="_blank" rel="noopener">
+                        <img id="sec_product_image" src="" alt="Product Image" />
+                    </a>
+                </div>
                 </div>
                 <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
             </div>
@@ -104,31 +113,44 @@
     const productsScript = document.getElementById('products-data').textContent;
     const products = JSON.parse(productsScript);
 
-    const product_name = document.getElementById('product_name');
-    const product_image = document.getElementById('product_image');
-    const product_link = document.getElementById('product_link');
+    const first_product_name = document.getElementById('first_product_name');
+    const first_product_image = document.getElementById('first_product_image');
+    const first_product_link = document.getElementById('first_product_link');
+
+    const sec_product_name = document.getElementById('sec_product_name');
+    const sec_product_image = document.getElementById('sec_product_image');
+    const sec_product_link = document.getElementById('sec_product_link');
+
     const next_btn = document.getElementById('next_btn');
     const pre_btn = document.getElementById('pre_btn')
 
 
     let current_index = 0
+    let second_index = current_index + 1
     
 
-    function show_product(index) {
-      const product = products[index];
-      product_name.textContent = product.name;
-      product_image.src = product.image_url || '/static/img/placeholder.png';
-      product_link.href = product.affiliate_url;
+    function show_product(index, second_index) {
+        const first_product = products[index];
+        const sec_product = products[second_index];
+        first_product_name.textContent = first_product.name;
+        first_product_image.src = first_product.image_url || '/static/img/placeholder.png';
+        first_product_link.href = first_product.affiliate_url;
+
+        sec_product_name.textContent = sec_product.name;
+        sec_product_image.src = sec_product.image_url || '/static/img/placeholder.png';
+        sec_product_link.href = sec_product.affiliate_url;
     }
-    show_product(current_index);
+    show_product(current_index, second_index);
 
     next_btn.addEventListener('click', () => {
-      current_index = (current_index+ 1) % products.length;
-      show_product(current_index);
+      current_index = (second_index+ 1) % products.length; 
+      second_index = (current_index + 1) % products.length; 
+      show_product(current_index, second_index);
     });
     pre_btn.addEventListener('click', () => {
-      current_index = (current_index- 1 + products.length) % products.length;
-      show_product(current_index);
+      current_index = (second_index - 1 + products.length) % products.length; 
+      second_index = (current_index - 1 + products.length) % products.length; 
+      show_product(current_index, second_index);
     });
 
 

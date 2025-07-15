@@ -10,8 +10,8 @@
         <!-- <p>The best walk is a safe walk</p> -->
         <form class = "mobile-form" method="POST" action="/">
             <div class = "mobile-user-input">
-                <input type = "hidden" name = "timezone" id = "timezoneInput"/>
-                <input type = "text" id ="city" name = "city" placeholder="Enter City" required/>
+                <input type = "hidden" name = "timezone" id = "timezoneInputMobile"/>
+                <input type = "text" id ="cityMobile" name = "city" placeholder="Enter City" required/>
     
                 <!-- <input type = "text" id = "state" name = "state" placeholder="Enter State" required> -->
                 <select name = "states" required>
@@ -110,10 +110,6 @@
     const next_btn = document.getElementById('next_btn');
     const pre_btn = document.getElementById('pre_btn')
 
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    console.log("Your timezone is:", timezone);
-
-    document.getElementById('timezoneInput').value = timezone;
 
     let current_index = 0
     
@@ -138,6 +134,18 @@
 
   lucide.createIcons();
 </script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const timezoneDesktop = document.getElementById("timezoneInputDesktop");
+    const timezoneMobile = document.getElementById("timezoneInputMobile");
+
+    if (timezoneDesktop) timezoneDesktop.value = timezone;
+    if (timezoneMobile) timezoneMobile.value = timezone;
+  });
+</script>
+
 <script>
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
     key: "{{GOOGLE_API_KEY}}",

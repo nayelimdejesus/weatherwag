@@ -5,7 +5,7 @@ from flask_mail import Mail, Message
 import os
 import json
 import time
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 import random
 
 import requests
@@ -33,11 +33,18 @@ weather_cache = {
     "timestamp": 0
 }
 
-def convert_utc_to_local_time(utc_time, timezone):
-    utc_dt = datetime.fromtimestamp(utc_time, tz = ZoneInfo("UTC"))
-    local_dt = utc_dt.astimezone(ZoneInfo(timezone))
-    time = local_dt.strftime("%I:%M %p")
-    return time
+def convert_utc_to_local_time(utc_timestamp, timezone):
+    try:
+        utc_dt = datetime.fromtimestamp(utc_timestamp, tz = ZoneInfo("UTC"))
+        local_dt = utc_dt.astimezone(ZoneInfo(timezone))
+        time = local_dt.strftime("%I:%M %p")
+        return time
+    except(ValueError, ZoneInfoNotFoundError) as e:
+        utc_dt = datetime.fromtimestamp(utc_timestamp, tz = ZoneInfo("UTC"))
+
+        return utc_dt.strftime("%I:%M %p")
+
+        
 
 def fetch_weather_details(city, state, key, user_submits_form):
     now = time.time()
@@ -113,9 +120,11 @@ def index():
     
     if request.method == "POST":
         city = request.form.get("city", "").strip()
-        state = request.form.get("state", "") 
+        state = request.form.get("states", "") 
+        print(f"State: {state}")
         timezone = request.form.get("timezone", "")
         user_submits_form = True
+        print(f"Timezone: {timezone}")
     else:
         timezone = "America/Los_Angeles"
         city = default_city
@@ -133,12 +142,12 @@ def index():
         weather_api_data = weather_api_result
         
     
-    print(weather_api_data["coord"]["lat"])
+   
 
 
     # converting utc to user local time
-    utc_time = weather_api_data["dt"]
-    user_local_time = convert_utc_to_local_time(utc_time, timezone)
+    utc_timestamp = weather_api_data["dt"]
+    user_local_time = convert_utc_to_local_time(utc_timestamp, timezone)
     
     utc_sunrise_time = weather_api_data["sys"]["sunrise"]
     utc_sunset_time = weather_api_data["sys"]["sunset"]

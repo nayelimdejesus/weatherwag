@@ -1008,6 +1008,9 @@ footer{
   text-align: left;
 }
 #map{
-  height: 500px;
   width: 100%;
+  max-width: 60rem;
+  height: 400px;
+  margin: 0 auto;
+  border-radius: 10px;
 }

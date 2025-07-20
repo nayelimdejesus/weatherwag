@@ -17,11 +17,12 @@
 
 <body class = "{{ condition or '' }} {{ body_class or '' }}">
     <nav>
+        <a class = "title-link" href = "/">
         <div class = "title-img">
             <img id = "wag-img" src="/static/img/wag.png">
             <h1 id= "weather-wag-title">WeatherWag</h1>
         </div>
-
+        </a>
         <form class = "desk-form" method="POST" action="/">
             <div class = "user-input">
                 <input type = "hidden" name = "timezone" id = "timezoneInputDesktop"/>

@@ -96,6 +96,7 @@
             </div>
         </div> 
     {% endif %}
+    <h3>Dog Friendly Parks in the Area</h3>
     <div id="map"> 
 
     </div>
@@ -177,59 +178,63 @@
 </script>
 <script>
     let map;
-    let service;
-    let infowindow;
     let lat = parseFloat("{{location['lat']}}")
     let lng = parseFloat("{{location['lon']}}")
     console.log(lat, lng)
     let center =  { lat:lat, lng: lng};
-
     async function initMap() {
-        await google.maps.importLibrary("maps");
-        await google.maps.importLibrary("marker");
-        await google.maps.importLibrary("places");
-
-
-        infowindow = new google.maps.InfoWindow();
-        map = new google.maps.Map(document.getElementById("map"), {
-            center,
-            zoom: 10,
-            mapId: "DEMO_MAP_ID",
+        const { Map } = await google.maps.importLibrary("maps");
+        map = new Map(document.getElementById('map'), {
+            center: center,
+            zoom: 11,
+            mapId: 'DEMO_MAP_ID',
         });
-
+        findPlaces();
+    }
+    async function findPlaces() {
+        const { Place } = await google.maps.importLibrary("places");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
         const request = {
-            query: "dog parks",
-            fields: ["name", "geometry"],
+            textQuery: 'dog friendly parks',
+            fields: ['displayName', 'location', 'businessStatus'],
+            includedType: 'park',
+            locationBias: center,
+            isOpenNow: true,
+            language: 'en-US',
+            maxResultCount: 8,
+            minRating: 3.2,
+            region: 'us',
+            useStrictTypeFiltering: false,
         };
-        service = new google.maps.places.PlacesService(map);
-        service.textSearch(request, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-            for (let i = 0; i < results.length; i++) {
-                createMarker(results[i]);
-            }
-
-            map.setCenter(results[0].geometry.location);
-        }
-        });
-}
-
-function createMarker(place) {
-    if (!place.geometry || !place.geometry.location) return;
-
-    const marker = new google.maps.marker.AdvancedMarkerElement({
+    //@ts-ignore
+    const { places } = await Place.searchByText(request);
+    if (places.length) {
+        console.log(places);
+        const { LatLngBounds } = await google.maps.importLibrary("core");
+        const bounds = new LatLngBounds();
+        // Loop through and get all the results.
+places.forEach((place) => {
+    const markerView = new AdvancedMarkerElement({
         map,
-        position: place.geometry.location,
-        title: place.name
+        position: place.location,
+        title: place.displayName,
     });
 
-    marker.addListener(marker, "click", () => {
-        infowindow.setContent(place.name || "");
-        infowindow.open(map, marker);
+    // Make marker clickable to open in Google Maps
+    markerView.addListener("click", () => {
+        const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.displayName)}&query_place_id=${place.id}`;
+        window.open(googleMapsUrl, "_blank");
     });
+
+    bounds.extend(place.location);
+});
+map.fitBounds(bounds);
+
+    }
+    else {
+        console.log('No results');
+    }
 }
-
-window.initMap = initMap;
-
 initMap();
 </script>
 

@@ -22,7 +22,7 @@ app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
 
 mail = Mail(app)
 
-GOOGLE_API_KEY = os.getenv("GOOGLE_KEY")
+GOOGLE_API_KEY = os.getenv("GOOGLE_MAPS_KEY")
 WEATHER_API_KEY = os.getenv("WEATHER_KEY")
 
 default_city = "San Jose"
@@ -237,6 +237,8 @@ def index():
         "lon": weather_api_data["coord"]["lon"],
         "lat": weather_api_data["coord"]["lat"]
     }
+    print(location_details["lon"])
+    print(location_details["lat"])
     weather_condition = weather_details["condition"].lower()
     
     return render_template(

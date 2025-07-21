@@ -106,80 +106,15 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.1rem 3rem;
+  padding: 0.1rem 1rem;
   background-color: #00356e;
-  /* background-color: #003169; */
-  gap: 5rem; 
-}
-
-@media (max-width: 992px) {
-  nav {
-    gap: 3rem;
-    padding: 0.5rem 2rem;
-  }
-}
-@media (max-width: 820px) {
-  nav {
-    gap: 2rem;
-    padding: 0.5rem 2rem;
-  }
-}
-
-@media (max-width: 768px) {
-  nav {
-    gap: 2rem;
-    padding: 0.5rem 1.5rem;
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 576px) {
-  nav {
-    flex-direction: row;
-    gap: 1rem;
-    padding: 1rem;
-  }
-}
-@media (max-width: 480px) {
-  nav {
-    flex-direction:row;
-    justify-content: center;
-    align-items: center;
-    gap: 6rem;
-    padding-block: .1rem;
-  }
-}
-@media (max-width: 400px) {
-  nav {
-    flex-direction:row;
-    justify-content: center;
-    /* align-items: center; */
-    gap: 5rem;
-  }
-}
-@media (max-width: 380px) {
-  nav {
-    flex-direction:row;
-    justify-content: center;
-    /* align-items: center; */
-    gap: 2rem;
-    padding-block: .1rem;
-  }
-}
-@media (max-width: 320px) {
-  nav {
-    flex-direction:row;
-    justify-content: center;
-    gap: 2rem;
-    padding-block: .1rem;
-  }
 }
 @media (max-width: 316px) {
   nav {
     flex-direction: column;
     gap: 1.5rem;
   }
-}
+} 
 
  /* The Website's Title */
 #weather-wag-title{
@@ -373,12 +308,17 @@ button:hover{
 
  /* Tagline div */
 .tagline{
-  padding-block: 0.1rem;
   background-color: #00356eaf;
   text-align: center;
   color: white;
 }
-
+@media (max-width: 480px){
+  .tagline{
+    color: white;
+    font-size: 15px;
+    padding: 1rem;
+  }
+}
 /* Message to dog owners regarding walk */
 #green{
     color: #1a3e2f;
@@ -625,35 +565,33 @@ button:hover{
     font-size: 1.25rem;
   }
 } */
-@media (max-width: 950px) {
-  .card {
+
+  /* .card {
     width: 100%;
     max-width: 50rem;
     font-size: 1.25rem;
   }
-}
-@media (max-width: 768px) {
+} */
+@media (max-width: 1024px) {
   .card {
-    width: 100%;
-    max-width: 40rem;
-    font-size: 1.1rem;
+    max-width: 90%;
   }
 }
-@media (max-width: 680px) {
+/* @media (max-width: 680px) {
   .card {
     width: 100%;
     max-width: 50rem;
     font-size: 1.1rem;
   }
-}
-@media (max-width: 480px) {
+} */
+/* @media (max-width: 480px) {
   .card {
     width: 100%;
     max-width: 26rem;
     padding-block: 0.5rem;
     font-size: 1rem;
   }
-}
+} */
 
 .card-title {
   display: flex;

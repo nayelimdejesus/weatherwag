@@ -106,7 +106,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.1rem 1rem;
+  padding: 0.1rem 1.5rem;
   background-color: #00356e;
 }
 @media (max-width: 316px) {
@@ -146,7 +146,7 @@ nav {
   padding-inline: 1.5rem;
 }}
 
- /* Logo icon and Title div */
+ /* Website Logo and Title div */
 .title-img{
   display: flex;
   gap: .5rem;
@@ -157,24 +157,8 @@ nav {
   gap:1.5;
 }}
 
-/* Desktop Form */
-@media (max-width: 480px) {
-  .desk-form{
-    display: none;
-  }
-}
 
-/* Mobile Form */
-.mobile-form{
-    display: none;
-}
-@media (max-width: 992px) {
-  .mobile-form{
-    display: block;  
-    padding-inline: 1rem;   
-    margin-top: 1rem; 
-  }
-}
+/* Contact Page */
 textarea{
   padding: 8px;
   border-radius: 10px;
@@ -202,6 +186,11 @@ input{
 }
 
  /* Desktop User Input for City and State */
+ @media (max-width: 480px) {
+  .desk-form{
+    display: none;
+  }
+}
 .user-input {
   display: flex;
   gap: 1rem;
@@ -214,6 +203,17 @@ input{
 }
 
   /* Mobile User Input for City and State */
+.mobile-form{
+    display: none;
+}
+@media (max-width: 992px) {
+  .mobile-form{
+    display: block;  
+    padding-inline: 1rem;   
+    margin-top: 1rem; 
+  }
+}
+
 .mobile-user-input{
     display: none;
 }
@@ -244,6 +244,7 @@ button{
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   color: black;
   background-color: white;
+  cursor: pointer;
 }
 button:hover{
   background-color: rgba(105, 96, 96, 0.883);
@@ -286,6 +287,21 @@ button:hover{
     cursor: pointer;
   }
 }
+.mobile-nav-links{
+  display: none;
+}
+@media (max-width: 1138px) {
+  .mobile-nav-links {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    max-height: 10rem;
+    max-width: 8rem;
+    background-color: black;
+    justify-content: space-between;
+    padding: 2rem 1rem;
+  }
+}
  /* Hamburger menu icon */
 #hamburger-menu {
   width:40px;
@@ -299,6 +315,37 @@ button:hover{
   }
 }
 
+.side-panel{
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 200px;
+  height: 118px;
+  background-color: #111111e9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  transition: right 0.3s ease-in-out;
+  z-index: 10;
+}
+.side-panel.active {
+  right: 0;
+}
+.side-panel a {
+  display: inline-block;
+  width: fit-content;
+  cursor: pointer;
+}
+.side-panel i {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+#close-btn{
+  color: white;
+}
 #link{
   color: white;
 }
@@ -424,10 +471,7 @@ button:hover{
 }
 @media (max-width: 650px) {
   #dog_1 {
-  width: 5rem;
-  height: 5rem;
-  display: block;
-  margin: 0 auto;  
+    display: none;
   }
 }
 
@@ -472,10 +516,7 @@ button:hover{
 }
 @media (max-width: 650px) {
   #dog_3 {
-  width: 6rem;
-  height: 8rem;
-  display: block;
-  margin: 0 auto;  
+    display: none;
   }
 }
 #dog_4{
@@ -510,21 +551,10 @@ button:hover{
     color: red;
 }
 
-
-
-
-
-
-
-
 .main-dog{
   width:5rem;
   height: auto;
 }
-
-
-
-
 
  #phrase{
   color: #444;
@@ -547,51 +577,19 @@ button:hover{
   font-size: medium;
 }
 .card{
-    /* background-color: rgba(255, 255, 255, 0.6); */
     width: 100%;
     max-width: 80rem;
     height: auto;
     text-align: center;
     padding-block: 1rem;
     margin: 0 auto;
-
 }
 
-/* @media (max-width: 1200px) {
-  .card {
-    width: 100%;
-    max-width: 50rem;
-    border-radius: 30px;
-    font-size: 1.25rem;
-  }
-} */
-
-  /* .card {
-    width: 100%;
-    max-width: 50rem;
-    font-size: 1.25rem;
-  }
-} */
 @media (max-width: 1024px) {
   .card {
     max-width: 90%;
   }
 }
-/* @media (max-width: 680px) {
-  .card {
-    width: 100%;
-    max-width: 50rem;
-    font-size: 1.1rem;
-  }
-} */
-/* @media (max-width: 480px) {
-  .card {
-    width: 100%;
-    max-width: 26rem;
-    padding-block: 0.5rem;
-    font-size: 1rem;
-  }
-} */
 
 .card-title {
   display: flex;
@@ -638,6 +636,7 @@ select{
     border:rgba(0, 0, 255, 0.25);
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     background-color: white;
+    cursor: pointer;
 
 }
 @media (max-width: 480px) {
@@ -697,25 +696,25 @@ select{
 .card-section{
     width: 100%;
     max-width: 15rem;
-    background-color: rgba(255, 255, 255, 0.779);
+    background-color: rgba(231, 231, 231, 0.779);
     backdrop-filter: blur(10px);             
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
     max-height: 24rem;
-    
+    min-height: 18rem;
 }
 @media (max-width: 280px) {
   .card-section {
     width: 100%;
     max-width: 10rem;
-    background: rgba(255, 255, 255, 0.365);
     backdrop-filter: blur(10px);             
     border-radius: 20px;
     padding: 1.5rem 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     color: #1E2A38; 
+    min-height: auto;
   }
 }
 .card-section div,
@@ -728,7 +727,7 @@ select{
   width: 100%;
   max-width: 40rem;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.779);
+  background-color: rgba(231, 231, 231, 0.779);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   padding: 2rem;

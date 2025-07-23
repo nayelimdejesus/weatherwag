@@ -41,6 +41,12 @@
             <a id = "link" href = "/contact"> Contact </a>
             <a id = "link" href = "/"> Home </a>
         </div>
+        <div class = "side-panel" id = "side-panel">
+             <i class="bi bi-x-lg" id = "close-btn"></i>
+            <a id = "link" href = "/about"> About </a>
+            <a id = "link" href = "/contact"> Contact </a>
+            <a id = "link" href = "/"> Home </a>
+        </div>
         <div class = "mobile-links">
             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="40" fill="white" class="bi bi-list" id = "hamburger-menu" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
@@ -52,7 +58,27 @@
     </div>
 {% block content %}
 {% endblock %}
+<script>
+    const hamburger_menu = document.getElementById("hamburger-menu");
+    const side_panel = document.getElementById("side-panel");
+    const close_btn = document.getElementById("close-btn");
 
+
+    hamburger_menu.addEventListener("click", () => {
+        side_panel.classList.toggle("active");
+    });
+
+    close_btn.addEventListener("click", () =>{
+        side_panel.classList.remove("active");
+    })
+
+    window.addEventListener("click", (e) =>{
+        if(!side_panel.contains(e.target) && e.target != hamburger_menu){
+            side_panel.classList.remove("active");
+        }
+    })
+
+</script>
 <footer>
 
     <div class = "disclaimer-footer ">

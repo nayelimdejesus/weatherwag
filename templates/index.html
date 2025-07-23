@@ -77,26 +77,26 @@
                     </p>
                     <br>
                 <button id = "pre_btn" class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
-
-                <div class = "product-images-container">
+<p id="product_name"></p>
                 <div class = "product-images">
-                    <p id="first_product_name"></p>
-                    <a id="first_product_link" href="" target="_blank" rel="noopener">
-                        <img id="first_product_image" src="" alt="Product Image" />
+                    
+                    <a id="product_link" href="" target="_blank" rel="noopener">
+                        <img id="product_image" src="" alt="Product Image" />
                     </a>
-                </div>
-                <div class = "product-images">
-                    <p id="sec_product_name"></p>
-                    <a id="sec_product_link" href="" target="_blank" rel="noopener">
-                        <img id="sec_product_image" src="" alt="Product Image" />
-                    </a>
-                </div>
                 </div>
                 <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
             </div>
         </div> 
     {% endif %}
-    <h3>Dog Friendly Parks in the Area</h3>
+    <div class = "map-title">
+        <h3 id = "title-places">Dog Friendly Parks in the Area</h3>
+        <select id = "places" class = "dog-places">
+            <option value = "friendly_parks">Dog friendly parks</option>
+            <option value = "dog_parks">Dog parks</option>
+            <option value = "trails">Dog friendly trails</option>
+        </select>
+    </div>
+    
     <div id="map"> 
 
     </div>
@@ -125,32 +125,30 @@
     const pre_btn = document.getElementById('pre_btn')
 
 
-    let current_index = 0
-    let second_index = current_index + 1
-    
+    let current_index = 0    
 
-    function show_product(index, second_index) {
+    function show_product(index) {
         const first_product = products[index];
-        const sec_product = products[second_index];
-        first_product_name.textContent = first_product.name;
-        first_product_image.src = first_product.image_url || '/static/img/placeholder.png';
-        first_product_link.href = first_product.affiliate_url;
+        // const sec_product = products[second_index];
+        product_name.textContent = first_product.name;
+        product_image.src = first_product.image_url || '/static/img/placeholder.png';
+        product_link.href = first_product.affiliate_url;
 
-        sec_product_name.textContent = sec_product.name;
-        sec_product_image.src = sec_product.image_url || '/static/img/placeholder.png';
-        sec_product_link.href = sec_product.affiliate_url;
+        // sec_product_name.textContent = sec_product.name;
+        // sec_product_image.src = sec_product.image_url || '/static/img/placeholder.png';
+        // sec_product_link.href = sec_product.affiliate_url;
     }
-    show_product(current_index, second_index);
+    show_product(current_index);
 
     next_btn.addEventListener('click', () => {
-      current_index = (second_index+ 1) % products.length; 
-      second_index = (current_index + 1) % products.length; 
-      show_product(current_index, second_index);
+      current_index = (current_index + 1) % products.length; 
+    //   second_index = (current_index + 1) % products.length; 
+      show_product(current_index);
     });
     pre_btn.addEventListener('click', () => {
-      current_index = (second_index - 1 + products.length) % products.length; 
-      second_index = (current_index - 1 + products.length) % products.length; 
-      show_product(current_index, second_index);
+      current_index = (current_index - 1 + products.length) % products.length; 
+    //   second_index = (current_index - 1 + products.length) % products.length; 
+      show_product(current_index);
     });
 
 
@@ -180,7 +178,34 @@
     let map;
     let lat = parseFloat("{{location['lat']}}")
     let lng = parseFloat("{{location['lon']}}")
-    console.log(lat, lng)
+    const places = document.getElementById("places");
+    const title_places = document.getElementById("title-places");
+    let option;
+    let place_chosen;
+
+    // Default values
+    place_chosen = "dog friendly parks"
+    title_places.innerHTML = "Dog Friendly Parks in the Area";
+
+    
+    places.addEventListener("change", () =>{
+        option = places.value;
+
+        if(option == "friendly_parks"){
+            place_chosen = "dog friendly parks";
+            title_places.innerHTML = "Dog Friendly Parks in the Area";
+        }
+        else if(option == "dog_parks"){
+            place_chosen = "dog parks";
+            title_places.innerHTML = "Dog Parks in the Area";
+        }
+        else if(option == "trails"){
+            place_chosen = "dog hiking trails";
+            title_places.innerHTML = "Dog Friendly Trails in the Area";
+        }
+        findPlaces();
+        
+    });
     let center =  { lat:lat, lng: lng};
     async function initMap() {
         const { Map } = await google.maps.importLibrary("maps");
@@ -195,9 +220,8 @@
         const { Place } = await google.maps.importLibrary("places");
         const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
         const request = {
-            textQuery: 'dog friendly parks',
+            textQuery: place_chosen,
             fields: ['displayName', 'location', 'businessStatus'],
-            includedType: 'park',
             locationBias: center,
             isOpenNow: true,
             language: 'en-US',
@@ -209,7 +233,6 @@
     //@ts-ignore
     const { places } = await Place.searchByText(request);
     if (places.length) {
-        console.log(places);
         const { LatLngBounds } = await google.maps.importLibrary("core");
         const bounds = new LatLngBounds();
         // Loop through and get all the results.

@@ -167,7 +167,7 @@ textarea{
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
  /* Input styling */
-input{
+.user-input input{
     border-radius: 10px;
     padding-inline: 1rem;
     padding-block: .3rem;
@@ -178,7 +178,24 @@ input{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 @media (max-width: 480px) {
-  input {
+  .user-input input {
+    border-radius: 10px;
+    width:10rem;
+    height:1.2rem;
+  }
+}
+.mobile-user-input input{
+    border-radius: 10px;
+    padding-inline: 1rem;
+    padding-block: .3rem;
+    width:8rem;
+    height:1.1rem;
+    margin-bottom: .2rem;
+    border:rgba(0, 0, 255, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 480px) {
+  .mobile-user-input input {
     border-radius: 10px;
     width:10rem;
     height:1.2rem;
@@ -638,6 +655,7 @@ select{
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
     background-color: white;
     cursor: pointer;
+    text-decoration: none;
 
 }
 @media (max-width: 480px) {
@@ -856,72 +874,87 @@ select{
 #email{
   width: auto;
 }
+.card{
+    width: 100%;
+    max-width: 80rem;
+    height: auto;
+    text-align: center;
+    padding-block: 1rem;
+    margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    max-width: 90%;
+  }
+}
+
+/* Contact Card */
 .contact-card{
     width: 100%;
+    max-width: 50rem;
     background-color: rgba(255, 255, 255, 0.834);
-    max-width: 60%;
     margin: 0 auto;
-    padding: 2rem 4rem;
-    text-align: left;
+    padding: 1rem 2rem;
     display: flex;
-    gap: 4rem;
     border-radius: 10px;
-    margin-block: 5rem;
+    gap:2rem;
+    flex-wrap: wrap;
+    margin-top:2rem;
 }
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .contact-card {
-    max-width: 60%;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-}
-@media (max-width: 403px) {
-  .contact-card {
-    width: 100%;
     max-width: 80%;
-    padding: 1rem;
-    display: flex;
+  }
+}
+@media (max-width: 480px) {
+  .contact-card {
+    max-width: 70%;
     flex-direction: column;
   }
 }
 
+/* Section 1 (Get in Touch) and Section 2 (Form) in Card */
 .contact-section{
-  width: 100%;
-  max-width: 80%;
-  margin: 0 auto;
+  flex: 1;
 }
-@media (max-width: 490px) {
+@media (max-width: 480px) {
   .contact-section {
-    width: 100%;
     max-width: 100%;
-    
-  }
-}
-.contact-name{
-  display: flex;
-  gap: 1rem;
-}
-@media (max-width: 820px) {
-  .contact-name {
-  display: block;
-
+    flex-direction: column;
   }
 }
 
-#contact-input{
-  width: 100%;
-  padding-inline: .5rem;
-}
-#email{
-  padding-inline: .5rem;
-}
+/* Contact Form */
 .contact-form{
    display:flex;
    flex-direction: column;
    padding: 1rem;
    text-align: center;
 }
+
+/* Inputs in Contact Form */
+.contact-form input{
+    border-radius: 10px;
+    padding-inline: 1rem;
+    padding-block: .3rem;
+    height:1.1rem;
+    margin-bottom: .2rem;
+    border:rgba(0, 0, 255, 0.25);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* First and Last Name */
+.form-name{
+  display: flex;
+  gap: 1rem;
+}
+@media (max-width: 1024px) {
+  .form-name {
+    flex-direction: column;
+  }
+}
+
 .about-card{
   margin: 0 auto;
   margin-inline: 15rem;
@@ -985,5 +1018,5 @@ footer{
 }
 
 .dog-places{
-  
+  border:none;
 }

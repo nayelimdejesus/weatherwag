@@ -898,22 +898,32 @@ select{
     max-width: 50rem;
     background-color: rgba(255, 255, 255, 0.834);
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 3rem 4rem;
+    box-sizing: border-box;
     display: flex;
     border-radius: 10px;
     gap:2rem;
-    flex-wrap: wrap;
-    margin-top:2rem;
+    /* flex-wrap: wrap; */
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 @media (max-width: 1024px) {
   .contact-card {
     max-width: 80%;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 780px) {
   .contact-card {
     max-width: 70%;
     flex-direction: column;
+  }
+}
+@media (max-width: 480px) {
+  .contact-card {
+    max-width: 100%;
+    flex-direction: column;
+    padding: 1rem;
+    margin-top: 4rem;
   }
 }
 
@@ -966,7 +976,7 @@ select{
   text-align: left;
   border-radius: 10px;
   margin-top: 2rem;
-  padding: 2rem 4rem;
+  padding: 3rem 4rem;
   box-sizing: border-box;
 
 }

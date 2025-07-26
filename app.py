@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect
 from dotenv import load_dotenv
 from datetime import datetime
 from flask_mail import Mail, Message
+from google import genai
+from google.genai import types
 import os
 import json
 import time
@@ -24,6 +26,7 @@ mail = Mail(app)
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_MAPS_KEY")
 WEATHER_API_KEY = os.getenv("WEATHER_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 default_city = "San Jose"
 default_state = "CA"
@@ -32,6 +35,19 @@ weather_cache = {
     "data": None,
     "timestamp": 0
 }
+
+def get_gemini_response(weather_content, question):
+    client = genai.Client()
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents= weather_content + question,
+        config=types.GenerateContentConfig(
+            thinking_config=types.ThinkingConfig(thinking_budget=0) # Disables thinking
+        ),
+    )
+    return response.text
+
+
 
 def convert_utc_to_local_time(utc_timestamp, timezone):
     try:
@@ -44,7 +60,7 @@ def convert_utc_to_local_time(utc_timestamp, timezone):
 
         return utc_dt.strftime("%I:%M %p")
 
-        
+
 
 def fetch_weather_details(city, state, key, user_submits_form):
     now = time.time()
@@ -85,11 +101,27 @@ def fetch_weather_details(city, state, key, user_submits_form):
     except ValueError:
         error = "Error parsing response from OpenWeather."
         return error
+@app.route("/chat", methods = ["POST"])
+def chat():
+    data = request.json
+    weather = data.get("weather", {})
+    question = data.get("question", "")
+    weather_content = ""
+    weather_content = (
+    f"The temperature in {weather['city']}, {weather['state']}, {weather['country']} is {weather['temp']} "
+    f"with a feel like temperature of {weather['feel_temp']}. The humidity is {weather['humidity']}%, "
+    f"and the weather condition is {weather['condition']}. The description is {weather['desc']}, the wind is {weather['wind']} "
+    f"and the wind gust is {weather['wind_gust']}. Limit of 200 words. Respond in plain text with no asteriks or formatting."
+)
+    
+    answer = get_gemini_response(weather_content, question)
 
+    return jsonify({"chat_answer": answer})
+    
 # home page
 @app.route("/", methods=["POST", "GET"])
 def index():
-    weather_details = None
+    current_weather = None
     error = ""
     weather_condition= ""
     dog_warning = ""
@@ -98,6 +130,8 @@ def index():
     weather_api_data = None
     timezone = ""
     condition_message = ""
+    weather_content = ""
+    form_type = ""
     
     # absolute path to directory
     base_dir = os.path.abspath(os.path.dirname(__file__))
@@ -140,10 +174,6 @@ def index():
         weather_api_data, error = weather_api_result
     else:
         weather_api_data = weather_api_result
-        
-    
-   
-
 
     # converting utc to user local time
     utc_timestamp = weather_api_data["dt"]
@@ -218,7 +248,7 @@ def index():
         "dog_tip_message": random_safety_tip,
     }
         
-    weather_details = {
+    current_weather = {
         "country": weather_api_data["sys"]["country"],
         "city": weather_api_data["name"],
         "temperature": round(weather_api_data["main"]["temp"]),
@@ -239,12 +269,12 @@ def index():
     }
     print(location_details["lon"])
     print(location_details["lat"])
-    weather_condition = weather_details["condition"].lower()
+    weather_condition = current_weather["condition"].lower()
     
     return render_template(
         "index.html",
         dog=dog_data,
-        weather=weather_details,
+        weather=current_weather,
         error=error,
         condition=weather_condition,
         state=state,

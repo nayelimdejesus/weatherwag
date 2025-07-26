@@ -54,7 +54,7 @@
                 <p>Feels like {{weather["feels_temp"]}}°</p>
                 <p>Humidity: {{weather["humidity"]}}%</p>
             </div>
-            <div class = "card-section">
+            <div id = "weather-details" class = "card-section">
                 <h3>Weather Details</h3>
                 <p><b>Mainly:</b> {{weather["condition"]}}</p>
                 <p><b>Description:</b> {{weather["description"]}}</p>
@@ -87,6 +87,16 @@
                 <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
             </div>
         </div> 
+    <div class = "gemini-card">
+        <form id = "chat-form">
+            <h3>WagBot</h3>
+            <div class = "gemini-section">
+            <input id = "question" name = "question" placeholder="Is it safe for my dog's paws today?"/>
+            <button type = "submit">Submit</button>
+            </div>
+        </form>
+        <p id = "chat-answer"></p>
+    </div>
     {% endif %}
     <div class = "map-title">
         <h3 id = "title-places">Dog Friendly Parks in the Area</h3>
@@ -104,7 +114,43 @@
     <!-- <div class = "feedback">
         <button id = "feedback">Feedback</button>
     </div> -->
+<script>
+    const chat_form = document.getElementById("chat-form")
+    const chat_answer = document.getElementById("chat-answer")
 
+    chat_form.addEventListener("submit", async(e)=>{
+        e.preventDefault();
+        const question = document.getElementById("question").value;
+        const weather_data = {
+            state: "{{state}}",
+            city: "{{weather['city']}}",
+            country: "US",
+            temp: "{{weather['temperature']}}°F",
+            feel_temp: "{{weather['feels_temp']}}°F",
+            humidity: "{{weather['humidity']}}%",
+            condition: "{{weather['condition']}}",
+            desc: "{{weather['description']}}",
+            wind: "{{weather['wind']}}mph",
+            wind_gust: "{{weather['wind_gust']}}mph"
+        };
+        try{
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ weather: weather_data, question}),
+        });
+        if(!response.ok){
+            throw new Error("Network resonse was not ok");
+        }
+        const data = await response.json();
+        document.getElementById("chat-answer").textContent = data.chat_answer;
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("chat-answer").textContent = "Sorry, something went wrong.";
+        }
+    });
+
+</script>
 <script id="products-data" type="application/json">
   {{ product_recom | tojson | safe }}
 </script>
@@ -170,8 +216,8 @@
   (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
     key: "{{GOOGLE_API_KEY}}",
     v: "weekly",
-    // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
-    // Add other bootstrap parameters as needed, using camel case.
+//     Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+//     Add other bootstrap parameters as needed, using camel case.
   });
 </script>
 <script>

@@ -808,6 +808,40 @@ select{
 /* .card-section-details{
   font-weight:bold;
 } */
+
+.gemini-card{
+    width: 100%;
+    max-width: 35rem;
+    height: auto;
+    background-color: rgba(231, 231, 231, 0.779);
+    backdrop-filter: blur(10px);             
+    border-radius: 10px;
+    padding: 2rem 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: #1E2A38; 
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-bottom: 2rem;
+}
+@media (max-width: 280px) {
+  .gemini-card {
+    width: 100%;
+    max-width: 10rem;
+    backdrop-filter: blur(10px);             
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    color: #1E2A38; 
+    min-height: auto;
+  }
+}
+/* .gemini-card input{
+  width: 100%;
+} */
+gemini-section{
+  display: flex;
+  width: 100%;
+}
 #info-icon{
   margin-block: 1rem;
 

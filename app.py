@@ -67,7 +67,6 @@ def fetch_weather_details(city, state, key, user_submits_form):
     if not user_submits_form:
         # if data exist in weather_cache and the timestamp is less than 10 minutes
         if weather_cache["data"] and now - weather_cache["timestamp"] < 600:
-            print("getting data from cache")
             return weather_cache["data"]
 
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={key}&units=imperial"
@@ -80,7 +79,6 @@ def fetch_weather_details(city, state, key, user_submits_form):
         if not user_submits_form:
             weather_cache["data"] = data
             weather_cache["timestamp"] = now
-            print("getting data from new fresh")
             return weather_cache["data"]
     
         return data
@@ -101,23 +99,95 @@ def fetch_weather_details(city, state, key, user_submits_form):
     except ValueError:
         error = "Error parsing response from OpenWeather."
         return error
+keywords = [
+    "walk",
+    "walking",
+    "dog",
+    "dogs",
+    "breed",
+    "weather",
+    "temperature",
+    "hot",
+    "heat",
+    "cold",
+    "chilly",
+    "rain",
+    "rainy",
+    "snow",
+    "snowy",
+    "wind",
+    "windy",
+    "humidity",
+    "sun",
+    "sunburn",
+    "safe",
+    "safety",
+    "paws",
+    "paw",
+    "paw pads",
+    "overheating",
+    "heat stroke",
+    "cold stress",
+    "frostbite",
+    "hypothermia",
+    "uncomfortable",
+    "discomfort",
+    "hydration",
+    "water",
+    "drink",
+    "exercise",
+    "joint pain",
+    "arthritis",
+    "clothing",
+    "coat",
+    "gear",
+    "time of day",
+    "morning",
+    "evening",
+    "signs",
+    "symptoms",
+    "allergies",
+    "thunderstorm",
+    "storm",
+    "air quality",
+    "wildfire smoke",
+    "indoor play",
+    "outside",
+    "sensitive",
+    "sensitivity",
+    "puppy",
+    "puppies",
+    "older dog",
+    "short-nosed",
+    "short nosed",
+    "breed-specific"
+]
+
 @app.route("/chat", methods = ["POST"])
 def chat():
     data = request.json
     weather = data.get("weather", {})
     question = data.get("question", "")
-    weather_content = ""
-    weather_content = (
-    f"You are WagBot, a cheerful, helpful, weather safety assistant for dog owners. Based on the current weather conditions, give one short paragraph "
-    f"of advice for walking a dog outdoors. Remind the user to use their own judgement. Your audience are dog owners of all breeds looking for quick and clear advice."
-    f"The temperature in {weather['city']}, {weather['state']}, {weather['country']} is {weather['temp']} "
-    f"with a feel like temperature of {weather['feel_temp']}. The humidity is {weather['humidity']}%, "
-    f"and the weather condition is {weather['condition']}. The description is {weather['desc']}, the wind is {weather['wind']} "
-    f"and the wind gust is {weather['wind_gust']}. Limit of 200 words. Respond in plain text with no asteriks or formatting."
-)
-    
-    answer = get_gemini_response(weather_content, question)
+    unrelated_response = (
+        "I'm here to help with dog weather safety and walking advice! " 
+        "For other questions, please check with a relevant expert or resource. "
+        "How can I assist you with your dog's outdoor activities today?"
+    )
+    weather_content = f"""
+        You are WagBot, a cheerful and helpful weather safety assistant for dog owners. 
+        Based on the current weather in {weather['city']}, {weather['state']}, {weather['country']}, provide a personalized short paragraph answering the user's question. 
+        Then give a second short paragraph with clear advice for walking dogs outdoors. 
+        Remind users to use their own judgment. 
+        Current conditions: temperature {weather['temp']}°F (feels like {weather['feel_temp']}°F), humidity {weather['humidity']}%, {weather['condition']} with {weather['desc']}. 
+        Wind speed: {weather['wind']}, gusts up to {weather['wind_gust']}. 
+        Limit your response to 200 words, plain text only, no formatting or asterisks.
+        """
 
+    
+    if any(word in question for word in keywords):
+        answer = get_gemini_response(weather_content, question)
+        return jsonify({"chat_answer": answer})
+    answer = unrelated_response
     return jsonify({"chat_answer": answer})
     
 # home page
@@ -157,10 +227,8 @@ def index():
     if request.method == "POST":
         city = request.form.get("city", "").strip()
         state = request.form.get("states", "") 
-        print(f"State: {state}")
         timezone = request.form.get("timezone", "")
         user_submits_form = True
-        print(f"Timezone: {timezone}")
     else:
         timezone = "America/Los_Angeles"
         city = default_city
@@ -269,8 +337,6 @@ def index():
         "lon": weather_api_data["coord"]["lon"],
         "lat": weather_api_data["coord"]["lat"]
     }
-    print(location_details["lon"])
-    print(location_details["lat"])
     weather_condition = current_weather["condition"].lower()
     
     return render_template(

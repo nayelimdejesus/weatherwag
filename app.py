@@ -108,6 +108,8 @@ def chat():
     question = data.get("question", "")
     weather_content = ""
     weather_content = (
+    f"You are WagBot, a cheerful, helpful, weather safety assistant for dog owners. Based on the current weather conditions, give one short paragraph "
+    f"of advice for walking a dog outdoors. Remind the user to use their own judgement. Your audience are dog owners of all breeds looking for quick and clear advice."
     f"The temperature in {weather['city']}, {weather['state']}, {weather['country']} is {weather['temp']} "
     f"with a feel like temperature of {weather['feel_temp']}. The humidity is {weather['humidity']}%, "
     f"and the weather condition is {weather['condition']}. The description is {weather['desc']}, the wind is {weather['wind']} "

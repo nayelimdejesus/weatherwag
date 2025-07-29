@@ -1,6 +1,3 @@
-
-
-
 html, body {
   height: 100%;
   margin: 0;
@@ -23,7 +20,6 @@ html.clear, body.clear {
   background:
     linear-gradient(to top, rgba(255, 245, 200, 0.25), transparent 50%),
     linear-gradient(135deg, #afe5fa 0%, #90b8d8 50%, #5680a2 100%);
-
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -31,21 +27,14 @@ html.clear, body.clear {
 
 html.clouds,body.clouds {
   background: 
-    linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent 40%),
-    linear-gradient(135deg, #b1b4bb 0%, #b3bac3 50%, #5b5e63 100%);
+    linear-gradient(to top, rgba(255, 255, 255, 0.4) 0%, rgba(200, 200, 200, 0.1) 60%, transparent 100%),
+    linear-gradient(135deg, #cdd1d6 0%, #b8bec6 40%, #8a8f98 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
-html.rain, body.rain {
-  background: linear-gradient(135deg, #5da3f4 0%,#5983b4 50%, #1C3F66 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-html.drizzle, body.drizzle {
+html.rain, body.rain html.drizzle, body.drizzle {
   background: linear-gradient(135deg, #849db9 0%,#7295be 50%, #1C3F66 100%);
   background-size: cover;
   background-repeat: no-repeat;
@@ -53,7 +42,14 @@ html.drizzle, body.drizzle {
 }
 
 html.thunderstorm, body.thunderstorm {
-  background: linear-gradient(135deg, #2C3E50 0%, #3B4B59 50%, #4C5C68 100%);
+  background: linear-gradient(
+    145deg,
+    #1f2a38 0%,      
+    #2e4051 30%,    
+    #3f5571 60%,    
+    #547a9b 85%,     
+    #698db3 100%    
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -74,31 +70,58 @@ html.mist, html.haze, html.fog, body.mist, body.haze, body.fog {
 }
 
 html.smoke, html.dust, html.ash, body.smoke, body.dust, body.ash {
-  background: linear-gradient(135deg, #6E6E6E 0%,#7a7a7a, 50%, #3B3B3B 100%);
+  background: linear-gradient(
+    135deg,
+    #a8a8a8 0%,   
+    #7e7e7e 35%, 
+    #595959 70%, 
+    #2f2f2f 100% 
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color:white;
 }
 
 html.sand, body.sand {
-  background: linear-gradient(135deg, #F4E2B8 0%,#ffe9b5 50%, #DCC48E 100%);
+  background: linear-gradient(
+    135deg,
+    #f4e7d3 0%,   
+    #ead8c0 40%,  
+    #e5d4b8 70%, 
+    #d9c6aa 100% 
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
 
 html.squall, body.squall {
-  background: linear-gradient(135deg, #34495E 0%, #2C3E50 100%);
+  background: linear-gradient(
+    135deg,
+    #6b7c8b 0%,      
+    #5a6b7a 40%,   
+    #495a69 70%,   
+    #394a59 100% 
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color: white;
 }
 
 html.tornado, body.tornado {
-  background: linear-gradient(135deg, #6C3483 0%, #2C3E50 100%);
+  background: linear-gradient(
+    135deg,
+    #7a7a7a 0%, 
+    #5f5f5f 40%, 
+    #444444 75%,
+    #2e2e2e 100% 
+  );
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  color: white;
 }
 main{
   flex: 1;
@@ -126,7 +149,6 @@ nav {
 }
 @media (max-width: 480px){
   #weather-wag-title{
-    color: white;
     font-size: 20px;
   }
 }
@@ -160,7 +182,6 @@ nav {
   gap:1.5;
 }}
 
-
 /* Contact Page */
 textarea{
   padding: 8px;
@@ -169,6 +190,7 @@ textarea{
   border:rgba(0, 0, 255, 0.25);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
+
  /* Input styling */
 .user-input input{
     border-radius: 10px;
@@ -182,7 +204,6 @@ textarea{
 }
 @media (max-width: 480px) {
   .user-input input {
-    border-radius: 10px;
     width:10rem;
     height:1.2rem;
   }
@@ -199,7 +220,6 @@ textarea{
 }
 @media (max-width: 480px) {
   .mobile-user-input input {
-    border-radius: 10px;
     width:10rem;
     height:1.2rem;
   }
@@ -299,7 +319,6 @@ button:hover{
 /* Hamburger Menu Div */
 .mobile-links {
   display: none;
-  cursor: pointer;
 }
 @media (max-width: 1138px) {
   .mobile-links {
@@ -381,7 +400,6 @@ button:hover{
 }
 @media (max-width: 480px){
   .tagline{
-    color: white;
     font-size: 15px;
     padding: 1rem;
   }
@@ -456,22 +474,22 @@ button:hover{
 
  /* Dog Message Section Div that contain two images and the dog message */
 .dog-message-section{
-    display:flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    gap:1rem;
+  display:flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  gap:1rem;
 } 
 @media(max-width:1024px){
-    .dog-message-section{
-      font-size: medium;     
-    }
+  .dog-message-section{
+    font-size: medium;     
+  }
 }
 @media(max-width:650px){
-    .dog-message-section{
+  .dog-message-section{
     flex-direction: column;
     align-items: center;    
     gap: 1.5rem;         
-    }
+  }
 }
 
  /* Dog Images that display next to dog message */
@@ -564,12 +582,12 @@ button:hover{
 }
 
 #user_city{
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 #error{
-    color: red;
+  color: red;
 }
 
 .main-dog{
@@ -577,35 +595,20 @@ button:hover{
   height: auto;
 }
 
- #phrase{
+#phrase{
   color: #444;
   font-weight: 0;
   margin-top: 0;
- }
-.feedback{
-  position: absolute;
-  right: 0%;   
-  top: 50%;
-  bottom: 50%;
-  transform: rotate(90deg);
-}
-#feedback{
-  background-color: 	#17c3b2cb;
-  color: rgb(0, 0, 0);
-  font-weight: 500;
-  padding-inline: 3rem;
-  padding-block: 1rem;
-  font-size: medium;
-}
-.card{
-    width: 100%;
-    max-width: 80rem;
-    height: auto;
-    text-align: center;
-    padding-block: 1rem;
-    margin: 0 auto;
 }
 
+.card{
+  width: 100%;
+  max-width: 80rem;
+  height: auto;
+  text-align: center;
+  padding-block: 1rem;
+  margin: 0 auto;
+}
 @media (max-width: 1024px) {
   .card {
     max-width: 90%;
@@ -622,10 +625,7 @@ button:hover{
 
 @media (max-width: 491px) {
   .card-title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap:.5rem;
+    gap:.5rem;
   }
 }
 @media (max-width: 480px) {
@@ -636,10 +636,10 @@ button:hover{
   }
 }
 .responsive-icon {
-    width: 8%;
-    height: auto;
-    stroke: #c9cacc;
-    fill: #c9cacc;
+  width: 8%;
+  height: auto;
+  stroke: #c9cacc;
+  fill: #c9cacc;
 }
 @media (max-width: 430px) {
   .responsive-icon {
@@ -650,52 +650,43 @@ button:hover{
 
 
 select{
-    border-radius: 10px;
-    padding-inline: 1rem;
-    padding-block: .3rem;
-    margin-bottom: .2rem;
-    border:rgba(0, 0, 255, 0.25);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    background-color: white;
-    cursor: pointer;
-    text-decoration: none;
-
+  border-radius: 10px;
+  padding-inline: 1rem;
+  padding-block: .3rem;
+  margin-bottom: .2rem;
+  border:rgba(0, 0, 255, 0.25);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  cursor: pointer;
+  text-decoration: none;
 }
 @media (max-width: 480px) {
   select {
-    border-radius: 10px;
-    padding-inline: 1rem;
     padding-block: .4rem;
-    border:rgba(0, 0, 255, 0.25);
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    background-color: white;
   }
 }
 
 .temp-section{
-    width: 100%; 
-    max-width: 15rem;
-    font-size: 1rem;
-    border-radius: 10px;
-    padding: 2rem;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-    max-height: 24rem; 
-    background-color: rgba(255, 255, 255, 0.779);
+  width: 100%; 
+  max-width: 15rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  max-height: 24rem; 
+  background-color: rgba(255, 255, 255, 0.779);
 }
 @media (max-width: 280px) {
   .temp-section {
-    width: 100%;
     max-width: 10rem;
-    font-size: 1rem;
     border-radius: 20px;
     padding: 1.5rem 2rem;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   }
 }
 
 @media(max-width:480px){
    #main-pup{
-        display: none;
+      display: none;
     }
 }
 #temp{
@@ -718,7 +709,7 @@ select{
 .card-section{
     width: 100%;
     max-width: 15rem;
-    background-color: rgba(231, 231, 231, 0.779);
+    background-color: #e8e9e9;
     backdrop-filter: blur(10px);             
     border-radius: 10px;
     padding: 2rem;
@@ -729,13 +720,9 @@ select{
 }
 @media (max-width: 280px) {
   .card-section {
-    width: 100%;
-    max-width: 10rem;
-    backdrop-filter: blur(10px);             
+    max-width: 10rem;         
     border-radius: 20px;
     padding: 1.5rem 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    color: #1E2A38; 
     min-height: auto;
   }
 }
@@ -749,7 +736,7 @@ select{
   width: 100%;
   max-width: 30rem;
   justify-content: center;
-  background-color: rgba(231, 231, 231, 0.779);
+  background-color: #e8e9e9;
   backdrop-filter: blur(10px);
   border-radius: 10px;
   padding: 2rem;
@@ -793,7 +780,6 @@ select{
   overflow: hidden;            
 }
 
-
 #product_image{
   width: 80%;     
   max-height: 15rem;          
@@ -805,9 +791,7 @@ select{
   display: flex;
   justify-content: center;
 }
-/* .card-section-details{
-  font-weight:bold;
-} */
+
 #weatherwag-btn{
   position: fixed;
   bottom: 20px;
@@ -861,7 +845,6 @@ select{
   padding: .5rem;
   border: none;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-
 }
 .chat-section {
   display: flex;
@@ -873,7 +856,6 @@ select{
   margin-block: 1rem;
 
 }
-
 
 .product-button-right{
   position: absolute;
@@ -982,7 +964,6 @@ select{
 @media (max-width: 480px) {
   .contact-card {
     max-width: 100%;
-    flex-direction: column;
     padding: 1rem;
     margin-top: 4rem;
   }
@@ -1072,16 +1053,6 @@ footer{
   padding-block: 1rem;
   margin-inline: 10rem;
 }
-
-@media (max-width: 480px) {
-  .disclaimer-footer {
-    justify-content: center;
-    text-align: center;
-    margin: 1rem;
-    padding-block: 1rem;
-  }
-}
-
 .contact-form div,
 .contact-form label{
   text-align: left;

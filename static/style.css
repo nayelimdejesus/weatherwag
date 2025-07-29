@@ -808,39 +808,66 @@ select{
 /* .card-section-details{
   font-weight:bold;
 } */
-
-.gemini-card{
-    width: 100%;
-    max-width: 35rem;
-    height: auto;
-    background-color: rgba(231, 231, 231, 0.779);
-    backdrop-filter: blur(10px);             
-    border-radius: 10px;
-    padding: 2rem 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    color: #1E2A38; 
-    margin: 0 auto;
-    box-sizing: border-box;
-    margin-bottom: 2rem;
+#weatherwag-btn{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #00356e;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chat-card{
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 100%;
+  max-width: 20rem;
+  max-height: 25rem;
+  overflow-y: scroll;
+  background-color: #00356e;
+  backdrop-filter: blur(10px);             
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: white;
+  margin: 0 auto;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  z-index: 5;
 }
 @media (max-width: 280px) {
-  .gemini-card {
-    width: 100%;
+  .chat-card {
     max-width: 10rem;
-    backdrop-filter: blur(10px);             
-    border-radius: 20px;
     padding: 1.5rem 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    color: #1E2A38; 
-    min-height: auto;
   }
 }
-/* .gemini-card input{
+.hidden {
+  display: none;
+}
+.chat-section input{
   width: 100%;
-} */
-gemini-section{
+  height: 15px;
+  border-radius: 10px;
+  padding: .5rem;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+}
+.chat-section {
   display: flex;
-  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+  
 }
 #info-icon{
   margin-block: 1rem;

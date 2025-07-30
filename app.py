@@ -50,14 +50,11 @@ def get_gemini_response(weather_content, question):
 
 
 def convert_utc_to_local_time(utc_timestamp, timezone):
+    utc_dt = datetime.fromtimestamp(utc_timestamp, tz = ZoneInfo("UTC"))
     try:
-        utc_dt = datetime.fromtimestamp(utc_timestamp, tz = ZoneInfo("UTC"))
         local_dt = utc_dt.astimezone(ZoneInfo(timezone))
-        time = local_dt.strftime("%I:%M %p")
-        return time
-    except(ValueError, ZoneInfoNotFoundError) as e:
-        utc_dt = datetime.fromtimestamp(utc_timestamp, tz = ZoneInfo("UTC"))
-
+        return local_dt.strftime("%I:%M %p")
+    except ZoneInfoNotFoundError:
         return utc_dt.strftime("%I:%M %p")
 
 
@@ -168,10 +165,11 @@ def chat():
     data = request.json
     weather = data.get("weather", {})
     question = data.get("question", "")
-    unrelated_response = (
-        "I'm here to help with dog weather safety and walking advice! " 
-        "For other questions, please check with a relevant expert or resource. "
-        "How can I assist you with your dog's outdoor activities today?"
+    unrelated_response = ("""
+        I'm here to help with dog weather safety and walking advice! 
+        For other questions, please check with a relevant expert or resource. 
+        How can I assist you with your dog's outdoor activities today?
+    """
     )
     weather_content = f"""
         You are WagBot, a cheerful and helpful weather safety assistant for dog owners. 
@@ -181,7 +179,7 @@ def chat():
         Current conditions: temperature {weather['temp']}°F (feels like {weather['feel_temp']}°F), humidity {weather['humidity']}%, {weather['condition']} with {weather['desc']}. 
         Wind speed: {weather['wind']}, gusts up to {weather['wind_gust']}. 
         Limit your response to 200 words, plain text only, no formatting or asterisks.
-        """
+    """
 
     
     if any(word in question for word in keywords):

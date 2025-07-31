@@ -58,7 +58,6 @@ def convert_utc_to_local_time(utc_timestamp, timezone):
         return utc_dt.strftime("%I:%M %p")
 
 
-
 def fetch_weather_details(city, state, key, user_submits_form):
     now = time.time()
     if not user_submits_form:
@@ -406,5 +405,6 @@ def contact():
     )
     
 
-if __name__ in "__main__":
-    app.run(debug=True, port=5001)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5000)
+

@@ -796,7 +796,7 @@ select{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #00356e;
+  background-color: #333333;
   color: white;
   border: none;
   height: 45px;
@@ -819,7 +819,7 @@ select{
   max-width: 20rem;
   max-height: 25rem;
   overflow-y: scroll;
-  background-color: #00356e;
+  background-color: #1F2937;
   backdrop-filter: blur(10px);             
   border-radius: 10px;
   padding: 2rem;

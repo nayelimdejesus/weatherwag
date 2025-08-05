@@ -90,14 +90,14 @@
     <button id = "weatherwag-btn"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot-message-square-icon lucide-bot-message-square"><path d="M12 6V2H8"/><path d="M15 11v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M9 11v2"/></svg></button>
     <div id = "chat-card" class = "chat-card hidden">
         <form id = "chat-form">
-            <h3>WeatherWag AI</h3>
+            <h3>WagBot Chat</h3>
             <div class = "chat-section">
                 <input id = "question" name = "question" placeholder="Type a question ..."></input>
                 
                 <button type = "submit"><i class="bi bi-arrow-up"></i></button>
             </div>
         </form>
-        <p id = "chat-answer"></p>
+        <p id = "chat-answer">Hi! WagBot’s here with pawsome weather tips for you and your pup.</p>
     </div>
     {% endif %}
     <div class = "map-title">
@@ -122,15 +122,26 @@
     const chat_card = document.getElementById("chat-card"); 
     const chat_form = document.getElementById("chat-form")
     const chat_answer = document.getElementById("chat-answer")
+    const greetings = [
+        "Hey there, pup parent! WagBot here to help you and your furry friend weather any day!",
+        "Woof! I’m WagBot, ready to fetch the best weather tips for you and your dog.",
+        "Hi! Let’s make every walk a tail-wagging adventure with some paw-some weather advice!",
+        "Hello, dog lover! WagBot here to keep your pup comfy and safe come rain or shine.",
+        "Hey friend! Need weather info that’s perfect for your pup? I’m here to help!"
+    ];
+
+
 
     weatherwag_btn.addEventListener("click", () =>{
         chat_card.classList.toggle('hidden');
+        const randomIndex = Math.floor(Math.random() * greetings.length);
+        document.getElementById("chat-answer").textContent = greetings[randomIndex];
     })
 
     chat_form.addEventListener("submit", async(e)=>{
         e.preventDefault();
         const question = document.getElementById("question").value;
-        const answer = document.getElementById("chat-answer").textContent = "Thinking...";
+        document.getElementById("chat-answer").textContent = "Thinking...";
         const weather_data = {
             state: "{{state}}",
             city: "{{weather['city']}}",

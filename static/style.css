@@ -405,7 +405,7 @@ button:hover{
   }
 }
 /* Message to dog owners regarding walk */
-#green{
+.green{
     color: #1a3e2f;
     background-color: #b2e2b6ce;
     border-left: 6px solid #34a853;
@@ -415,7 +415,7 @@ button:hover{
     padding-block:1rem;
 
 }
-#orange{
+.orange{
       color: #935300;
     background-color: #fde3c8;
     border-left: 6px solid #ff8000;
@@ -424,7 +424,7 @@ button:hover{
     padding-inline: 2rem;
     padding-block:1rem;
 }
-#red{
+.red{
     color: red;
     background-color: #e5b8a866;
     border-left: 6px solid #ff1900;
@@ -433,7 +433,7 @@ button:hover{
     padding-inline: 2rem;
     padding-block:1rem;
 }
-#dark-blue{
+.dark-blue{
     color: rgb(0, 8, 255);
     background-color: #9e9bcb66;
     border-left: 6px solid #1500ff;
@@ -443,7 +443,7 @@ button:hover{
     padding-block:1rem;
     font-weight: bold;
 }
-#cool{
+.cool{
         color: rgb(109, 114, 255);
     background-color: #b6b4cd66;
     border-left: 6px solid rgb(109, 114, 255);
@@ -452,7 +452,7 @@ button:hover{
     padding-inline: 2rem;
     padding-block:1rem;
 }
-#blue{
+.blue{
     color: rgb(0, 8, 255);
     background-color: #9e9bcb66;
     border-left: 6px solid #1500ff;
@@ -461,7 +461,7 @@ button:hover{
     padding-inline: 2rem;
     padding-block:1rem;
 }
-#dark-red{
+.dark-red{
     color: red;
     background-color: #e5b8a866;
     border-left: 6px solid #ff1900;
@@ -470,6 +470,7 @@ button:hover{
     padding-inline: 2rem;
     padding-block:1rem;
     font-weight: bold;
+    height: auto;
 }
 
  /* Dog Message Section Div that contain two images and the dog message */
@@ -538,8 +539,8 @@ button:hover{
 }
 
 #dog_3{
-  width: 6rem;
-  height: 8rem;
+  width: 5rem;
+  height: 7rem;
   display: block;
   margin: 0 auto;  
 }
@@ -558,8 +559,8 @@ button:hover{
   }
 }
 #dog_4{
-  width: 6rem;
-  height: 8rem;
+  width: 5rem;
+  height: 7rem;
   display: block;
   margin: 0 auto;  
 }

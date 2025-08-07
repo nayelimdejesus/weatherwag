@@ -171,7 +171,7 @@ def chat():
     """
     )
     weather_content = f"""
-        You are WagBot, a cheerful and helpful weather safety assistant for dog owners. 
+        You are WagBot, a cheerful and helpful weather safety assistant for dog owners. Do not greet or introduce yourself.
         Based on the current weather in {weather['city']}, {weather['state']}, {weather['country']}, provide a personalized short paragraph answering the user's question. 
         Then give a second short paragraph with clear advice for walking dogs outdoors. 
         Remind users to use their own judgment. 

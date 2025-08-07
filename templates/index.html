@@ -36,7 +36,7 @@
                     <img id = "dog_1" src="/static/img/dog_1.png"/>
                 {% endif %}
 
-            <p id = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
+            <p id = "comfort-message" class = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
 
                 {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
                     <img id = "dog_4" src="/static/img/dog_4.png"/>
@@ -97,15 +97,15 @@
                 <button type = "submit"><i class="bi bi-arrow-up"></i></button>
             </div>
         </form>
-        <p id = "chat-answer">Hi! WagBot’s here with pawsome weather tips for you and your pup.</p>
+        <p id = "chat-answer"></p>
     </div>
     {% endif %}
     <div class = "map-title">
-        <h3 id = "title-places">Dog Friendly Parks in the Area</h3>
+        <h3 id = "title-places"></h3>
         <select id = "places" class = "dog-places">
-            <option value = "friendly_parks">Dog friendly parks</option>
+            <!-- <option value = "friendly_parks">Dog friendly parks</option>
             <option value = "dog_parks">Dog parks</option>
-            <option value = "trails">Dog friendly trails</option>
+            <option value = "trails">Dog friendly trails</option> -->
         </select>
     </div>
     
@@ -247,30 +247,81 @@
     const title_places = document.getElementById("title-places");
     let option;
     let place_chosen;
+    const comfort_message = document.getElementById('comfort-message').className;
+    const cool_options = [
+        { value: "friendly_parks", text: "Dog friendly parks" },
+        { value: "dog_parks", text: "Dog parks" },
+        { value: "trails", text: "Dog friendly trails" }
+  ];
+
+    const hot_options = [
+        { value: "indoor_parks", text: "Indoor dog parks" },
+        { value: "dog_pools", text: "Dog swimming pools" },
+        { value: "beaches", text: "Dog friendly beaches/lakes" },
+    ];
+
+    const select = document.getElementById('places');
+    function load_options(options) {
+        select.innerHTML = "";
+        options.forEach(opt => {
+        const option = document.createElement('option');
+        option.value = opt.value;
+        option.textContent = opt.text;
+        select.appendChild(option);
+        });
+    }
+
 
     // Default values
-    place_chosen = "dog friendly parks"
-    title_places.innerHTML = "Dog Friendly Parks in the Area";
+    if (comfort_message == "dark-red" || comfort_message == "red"){
+        load_options(hot_options);
+        place_chosen = "indoor dog parks";
+        title_places.innerHTML = "Indoor Dog Parks";
 
-    
-    places.addEventListener("change", () =>{
+        places.addEventListener("change", () =>{
         option = places.value;
 
-        if(option == "friendly_parks"){
-            place_chosen = "dog friendly parks";
-            title_places.innerHTML = "Dog Friendly Parks in the Area";
+        if(option == "indoor_parks"){
+            place_chosen = "indoor dog parks";
+            title_places.innerHTML = "Indoor Dog Parks";
         }
-        else if(option == "dog_parks"){
-            place_chosen = "dog parks";
-            title_places.innerHTML = "Dog Parks in the Area";
+        else if(option == "dog_pools"){
+            place_chosen = "Splash pads or Dog swimming pools";
+            title_places.innerHTML = "Dog Swimming Pools in the area";
         }
-        else if(option == "trails"){
-            place_chosen = "dog hiking trails";
-            title_places.innerHTML = "Dog Friendly Trails in the Area";
+        else if(option == "beaches"){
+            place_chosen = "dog friendly beaches or lakes";
+            title_places.innerHTML = "Dog Friendly Beaches and Lakes";
         }
         findPlaces();
         
     });
+    }
+    else{
+        load_options(cool_options);
+        place_chosen = "dog friendly parks";
+        title_places.innerHTML = "Dog Friendly Parks in the Area";
+
+        
+        places.addEventListener("change", () =>{
+            option = places.value;
+
+            if(option == "friendly_parks"){
+                place_chosen = "dog friendly parks";
+                title_places.innerHTML = "Dog Friendly Parks in the Area";
+            }
+            else if(option == "dog_parks"){
+                place_chosen = "dog parks";
+                title_places.innerHTML = "Dog Parks in the Area";
+            }
+            else if(option == "trails"){
+                place_chosen = "dog hiking trails";
+                title_places.innerHTML = "Dog Friendly Trails in the Area";
+            }
+            findPlaces();
+            
+        });
+}
     let center =  { lat:lat, lng: lng};
     async function initMap() {
         const { Map } = await google.maps.importLibrary("maps");

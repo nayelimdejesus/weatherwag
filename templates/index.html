@@ -1,19 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <div class = "card">
-        <!-- <div class = "card-title">     
-            <img class = "main-dog"src="/static/img/dog_4.png">   
-            <h1 id = "weather-fetch">WeatherWag</h1>
-            <img class = "main-dog" id = "main-pup" src="/static/img/main_pup.png"/>
-        </div> -->
-        <!-- <p id = "phrase">Where Weather and Dog Care Wag Together</p> -->
-        <!-- <p>The best walk is a safe walk</p> -->
         <form class = "mobile-form" method="POST" action="/">
             <div class = "mobile-user-input">
                 <input type = "hidden" name = "timezone" id = "timezoneInputMobile"/>
                 <input type = "text" id ="cityMobile" name = "city" placeholder="Enter City" required/>
-    
-                <!-- <input type = "text" id = "state" name = "state" placeholder="Enter State" required> -->
                 <select name = "states" required>
                     <option value ="">Select State</option>
                     {% for key, value in states.items() %} 
@@ -23,28 +14,27 @@
                 <button type="submit">Submit</button>
             </div>
         </form>
-            {% if error %}
-        <p id="error">{{error}}</p>
-    {% endif %}
+        {% if error %}
+            <p id="error">{{error}}</p>
+        {% endif %}
 
         {% if weather %}
         <div class = "dog-message-section">
-
-                {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
-                    <img id = "dog_3" src="/static/img/dog_3.png"/>
-                {% else%}
-                    <img id = "dog_1" src="/static/img/dog_1.png"/>
-                {% endif %}
+            {% if dog.color_message in ['dark-red', 'red'] %}
+                <img id = "dog_3" src="/static/img/dog_3.png"/>
+            {% else%}
+                <img id = "dog_1" src="/static/img/dog_1.png"/>
+            {% endif %}
 
             <p id = "comfort-message" class = "{{dog['color_message']}}">{{dog["dog_warning"]}}</p>
 
-                {% if dog['color_message'] == "dark-red" or dog['color_message'] == "red" %}
-                    <img id = "dog_4" src="/static/img/dog_4.png"/>
-                {% else%}
-                    <img id = "dog_2" src="/static/img/dog_2.png"/>
-                {% endif %}
-
+            {% if dog.color_message in ['dark-red', 'red'] %}
+                <img id = "dog_4" src="/static/img/dog_4.png"/>
+            {% else%}
+                <img id = "dog_2" src="/static/img/dog_2.png"/>
+            {% endif %}
         </div>
+
         <div class = "weather-section">
             <div class = "card-section">
                 <p id="user_city">{{weather["city"]}} {{state}}, US</p>
@@ -77,9 +67,8 @@
                     </p>
                     <br>
                 <button id = "pre_btn" class = "product-button-left"><i class="bi bi-arrow-left"></i></button>
-<p id="product_name"></p>
+                <p id="product_name"></p>
                 <div class = "product-images">
-                    
                     <a id="product_link" href="" target="_blank" rel="noopener">
                         <img id="product_image" src="" alt="Product Image" />
                     </a>
@@ -87,6 +76,7 @@
                 <button id = "next_btn" class = "product-button-right"><i class="bi bi-arrow-right"></i></button>
             </div>
         </div>
+
     <button id = "weatherwag-btn"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bot-message-square-icon lucide-bot-message-square"><path d="M12 6V2H8"/><path d="M15 11v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M20 16a2 2 0 0 1-2 2H8.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 4 20.286V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/><path d="M9 11v2"/></svg></button>
     <div id = "chat-card" class = "chat-card hidden">
         <form id = "chat-form">
@@ -102,20 +92,13 @@
     {% endif %}
     <div class = "map-title">
         <h3 id = "title-places"></h3>
-        <select id = "places" class = "dog-places">
-            <!-- <option value = "friendly_parks">Dog friendly parks</option>
-            <option value = "dog_parks">Dog parks</option>
-            <option value = "trails">Dog friendly trails</option> -->
-        </select>
+        <select id = "places" class = "dog-places"></select>
     </div>
     
     <div id="map"> 
 
     </div>
     </div>
-    <!-- <div class = "feedback">
-        <button id = "feedback">Feedback</button>
-    </div> -->
 
 <script>
     const weatherwag_btn = document.getElementById("weatherwag-btn");
@@ -196,25 +179,18 @@
 
     function show_product(index) {
         const first_product = products[index];
-        // const sec_product = products[second_index];
         product_name.textContent = first_product.name;
         product_image.src = first_product.image_url || '/static/img/placeholder.png';
         product_link.href = first_product.affiliate_url;
-
-        // sec_product_name.textContent = sec_product.name;
-        // sec_product_image.src = sec_product.image_url || '/static/img/placeholder.png';
-        // sec_product_link.href = sec_product.affiliate_url;
     }
     show_product(current_index);
 
     next_btn.addEventListener('click', () => {
       current_index = (current_index + 1) % products.length; 
-    //   second_index = (current_index + 1) % products.length; 
       show_product(current_index);
     });
     pre_btn.addEventListener('click', () => {
-      current_index = (current_index - 1 + products.length) % products.length; 
-    //   second_index = (current_index - 1 + products.length) % products.length; 
+      current_index = (current_index - 1 + products.length) % products.length;  
       show_product(current_index);
     });
 
@@ -272,7 +248,6 @@
     }
 
 
-    // Default values
     if (comfort_message == "dark-red" || comfort_message == "red"){
         load_options(hot_options);
         place_chosen = "indoor dog parks";
@@ -302,7 +277,6 @@
         place_chosen = "dog friendly parks";
         title_places.innerHTML = "Dog Friendly Parks in the Area";
 
-        
         places.addEventListener("change", () =>{
             option = places.value;
 
@@ -352,11 +326,12 @@
         const { LatLngBounds } = await google.maps.importLibrary("core");
         const bounds = new LatLngBounds();
         // Loop through and get all the results.
-places.forEach((place) => {
-    const markerView = new AdvancedMarkerElement({
-        map,
-        position: place.location,
-        title: place.displayName,
+        // 
+    places.forEach((place) => {
+        const markerView = new AdvancedMarkerElement({
+            map,
+            position: place.location,
+            title: place.displayName,
     });
 
     // Make marker clickable to open in Google Maps

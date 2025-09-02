@@ -53,16 +53,16 @@ def convert_utc_to_local_time(utc_timestamp, timezone):
     except ZoneInfoNotFoundError:
         return utc_dt.strftime("%I:%M %p")
 
-# r.hset('weather_cache', mapping={
-#     'stored_weather_data': '',
-#     'timestamp': 0,
-# })
-''' 
-So right now it's saving the info from sna jose in the redis
-and it's not updating when i change to a diffrent city
+default_city = "San Jose"
+default_state = "CA"
 
-'''
-def fetch_weather_details(city, state, key, user_submits_form):
+def fetch_weather_details(city, state, key):
+    if not city or not state:
+        city = default_city
+        state = default_state
+    cache_key = f"weather_cache:{city.lower()}:{state.lower()}"
+    print(cache_key)
+        
     now = time.time()
     
     # unique Redis key for each city and state
@@ -71,8 +71,7 @@ def fetch_weather_details(city, state, key, user_submits_form):
     stored_weather_data = r.hget(cache_key, 'stored_weather_data')
     stored_timestamp = r.hget(cache_key, 'timestamp')
     
-    print(f"Stored data: {stored_weather_data}")
-    print(f"Stored time: {stored_timestamp}")
+
     # if data exist in weather_cache and the timestamp is less than 10 minutes
     if stored_weather_data and stored_timestamp:
         stored_weather_data = json.loads(stored_weather_data)
@@ -94,22 +93,18 @@ def fetch_weather_details(city, state, key, user_submits_form):
         return data
 
     except requests.exceptions.Timeout:
-        error = "OpenWeather API timed out. Please try again later." 
-        return error
-    except requests.exceptions.HTTPError as req_err:
+        return None, "OpenWeather API timed out. Please try again later." 
+    except requests.exceptions.HTTPError:
+        print(cache_key)
         error = "Invalid city or state code. Please try again."
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={key}&units=imperial"
-        response = requests.get(url)
-        data = response.json()
-        if response.status_code != 200:
-            error = "Request failed. We're having trouble fetching the weather right now. Please try again shortly."
-            return None, error
-        return data,error
+        if city.lower() != default_city.lower() or state.lower() != default_state.lower():
+            data = fetch_weather_details(default_city, default_state, key)
+            return data, error
+        return None, error
     except requests.exceptions.RequestException as req_err:
-        return f"Request Failed: {req_err}"
+        return None, f"Request Failed: {req_err}"
     except ValueError:
-        error = "Error parsing response from OpenWeather."
-        return error
+        return None, "Error parsing response from OpenWeather."
 keywords = [
     "walk",
     "walking",
@@ -219,8 +214,8 @@ def index():
     form_type = ""
     
     # default city
-    city = "San Jose"
-    state = "CA"
+    # city = "San Jose"
+    # state = "CA"
     
     # absolute path to directory
     base_dir = os.path.abspath(os.path.dirname(__file__))
@@ -247,16 +242,21 @@ def index():
         timezone = request.form.get("timezone", "")
         user_submits_form = True
     else:
+        city = default_city
+        state = default_state
         timezone = "America/Los_Angeles"
         user_submits_form  = False
 
-    weather_api_result = fetch_weather_details(city, state, WEATHER_API_KEY, user_submits_form)
+    weather_api_result = fetch_weather_details(city, state, WEATHER_API_KEY)
     
     if(isinstance(weather_api_result, tuple)):
-        if None in weather_api_result:
-            error = weather_api_result[1]
-            return error
         weather_api_data, error = weather_api_result
+        if error and (city.lower() != default_city.lower() or state.lower() != default_state.lower()):
+            city = default_city
+            state = default_state
+        print(error)
+        print(weather_api_data)
+        
     else:
         weather_api_data = weather_api_result
 

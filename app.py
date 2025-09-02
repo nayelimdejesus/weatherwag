@@ -2,8 +2,9 @@ from flask import Flask, jsonify, render_template, request, redirect
 from dotenv import load_dotenv
 from datetime import datetime
 from flask_mail import Mail, Message
-from google import genai
-from google.genai import types
+import google.generativeai as genai
+
+import redis
 import os
 import json
 import time
@@ -16,25 +17,20 @@ load_dotenv()
 
 app = Flask(__name__)
 
+# mail information
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
 app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
 app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
-
 mail = Mail(app)
 
+# creates connection to local redis server
+r = redis.Redis(host='localhost', port=6379, decode_responses=True)
+
+# api keys 
 GOOGLE_API_KEY = os.getenv("GOOGLE_MAPS_KEY")
 WEATHER_API_KEY = os.getenv("WEATHER_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
-default_city = "San Jose"
-default_state = "CA"
-
-weather_cache = {
-    "data": None,
-    "timestamp": 0
-}
 
 def get_gemini_response(weather_content, question):
     client = genai.Client()
@@ -57,33 +53,52 @@ def convert_utc_to_local_time(utc_timestamp, timezone):
     except ZoneInfoNotFoundError:
         return utc_dt.strftime("%I:%M %p")
 
+# r.hset('weather_cache', mapping={
+#     'stored_weather_data': '',
+#     'timestamp': 0,
+# })
+''' 
+So right now it's saving the info from sna jose in the redis
+and it's not updating when i change to a diffrent city
 
+'''
 def fetch_weather_details(city, state, key, user_submits_form):
     now = time.time()
-    if not user_submits_form:
-        # if data exist in weather_cache and the timestamp is less than 10 minutes
-        if weather_cache["data"] and now - weather_cache["timestamp"] < 600:
-            return weather_cache["data"]
-
+    
+    # unique Redis key for each city and state
+    cache_key = f"weather_cache:{city.lower()}:{state.lower()}"
+    
+    stored_weather_data = r.hget(cache_key, 'stored_weather_data')
+    stored_timestamp = r.hget(cache_key, 'timestamp')
+    
+    print(f"Stored data: {stored_weather_data}")
+    print(f"Stored time: {stored_timestamp}")
+    # if data exist in weather_cache and the timestamp is less than 10 minutes
+    if stored_weather_data and stored_timestamp:
+        stored_weather_data = json.loads(stored_weather_data)
+        stored_timestamp = float(stored_timestamp)
+        if now - stored_timestamp < 600:
+            return stored_weather_data
+        
+    
     url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={key}&units=imperial"
     try:
         response = requests.get(url, timeout=5)
         response.raise_for_status()
         data = response.json()
         
-        # if the user did not input anything then we will store new data into the weather_cache
-        if not user_submits_form:
-            weather_cache["data"] = data
-            weather_cache["timestamp"] = now
-            return weather_cache["data"]
-    
+        r.hset(cache_key, mapping={
+            'stored_weather_data': json.dumps(data),
+            'timestamp': now,
+        })
         return data
+
     except requests.exceptions.Timeout:
         error = "OpenWeather API timed out. Please try again later." 
         return error
     except requests.exceptions.HTTPError as req_err:
         error = "Invalid city or state code. Please try again."
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={default_city},{default_state},us&appid={key}&units=imperial"
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city},{state},us&appid={key}&units=imperial"
         response = requests.get(url)
         data = response.json()
         if response.status_code != 200:
@@ -187,6 +202,7 @@ def chat():
     answer = unrelated_response
     return jsonify({"chat_answer": answer})
     
+
 # home page
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -201,6 +217,10 @@ def index():
     condition_message = ""
     weather_content = ""
     form_type = ""
+    
+    # default city
+    city = "San Jose"
+    state = "CA"
     
     # absolute path to directory
     base_dir = os.path.abspath(os.path.dirname(__file__))
@@ -228,8 +248,6 @@ def index():
         user_submits_form = True
     else:
         timezone = "America/Los_Angeles"
-        city = default_city
-        state = default_state
         user_submits_form  = False
 
     weather_api_result = fetch_weather_details(city, state, WEATHER_API_KEY, user_submits_form)
@@ -406,5 +424,5 @@ def contact():
     
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(debug=True, host="0.0.0.0", port=5001)
 

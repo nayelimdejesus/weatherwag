@@ -47,6 +47,8 @@ def get_gemini_response(weather_content, question):
 
 def convert_utc_to_local_time(utc_timestamp, timezone):
     utc_dt = datetime.fromtimestamp(utc_timestamp, tz = ZoneInfo("UTC"))
+    if not timezone:
+        return utc_dt.strftime("%I:%M %p")
     try:
         local_dt = utc_dt.astimezone(ZoneInfo(timezone))
         return local_dt.strftime("%I:%M %p")
@@ -93,7 +95,7 @@ def fetch_weather_details(city, state, key):
         return data
 
     except requests.exceptions.Timeout:
-        return None, "OpenWeather API timed out. Please try again later." 
+        return "OpenWeather API timed out. Please try again later." 
     except requests.exceptions.HTTPError:
         print(cache_key)
         error = "Invalid city or state code. Please try again."
@@ -102,9 +104,9 @@ def fetch_weather_details(city, state, key):
             return data, error
         return None, error
     except requests.exceptions.RequestException as req_err:
-        return None, f"Request Failed: {req_err}"
+        return f"Request Failed: {req_err}"
     except ValueError:
-        return None, "Error parsing response from OpenWeather."
+        return "Error parsing response from OpenWeather."
 keywords = [
     "walk",
     "walking",

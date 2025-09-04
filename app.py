@@ -173,7 +173,7 @@ keywords = [
 
 @app.route("/chat", methods = ["POST"])
 def chat():
-    data = request.json
+    data = request.json or {}
     weather = data.get("weather", {})
     question = data.get("question", "")
     unrelated_response = ("""
@@ -242,12 +242,10 @@ def index():
         city = request.form.get("city", "").strip()
         state = request.form.get("states", "") 
         timezone = request.form.get("timezone", "")
-        user_submits_form = True
     else:
         city = default_city
         state = default_state
         timezone = "America/Los_Angeles"
-        user_submits_form  = False
 
     weather_api_result = fetch_weather_details(city, state, WEATHER_API_KEY)
     
@@ -279,7 +277,14 @@ def index():
     
     if weather_condition== "Rain":
         condition_message = "It's raining. Shorten walks and dry your dog thoroughly afterwards."
-
+    elif weather_condition == "Thunderstorm":
+        condition_message = "Thunderstorms can be dangerous and frightening for dogs. It is safest to stay indoors until the storm passes, and always use your own judgment."
+    elif weather_condition == "Snow":
+        condition_message = "It's snowing and walkways can be slippery. Keep walks short and protect your dogs paws, and always use your own judgment."
+    elif weather_condition == "Ash":
+        condition_message = "Air quality is poor due to ash. Limit outdoor walks to protect your dog's breathing."
+        
+        
     if feels_like_temp < 20:
         color_message = "dark-blue"
         dog_warning = "Extreme cold may increase the risk of frostbite. Consider bundling up your dog or limiting outdoor time."

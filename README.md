@@ -1,6 +1,12 @@
 # WeatherWag
 ### Where Weather and Dog Care Wag Together
 WeatherWag is the ultimate app for dog owners who want simple, reliable weather information paired with useful tips to help their dogs enjoy every day outdoors.
+## Tech Stack
+- Flask (backend framework)
+- OpenWeatherMap API (weather data)
+- Google Maps API (location and parks)
+- Gemini AI (personalized recommendations)
+- HTML, CSS, JavaScript (frontend)
 
 ## Demo
 ### Comfortable weather
